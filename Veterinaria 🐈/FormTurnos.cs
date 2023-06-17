@@ -20,7 +20,7 @@ namespace Veterinaria__
     {
         Usuario veterinarioActual;
         private string? nivelImportancia;
-        Recepcionista<Mascota> recepcionista = new Recepcionista<Mascota>();
+        Recepcionista recepcionista = new Recepcionista();
 
         //String gravedad
 
@@ -213,7 +213,7 @@ namespace Veterinaria__
                                 {
                                     foreach (Usuario usuario in Sistema.usuario)
                                     {
-                                        if (usuario is Veterinario veterinario && usuario.JerarquiaUsuario == Usuario.Jerarquia.Veterinario)
+                                        if (usuario is Veterinario veterinario)
                                         {
                                             if (veterinario.Especialidad == "Guardia Urgencias" || veterinario.Especialidad == "Cirujano" && veterinario.Atendiendo == false)
                                             {

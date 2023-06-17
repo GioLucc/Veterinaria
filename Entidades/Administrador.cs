@@ -1,38 +1,41 @@
-﻿using System;
+﻿using Entidades.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
-    public sealed class Administrador<T> : Usuario, IUtilidades<T> where T : Usuario
+    public sealed class Administrador: Usuario, IUtilidades<Usuario>
     {
-        public bool Alta(T elementoAAgregar)
+        public Administrador()
+        {
+
+        }
+
+        public Administrador(short id,string nombre, string apellido, int dni, int edad,string nombreUsuario, string clave, bool activo, float sueldo) : base(id,nombre,apellido,dni,edad,nombreUsuario,clave,activo, sueldo)
+        {
+
+        }
+
+        public bool Alta(Usuario elementoAAgregar)
         {
             bool retorno = true;
+            VeterinarioDAO vetDAO = new VeterinarioDAO();
 
-            foreach (Usuario elemento in Sistema.usuario)
-            {
-                if(elemento.Dni == elementoAAgregar.Dni)
-                {
-                    retorno = false;                  
-                }
-            }
-            if(retorno)
-            {
-                Sistema.usuario.Add(elementoAAgregar);  
-            }
+            vetDAO.AgregarVeterinario((Veterinario)elementoAAgregar);
 
             return retorno;
         }
 
-        public bool Baja(T elementoADarDeBaja)
+        public bool Baja(Usuario elementoADarDeBaja)
         {
             return true;
         }
 
-        public bool Modificacion(T elementoModificado)
+        public bool Modificacion(Usuario elementoModificado)
         {
             return true;
         }

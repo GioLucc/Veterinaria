@@ -20,31 +20,24 @@ namespace Veterinaria__
         { 
             InitializeComponent();
             dataGridView1.Hide();
-            if(usuario.JerarquiaUsuario == Usuario.Jerarquia.Administrador)
-            {
-                foreach (string nombre in Enum.GetNames(typeof(Usuario.Jerarquia)))
-                {
-                    cmbJerarquia.Items.Add(nombre);
-                }
 
-                txtIdDueño.Hide();
-                txtPeso.Hide();                         
-                lblEspecie.Text = "Usuario";
-                lblEnfermeddadActual.Text = "Contraseña";
-                lblRaza.Text = "Nombre";
-                lblNombreAnimalDomestico.Text = "Apellido";
-                lblNombreDueño.Text = "DNI";
-                lblEdad.Text = "Fecha de Nacimiento";
-                lblIdDueño.Text = "Trabajando";
-                lblPeso.Text = "Administrador";
-                lblNombreDueño.Location = new Point(lblNombreDueño.Location.X + 35, lblNombreDueño.Location.Y + 0);
-                lblNombreAnimalDomestico.Location = new Point(lblNombreAnimalDomestico.Location.X + 25, lblNombreAnimalDomestico.Location.Y + 0);
-                lblEdad.Location = new Point(lblEdad.Location.X - 40, lblEdad.Location.Y + 0);
-                lblPeso.Location = new Point(lblPeso.Location.X - 20, lblPeso.Location.Y + 0);
-                lblSexo.Text = "Sueldo";
-                
-            }
-            else
+            txtIdDueño.Hide();
+            txtPeso.Hide();                         
+            lblEspecie.Text = "Usuario";
+            lblEnfermeddadActual.Text = "Contraseña";
+            lblRaza.Text = "Nombre";
+            lblNombreAnimalDomestico.Text = "Apellido";
+            lblNombreDueño.Text = "DNI";
+            lblEdad.Text = "Fecha de Nacimiento";
+            lblIdDueño.Text = "Trabajando";
+            lblPeso.Text = "Administrador";
+            lblNombreDueño.Location = new Point(lblNombreDueño.Location.X + 35, lblNombreDueño.Location.Y + 0);
+            lblNombreAnimalDomestico.Location = new Point(lblNombreAnimalDomestico.Location.X + 25, lblNombreAnimalDomestico.Location.Y + 0);
+            lblEdad.Location = new Point(lblEdad.Location.X - 40, lblEdad.Location.Y + 0);
+            lblPeso.Location = new Point(lblPeso.Location.X - 20, lblPeso.Location.Y + 0);
+            lblSexo.Text = "Sueldo";
+
+            if(usuario is Veterinario || usuario is Recepcionista)
             {
                 chkTrabajando.Hide();
                 chkEsAdmin.Hide();
@@ -52,19 +45,18 @@ namespace Veterinaria__
                 cmbJerarquia.Hide();
                 lblJerarquia.Hide();
             }
+                
         }
-
-
-        public Usuario ValidarDatosTrabajador()
+        
+        public Veterinario ValidarDatosTrabajador()
         {
-            Usuario usuarioACrear = null;
+            Veterinario usuarioACrear = null;
             short IdUsuario = Sistema.GenerarIdCliente();
             String nombre = txtRaza.Text;
             String apellido = txtNombreAnimalDomestico.Text;
             DateTime fechaNacimiento = dtpNacimiento.Value.Date;
             String usuario = txtEspecie.Text;
             String contraseñaUsuario = txtEnfermedadActual.Text;
-            Usuario.Jerarquia jerarquiaUsuario;
             bool trabajando = chkTrabajando.Checked;
             float sueldo;
             int dni;
@@ -73,8 +65,7 @@ namespace Veterinaria__
 
             if(int.TryParse(txtNombreDueño.Text, out dni) &&  float.TryParse(txtSexo.Text, out sueldo) &&IdUsuario != 0 && nombre.Length > 0 && apellido.Length >0 && dni > 10000 && fechaNacimiento.Date != DateTime.Now && usuario.Length > 0 && contraseñaUsuario.Length > 0 && sueldo > 0 && cmbJerarquia.SelectedItem != null)
             {
-                jerarquiaUsuario = (Usuario.Jerarquia)Enum.Parse(typeof(Usuario.Jerarquia), cmbJerarquia.SelectedItem.ToString());
-                Usuario nuevoUsuario = new Usuario(IdUsuario, nombre, apellido, dni, edad, usuario, contraseñaUsuario, jerarquiaUsuario, trabajando, sueldo);
+                Veterinario nuevoUsuario = new Veterinario(IdUsuario, nombre, apellido, dni, edad, usuario, contraseñaUsuario,true,sueldo,"Cirujano",false);
 
                 usuarioACrear = nuevoUsuario;
             }
@@ -83,9 +74,10 @@ namespace Veterinaria__
         }
         private void btnValidarAdmin_Click(object sender, EventArgs e)
         {
-            Usuario usuarioACrear;
-            Administrador<Usuario> administrador = new Administrador<Usuario>();
+            Veterinario usuarioACrear;
+            Administrador administrador = new Administrador();
             usuarioACrear = ValidarDatosTrabajador();
+
             if (usuarioACrear != null)
             {
                 administrador.Alta(usuarioACrear);
@@ -119,7 +111,7 @@ namespace Veterinaria__
         private void btnValidar_Click(object sender, EventArgs e)
         {
             Mascota mascotaACrear;
-            Recepcionista<Mascota> recepcionista = new Recepcionista<Mascota>();
+            Recepcionista recepcionista = new Recepcionista();
             mascotaACrear = ValidarDatosMascota();
             if(mascotaACrear != null)
             {

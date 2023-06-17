@@ -19,28 +19,25 @@ namespace Entidades.DB
             connection.Open();
 
             // Crear la consulta SQL para agregar un veterinario a la base de datos
-            string query = "INSERT INTO Veterinarios (Id, Nombre, Apellido, Dni, Edad, NombreUsuario, Clave, Jerarquia, Activo, Sueldo, Especialidad, Atendiendo) " +
-                    "VALUES (@Id, @Nombre, @Apellido, @Dni, @Edad, @NombreUsuario, @Clave, @Jerarquia, @Activo, @Sueldo, @Especialidad, @Atendiendo)";
+            string query = "INSERT INTO Veterinario (nombre, apellido, dni, edad, nombreUsuario, clave, idJerarquia, activo, sueldo, especialidad, atendiendo) " +
+                           "VALUES (@nombre, @apellido, @dni, @edad, @nombreUsuario, @clave, (SELECT id FROM JerarquiaUsuario WHERE descripcion = @descripcion), @activo, @sueldo, @especialidad, @atendiendo)";
 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                // Asignar los parámetros
-                command.Parameters.AddWithValue("@Id", id);
-                command.Parameters.AddWithValue("@Nombre", nombre);
-                command.Parameters.AddWithValue("@Apellido", apellido);
-                command.Parameters.AddWithValue("@Dni", dni);
-                command.Parameters.AddWithValue("@Edad", edad);
-                command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                command.Parameters.AddWithValue("@Clave", clave);
-                command.Parameters.AddWithValue("@Jerarquia", jerarquia);
-                command.Parameters.AddWithValue("@Activo", activo);
-                command.Parameters.AddWithValue("@Sueldo", sueldo);
-                command.Parameters.AddWithValue("@Especialidad", especialidad);
-                command.Parameters.AddWithValue("@Atendiendo", atendiendo);
+                command.Parameters.AddWithValue("@nombre", veterinario.Nombre);
+                command.Parameters.AddWithValue("@apellido", veterinario.Apellido);
+                command.Parameters.AddWithValue("@dni", veterinario.Dni);
+                command.Parameters.AddWithValue("@edad", veterinario.Edad);
+                command.Parameters.AddWithValue("@nombreUsuario", veterinario.NombreUsuario);
+                command.Parameters.AddWithValue("@clave", veterinario.ContraseniaUsuario);
+                command.Parameters.AddWithValue("@activo", veterinario.Activo);
+                command.Parameters.AddWithValue("@sueldo", veterinario.Sueldo);
+                command.Parameters.AddWithValue("@especialidad", veterinario.Especialidad);
+                command.Parameters.AddWithValue("@atendiendo", veterinario.Atendiendo);
 
-                // Ejecutar la consulta
                 command.ExecuteNonQuery();
             }
+
             connection.Close();
 
             // }                    
@@ -89,7 +86,6 @@ namespace Entidades.DB
                     command.Parameters.AddWithValue("@Edad", veterinario.Edad);
                     command.Parameters.AddWithValue("@NombreUsuario", veterinario.NombreUsuario);
                     command.Parameters.AddWithValue("@Clave", veterinario.ContraseniaUsuario);
-                    command.Parameters.AddWithValue("@Jerarquia", veterinario.JerarquiaUsuario);
                     command.Parameters.AddWithValue("@Activo", veterinario.Activo);
                     command.Parameters.AddWithValue("@Sueldo", veterinario.Sueldo);
                     command.Parameters.AddWithValue("@Especialidad", veterinario.Especialidad);

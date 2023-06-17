@@ -1,39 +1,41 @@
-﻿using System;
+﻿using Entidades.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
-    public class Recepcionista<T> : Usuario , IUtilidades<T> where T : Mascota
+    public class Recepcionista : Usuario , IUtilidades<Mascota>
     {
-        public bool Alta(T elementoAAgregar)
+        public Recepcionista()
+        {
+
+        }
+
+        public Recepcionista(short id, string nombre, string apellido, int dni, int edad, string nombreUsuario, string clave, bool activo, float sueldo) : base(id, nombre, apellido, dni, edad, nombreUsuario, clave, activo, sueldo)
+        {
+
+        }
+
+        public bool Alta(Mascota elementoAAgregar)
         {  
             bool retorno = true;
 
-            foreach (Mascota elemento in Sistema.AnimalDomesticos)
-            {
-                if (elemento.NombreAnimal == elementoAAgregar.NombreAnimal 
-                    && elemento.ApellidoDueño == elementoAAgregar.ApellidoDueño)
-                {
-                    retorno = false;
-                }
-            }
-            if (retorno)
-            {
-                Sistema.AnimalDomesticos.Add(elementoAAgregar);
-            }
+            MascotaDAO.Agregar(elementoAAgregar);
+
 
             return retorno;            
         }
 
-        public bool Baja(T elementoADarDeBaja)
+        public bool Baja(Mascota elementoADarDeBaja)
         {
             return true;
         }
 
-        public bool Modificacion(T elementoModificado)
+        public bool Modificacion(Mascota elementoModificado)
         {
             return true;
         }

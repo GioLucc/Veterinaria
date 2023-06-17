@@ -10,64 +10,68 @@ namespace Entidades.DB
 {
     public class MascotaDAO : ConexionDB
     {
-
         public static void Agregar(Mascota mascota)
         {
-            
-            using (SqlConnection connection = ObtenerConexion())
+            SqlConnection connection = ObtenerConexion();
+                      
+            connection.Open();
+
+            var query = $"INSERT INTO Mascota (nombreAnimal,apellidoDueño,edad,especie,raza,peso,sexo,fechaDeNacimiento) VALUES (@nombreAnimal, @apellidoDueño, @edad, @especie, @raza, @peso, @sexo, @fechaDeNacimiento)";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
-                connection.Open();
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@nombreAnimal", mascota.NombreAnimal);
+                command.Parameters.AddWithValue("@apellidoDueño", mascota.ApellidoDueño);
+                command.Parameters.AddWithValue("@edad", mascota.Edad);
+                command.Parameters.AddWithValue("@especie", mascota.Especie);
+                command.Parameters.AddWithValue("@raza", mascota.Raza);
+                command.Parameters.AddWithValue("@peso", mascota.Peso);
+                command.Parameters.AddWithValue("@sexo", mascota.Sexo);
+                command.Parameters.AddWithValue("@fechaDeNacimiento", mascota.FechaDeNacimiento);
 
-                var query = $"INSERT INTO Mascota (idMascota, nombreAnimal,apellidoDueño,edad,especie,raza,peso,sexo,fechaDeNacimiento) VALUES (@idMascota, @nombreAnimal, @apellidoDueño, @edad, @especie, @raza, @peso, @sexo, @fechaDeNacimiento)";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.CommandText = query;
-                    command.Parameters.AddWithValue("@idMascota", mascota.IdMascota);
-                    command.Parameters.AddWithValue("@nombreAnimal", mascota.NombreAnimal);
-                    command.Parameters.AddWithValue("@apellidoDueño", mascota.ApellidoDueño);
-                    command.Parameters.AddWithValue("@edad", mascota.Edad);
-                    command.Parameters.AddWithValue("@especie", mascota.Especie);
-                    command.Parameters.AddWithValue("@raza", mascota.Raza);
-                    command.Parameters.AddWithValue("@peso", mascota.Peso);
-                    command.Parameters.AddWithValue("@sexo", sexo);
-                    command.Parameters.AddWithValue("@fechaDeNacimiento", fechaDeNacimiento);
-                }
+                command.ExecuteNonQuery(); // Ejecutar la consulta de inserción
 
             }
+
+            connection.Close();
+
+            //try
+            //{
+            //    SqlConnection connection = ObtenerConexion();
+
+            //    connection.Open();
+
+            //    var query = $"INSERT INTO Mascota (nombreAnimal,apellidoDueño,edad,especie,raza,peso,sexo,fechaDeNacimiento) VALUES (@nombreAnimal, @apellidoDueño, @edad, @especie, @raza, @peso, @sexo, @fechaDeNacimiento)";
+
+            //    SqlCommand command = new SqlCommand(query, connection);
+
+            //    command.CommandText = query;
+            //    command.Parameters.AddWithValue("@nombreAnimal", mascota.NombreAnimal);
+            //    command.Parameters.AddWithValue("@apellidoDueño", mascota.ApellidoDueño);
+            //    command.Parameters.AddWithValue("@edad", mascota.Edad);
+            //    command.Parameters.AddWithValue("@especie", mascota.Especie);
+            //    command.Parameters.AddWithValue("@raza", mascota.Raza);
+            //    command.Parameters.AddWithValue("@peso", mascota.Peso);
+            //    command.Parameters.AddWithValue("@sexo", mascota.Sexo);
+            //    command.Parameters.AddWithValue("@fechaDeNacimiento", mascota.FechaDeNacimiento);
+
+            //    command.ExecuteNonQuery(); // Ejecutar la consulta de inserción
+
+            //}
+            //catch
+            //{
+
+
+            //}
+            //finally
+            //{
+            //    Esto no funciona porque heredo de conexion y connection no existe acá
+            //}
+
+
         }
-
-        public void AgregarMascota(List<string> historialClinico, int idMascota, string nombreAnimal, string apellidoDueño, int edad, string especie, string raza, float peso, char sexo, DateTime fechaDeNacimiento)
-        {
-            using (SqlConnection connection = ObtenerConexion())
-            {
-                connection.Open();
-
-                // Crear la consulta SQL para agregar una mascota a la base de datos
-                string query = "INSERT INTO Mascotas (HistorialClinico, IdMascota, NombreAnimal, ApellidoDueño, Edad, Especie, Raza, Peso, Sexo, FechaDeNacimiento) " +
-                                "VALUES (@HistorialClinico, @IdMascota, @NombreAnimal, @ApellidoDueño, @Edad, @Especie, @Raza, @Peso, @Sexo, @FechaDeNacimiento)";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Asignar los parámetros
-                    command.Parameters.AddWithValue("@HistorialClinico", string.Join(",", historialClinico));
-                    command.Parameters.AddWithValue("@IdMascota", idMascota);
-                    command.Parameters.AddWithValue("@NombreAnimal", nombreAnimal);
-                    command.Parameters.AddWithValue("@ApellidoDueño", apellidoDueño);
-                    command.Parameters.AddWithValue("@Edad", edad);
-                    command.Parameters.AddWithValue("@Especie", especie);
-                    command.Parameters.AddWithValue("@Raza", raza);
-                    command.Parameters.AddWithValue("@Peso", peso);
-                    command.Parameters.AddWithValue("@Sexo", sexo);
-                    command.Parameters.AddWithValue("@FechaDeNacimiento", fechaDeNacimiento);
-
-                    // Ejecutar la consulta
-                    command.ExecuteNonQuery();
-                }
-
-                connection.Close();
-            }
-        }
+    
 
         public Mascota ObtenerMascota(int idMascota)
         {
@@ -89,8 +93,7 @@ namespace Entidades.DB
                         if (reader.Read())
                         {
                             // Obtener los valores de las columnas de la mascota
-                            string[] historialClinicoArray = reader.GetString(reader.GetOrdinal("HistorialClinico")).Split(',');
-                            List<string> historialClinico = new List<string>(historialClinicoArray);
+
                             string nombreAnimal = reader.GetString(reader.GetOrdinal("NombreAnimal"));
                             string apellidoDueño = reader.GetString(reader.GetOrdinal("ApellidoDueño"));
                             int edad = reader.GetInt32(reader.GetOrdinal("Edad"));
@@ -101,7 +104,7 @@ namespace Entidades.DB
                             DateTime fechaDeNacimiento = reader.GetDateTime(reader.GetOrdinal("FechaDeNacimiento"));
 
                             // Crear una instancia de Mascota con los valores obtenidos
-                            Mascota mascota = new Mascota(idMascota, nombreAnimal, apellidoDueño, edad, especie, raza, peso, sexo, fechaDeNacimiento);
+                            Mascota mascota = new Mascota(especie, raza, peso, sexo,nombreAnimal, apellidoDueño, idMascota, fechaDeNacimiento);
                             return mascota;
                         }
                     }
@@ -113,21 +116,20 @@ namespace Entidades.DB
             return null;
         }
 
-        public void ActualizarMascota(List<string> historialClinico, int idMascota, string nombreAnimal, string apellidoDueño, int edad, string especie, string raza, float peso, char sexo, DateTime fechaDeNacimiento)
+        public void ActualizarMascota(int idMascota, string nombreAnimal, string apellidoDueño, int edad, string especie, string raza, float peso, char sexo, DateTime fechaDeNacimiento)
         {
-            using (SqlConnection connection = GetConnection())
+            using (SqlConnection connection = ObtenerConexion())
             {
                 connection.Open();
 
                 // Crear la consulta SQL para actualizar los datos de la mascota en la base de datos
-                string query = "UPDATE Mascotas SET HistorialClinico = @HistorialClinico, NombreAnimal = @NombreAnimal, " +
-                                "ApellidoDueño = @ApellidoDueño, Edad = @Edad, Especie = @Especie, Raza = @Raza, " +
-                                "Peso = @Peso, Sexo = @Sexo, FechaDeNacimiento = @FechaDeNacimiento WHERE IdMascota = @IdMascota";
+                string query = "UPDATE Mascotas SET nombreAnimal = @NombreAnimal, " +
+                                "apellidoDueño = @ApellidoDueño, edad = @Edad, especie = @Especie, raza = @Raza, " +
+                                "peso = @Peso, sexo = @Sexo, fechaDeNacimiento = @FechaDeNacimiento WHERE idMascota = @IdMascota";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Asignar los parámetros
-                    command.Parameters.AddWithValue("@HistorialClinico", string.Join(",", historialClinico));
                     command.Parameters.AddWithValue("@IdMascota", idMascota);
                     command.Parameters.AddWithValue("@NombreAnimal", nombreAnimal);
                     command.Parameters.AddWithValue("@ApellidoDueño", apellidoDueño);
@@ -169,5 +171,7 @@ namespace Entidades.DB
         }
     }
 }
-}
-}
+
+
+
+

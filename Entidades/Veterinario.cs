@@ -8,11 +8,10 @@ using System.Xml.Serialization;
 namespace Entidades
 {
     [Serializable]
-    public sealed class Veterinario : Usuario
+    public class Veterinario : Usuario
 
     {
         private String especialidad;
-        private List<String> diasDeTrabajo;
         private bool atendiendo;
 
         public Veterinario()
@@ -21,16 +20,15 @@ namespace Entidades
         }
 
         public Veterinario(string nombre, string especialidad)
-     : base(0, nombre, "", 0, 0, string.Empty, string.Empty, Usuario.Jerarquia.Veterinario, true, 0f)
+     : base(0, nombre, "", 0, 0, string.Empty, string.Empty, true, 0f)
         {
             this.Especialidad = especialidad;
             this.Atendiendo = false; // Valor predeterminado para el estado de atendiendo
         }
 
 
-        public Veterinario(short id, string nombre, string apellido, int dni, int edad, string nombreUsuario, string clave, Usuario.Jerarquia jerarquia, bool activo, float sueldo, string especialidad, bool atendiendo) : base(id, nombre, apellido, dni, edad, nombreUsuario, clave, jerarquia, activo, sueldo)
+        public Veterinario(short id, string nombre, string apellido, int dni, int edad, string nombreUsuario, string clave, bool activo, float sueldo, string especialidad, bool atendiendo) : base(id, nombre, apellido, dni, edad, nombreUsuario, clave, activo, sueldo)
         {
-            diasDeTrabajo = new List<String>();
             this.especialidad = especialidad;
             this.atendiendo = atendiendo;
         } 

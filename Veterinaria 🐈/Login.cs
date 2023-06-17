@@ -23,7 +23,6 @@ namespace Veterinaria__
             if (txtPassword.Text is not null && txtPassword.Text is not null)
             {
                 Usuario usuarioDevuelto;
-                String informacion;
 
                 usuarioDevuelto = Sistema.ValidarUsuario(txtUsername.Text, txtPassword.Text);
 

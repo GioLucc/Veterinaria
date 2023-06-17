@@ -21,7 +21,7 @@ namespace Veterinaria__
             InitializeComponent();
             this.usuarioForm = usuarioForm;
 
-            if (usuarioForm.JerarquiaUsuario == Usuario.Jerarquia.Administrador)
+            if (usuarioForm is Administrador)
             {
                 btnAtender.Hide();
                 btn_DarDeAlta.Hide();
@@ -31,7 +31,7 @@ namespace Veterinaria__
             }
             else
             {   
-                if(usuarioForm.JerarquiaUsuario == Usuario.Jerarquia.Recepcionista)
+                if(usuarioForm is Recepcionista)
                 {
                     btnAtender.Hide();
                     btnAdminAlta.Hide();
@@ -158,11 +158,6 @@ namespace Veterinaria__
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            foreach (Mascota el in Sistema.AnimalDomesticos)
-            {
-                ConexionDB.Agregar(el.IdMascota,el.NombreAnimal,el.ApellidoDueño,el.Edad,el.Raza,el.Especie,el.Peso,el.Sexo,el.FechaDeNacimiento);
-            }
 
 
         }

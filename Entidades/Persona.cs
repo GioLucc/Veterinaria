@@ -12,19 +12,18 @@ namespace Entidades
         private string apellido;
         private int dni;
         private int edad;
-        private string email;
-
-        public Persona()
-        {
-
-        }
-
+       
         public Persona(string nombre, string apellido, int dni, int edad)
         {
             this.nombre = nombre;
             this.apellido = apellido;
             this.dni = dni;
             this.edad = edad;
+        }
+
+        public Persona()
+        {
+
         }
 
         public string Nombre { get => nombre; set => nombre = value; }
@@ -45,20 +44,20 @@ namespace Entidades
             return sb.ToString();
         }
 
-        public static bool operator ==(Persona persona1, Persona persona2)
-        {
-            bool resultado = false;
+        //public static bool operator ==(Persona persona1, Persona persona2)
+        //{
+        //    bool resultado = false;
 
-            if (persona1.dni == persona2.dni)
-            {
-                resultado = true;
-            }
-            return resultado;
-        }
+        //    if (persona1.dni == persona2.dni)
+        //    {
+        //        resultado = true;
+        //    }
+        //    return resultado;
+        //}
 
-        public static bool operator !=(Persona persona1, Persona persona2)
-        {
-            return !(persona1 == persona2);
-        }
+        //public static bool operator !=(Persona persona1, Persona persona2)
+        //{
+        //    return !(persona1 == persona2);
+        //}
     }
 }

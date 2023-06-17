@@ -79,8 +79,7 @@ namespace Veterinaria__
             {
                 if (usuario is Veterinario veterinario)
                 {
-                    if (usuario.JerarquiaUsuario == Usuario.Jerarquia.Veterinario &&
-                       veterinario.Atendiendo == false)
+                    if (veterinario.Atendiendo == false)
                     {
                         veterinariosDisponibles.Add(veterinario);
 

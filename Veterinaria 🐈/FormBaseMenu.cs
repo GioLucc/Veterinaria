@@ -39,7 +39,7 @@ namespace Veterinaria__
 
         private void timEstatus_Tick(object sender, EventArgs e)
         {
-            label1.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - " + usuarioForm.JerarquiaUsuario + " | " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+            label1.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - " + usuarioForm.GetType() + " | " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
         }
 
         private void FormBaseMenu_MouseUp(object sender, MouseEventArgs e)

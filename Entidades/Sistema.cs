@@ -11,7 +11,7 @@ namespace Entidades
 {
     public static class Sistema
     {
-        public static List<Persona> usuario;
+        public static List<Usuario> usuario;
         public static List<Mascota> AnimalDomesticos;
         public static List<Turno> turnos;
         public static List <String> urgenciasMedicas;
@@ -29,7 +29,7 @@ namespace Entidades
 
         static Sistema()
         {
-            usuario = new List<Persona>();
+            usuario = new List<Usuario>();
             urgenciasMedicas = new List<String>();
             turnos = new List<Turno>();
             AnimalDomesticos = new List<Mascota>();
@@ -99,14 +99,14 @@ namespace Entidades
         }
         private static void HardCodearUsuarios()
         {
-            usuario.Add(new Usuario(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "0nimdaPetShop", "WtTK*Qv%nauSUDo2M0^F", Usuario.Jerarquia.Administrador,true, 120000));
-            usuario.Add(new Usuario(Sistema.GenerarIdCliente(), "Carlos", "Arnauti", 5636215, 78, "1", "1", Usuario.Jerarquia.Recepcionista, true,120000));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2", Usuario.Jerarquia.Veterinario, true, 80000,"Cirujano",false));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", Usuario.Jerarquia.Veterinario,true, 80000, "Guardia Urgencias", false));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alberto", "Saenz", 44756215, 30, "pepe123", "pepe123", Usuario.Jerarquia.Veterinario,true, 80000,"Guardia",true));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "1", "1", Usuario.Jerarquia.Veterinario, true, 80000, "Guardia", true));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", Usuario.Jerarquia.Veterinario, true, 80000, "Guardia", true));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", Usuario.Jerarquia.Veterinario, true, 80000, "Guardia", true));
+            usuario.Add(new Administrador(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "0nimdaPetShop", "WtTK*Qv%nauSUDo2M0^F",true, 120000));
+            usuario.Add(new Recepcionista(Sistema.GenerarIdCliente(), "Carlos", "Arnauti", 5636215, 78, "1", "1", true,120000));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2",  true, 80000,"Cirujano",false));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", true, 80000, "Guardia Urgencias", false));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alberto", "Saenz", 44756215, 30, "pepe123", "pepe123", true, 80000,"Guardia",true));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "1", "1",  true, 80000, "Guardia", true));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
 
             SerializadoraXML<Persona> serializadora = new SerializadoraXML<Persona>();
 
@@ -121,7 +121,7 @@ namespace Entidades
             Turno turno1 = new Turno(
                 DateTime.Now,
                 new Mascota("Perro", "Labrador", 15.5f, 'M', "Max", "Pérez", 1, new DateTime(2018, 5, 10)),
-                new Veterinario(1, "Juan", "Gómez", 12345678, 35, "juang", "123456", Usuario.Jerarquia.Veterinario, true, 2500.50f, "Caninos", true),
+                new Veterinario(1, "Juan", "Gómez", 12345678, 35, "juang", "123456",  true, 2500.50f, "Caninos", true),
                 "Vómitos",
                 Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
             ); ;
@@ -130,7 +130,7 @@ namespace Entidades
             Turno turno2 = new Turno(
                 DateTime.Now.AddDays(1),
                 new Mascota("Gato", "Siames", 4.2f, 'F', "Luna", "González", 2, new DateTime(2019, 8, 15)),
-                new Veterinario(2, "Ana", "López", 23456789, 28, "anal", "987654", Usuario.Jerarquia.Veterinario, true, 2300.75f, "Felinos", true),
+                new Veterinario(2, "Ana", "López", 23456789, 28, "anal", "987654", true, 2300.75f, "Felinos", true),
                 "Fiebre",
                 Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
             );
@@ -139,7 +139,7 @@ namespace Entidades
             Turno turno3 = new Turno(
             DateTime.Now.AddDays(2),
             new Mascota("Gato", "Persa", 3.8f, 'M', "Simba", "Rodríguez", 3, new DateTime(2020, 10, 20)),
-            new Veterinario(3, "María", "Martínez", 34567890, 32, "mariam", "abcdef", Usuario.Jerarquia.Veterinario, true, 2200.50f, "Felinos", true),
+            new Veterinario(3, "María", "Martínez", 34567890, 32, "mariam", "abcdef", true, 2200.50f, "Felinos", true),
             "Diarrea",
             Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
             );
@@ -148,7 +148,7 @@ namespace Entidades
             Turno turno4 = new Turno(
                 DateTime.Now.AddDays(3),
                 new Mascota("Perro", "Bulldog", 18.7f, 'M', "Rocky", "Gutiérrez", 4, new DateTime(2017, 4, 8)),
-                new Veterinario(4, "Carlos", "López", 45678901, 40, "carlosl", "qwerty", Usuario.Jerarquia.Veterinario, true, 2800.75f, "Caninos", true),
+                new Veterinario(4, "Carlos", "López", 45678901, 40, "carlosl", "qwerty",  true, 2800.75f, "Caninos", true),
                 "Cojera",
                 Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
             );
@@ -157,7 +157,7 @@ namespace Entidades
             Turno turno5 = new Turno(
             DateTime.Now,
             new Mascota("Gato", "Siamés", 10.2f, 'F', "Luna", "González", 2, new DateTime(2019, 8, 20)),
-            new Veterinario(2, "María", "López", 98765432, 28, "marial", "654321", Usuario.Jerarquia.Veterinario, true, 2000.75f, "Felinos", true),
+            new Veterinario(2, "María", "López", 98765432, 28, "marial", "654321",  true, 2000.75f, "Felinos", true),
             "Diarrea",
             Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Completado
             );
@@ -166,7 +166,7 @@ namespace Entidades
             Turno turno6 = new Turno(
                 DateTime.Now,
                 new Mascota("Perro", "Bulldog", 18.9f, 'M', "Rocky", "Rodríguez", 3, new DateTime(2016, 3, 5)),
-                new Veterinario(3, "Pedro", "Martínez", 56789123, 42, "pedrom", "987654", Usuario.Jerarquia.Veterinario, true, 3000.25f, "Caninos", true),
+                new Veterinario(3, "Pedro", "Martínez", 56789123, 42, "pedrom", "987654", true, 3000.25f, "Caninos", true),
                 "Fiebre",
                 Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Completado
             );
@@ -175,7 +175,7 @@ namespace Entidades
             Turno turno7 = new Turno(
             DateTime.Now,
             new Mascota("Gato", "Persa", 5.7f, 'M', "Simba", "López", 4, new DateTime(2020, 11, 15)),
-            new Veterinario(4, "Ana", "Hernández", 11223344, 31, "anah", "abcdefgh", Usuario.Jerarquia.Veterinario, true, 2200.0f, "Felinos", true),
+            new Veterinario(4, "Ana", "Hernández", 11223344, 31, "anah", "abcdefgh", true, 2200.0f, "Felinos", true),
             "Ojos llorosos",
             Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
         );
@@ -184,7 +184,7 @@ namespace Entidades
             Turno turno8 = new Turno(
                 DateTime.Now,
                 new Mascota("Perro", "Golden Retriever", 22.1f, 'F', "Bella", "Fernández", 5, new DateTime(2017, 7, 25)),
-                new Veterinario(5, "Carlos", "Sánchez", 99887766, 37, "carloss", "p@ssw0rd", Usuario.Jerarquia.Veterinario, true, 2800.50f, "Caninos", true),
+                new Veterinario(5, "Carlos", "Sánchez", 99887766, 37, "carloss", "p@ssw0rd",  true, 2800.50f, "Caninos", true),
                 "Herida en pata",
                 Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
             );
@@ -193,7 +193,7 @@ namespace Entidades
             Turno turno9 = new Turno(
                 DateTime.Now,
                 new Mascota("Gato", "Maine Coon", 8.5f, 'F', "Lola", "Torres", 16, new DateTime(2022, 1, 12)),
-                new Veterinario(16, "Isabel", "Cruz", 65432109, 29, "isabelc", "password", Usuario.Jerarquia.Veterinario, true, 2100.0f, "Felinos", true),
+                new Veterinario(16, "Isabel", "Cruz", 65432109, 29, "isabelc", "password",  true, 2100.0f, "Felinos", true),
                 "Pérdida de apetito",
                 Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
             );
@@ -202,7 +202,7 @@ namespace Entidades
             Turno turno10 = new Turno(
                 DateTime.Now,
                 new Mascota("Perro", "Bulldog Francés", 12.8f, 'M', "Rocko", "Vargas", 17, new DateTime(2015, 9, 8)),
-                new Veterinario(17, "Fernanda", "Rojas", 98765432, 34, "fernandar", "abcd1234", Usuario.Jerarquia.Veterinario, true, 3200.25f, "Caninos", true),
+                new Veterinario(17, "Fernanda", "Rojas", 98765432, 34, "fernandar", "abcd1234",  true, 3200.25f, "Caninos", true),
                 "Problemas respiratorios",
                 Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
             );
@@ -211,7 +211,7 @@ namespace Entidades
             Turno turno11 = new Turno(
                 DateTime.Now,
                 new Mascota("Gato", "Bengalí", 6.3f, 'F', "Mia", "García", 28, new DateTime(2021, 4, 3)),
-                new Veterinario(28, "Ricardo", "Pérez", 11223344, 32, "ricardop", "qwerty", Usuario.Jerarquia.Veterinario, true, 1900.0f, "Felinos", true),
+                new Veterinario(28, "Ricardo", "Pérez", 11223344, 32, "ricardop", "qwerty", true, 1900.0f, "Felinos", true),
                 "Picazón en la piel",
                 Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
             );
@@ -229,7 +229,7 @@ namespace Entidades
 
         #endregion
 
-        public static Usuario? ValidarUsuario(string nombreDeusuario, string contraseniaDeUsuario)
+        public static Usuario ValidarUsuario(string nombreDeusuario, string contraseniaDeUsuario)
         {
             //clase  elemento lista
             foreach (Usuario item in usuario)
