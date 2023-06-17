@@ -10,6 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Veterinaria__
 {
@@ -19,95 +20,158 @@ namespace Veterinaria__
         { 
             InitializeComponent();
             dataGridView1.Hide();
-            if(usuario.Jerarquia == Jerarquia.Administrador)
+            if(usuario.JerarquiaUsuario == Usuario.Jerarquia.Administrador)
             {
-                
+                foreach (string nombre in Enum.GetNames(typeof(Usuario.Jerarquia)))
+                {
+                    cmbJerarquia.Items.Add(nombre);
+                }
 
                 txtIdDueño.Hide();
-                txtPeso.Hide();
-                txtSexo.Hide();
-                lblSexo.Hide();
-
-               
+                txtPeso.Hide();                         
                 lblEspecie.Text = "Usuario";
                 lblEnfermeddadActual.Text = "Contraseña";
                 lblRaza.Text = "Nombre";
-                lblNombreMascota.Text = "Apellido";
+                lblNombreAnimalDomestico.Text = "Apellido";
                 lblNombreDueño.Text = "DNI";
                 lblEdad.Text = "Fecha de Nacimiento";
                 lblIdDueño.Text = "Trabajando";
                 lblPeso.Text = "Administrador";
                 lblNombreDueño.Location = new Point(lblNombreDueño.Location.X + 35, lblNombreDueño.Location.Y + 0);
-                lblNombreMascota.Location = new Point(lblNombreMascota.Location.X + 25, lblNombreMascota.Location.Y + 0);
+                lblNombreAnimalDomestico.Location = new Point(lblNombreAnimalDomestico.Location.X + 25, lblNombreAnimalDomestico.Location.Y + 0);
                 lblEdad.Location = new Point(lblEdad.Location.X - 40, lblEdad.Location.Y + 0);
                 lblPeso.Location = new Point(lblPeso.Location.X - 20, lblPeso.Location.Y + 0);
+                lblSexo.Text = "Sueldo";
+                
             }
             else
             {
                 chkTrabajando.Hide();
                 chkEsAdmin.Hide();
                 btnValidarAdmin.Hide();
+                cmbJerarquia.Hide();
+                lblJerarquia.Hide();
             }
         }
 
 
-        public void AgregarTrabajador()
+        public Usuario ValidarDatosTrabajador()
         {
-            int IdUsuario = Sistema.GenerarIdCliente();
+            Usuario usuarioACrear = null;
+            short IdUsuario = Sistema.GenerarIdCliente();
             String nombre = txtRaza.Text;
-            String apellido = txtNombreMascota.Text;
-            String dni = txtNombreDueño.Text;
+            String apellido = txtNombreAnimalDomestico.Text;
             DateTime fechaNacimiento = dtpNacimiento.Value.Date;
-           // string dni = txtIdDueño.Text;
-            String Usuario = txtEspecie.Text;
+            String usuario = txtEspecie.Text;
             String contraseñaUsuario = txtEnfermedadActual.Text;
-            bool esAdmin = chkEsAdmin.Checked;
+            Usuario.Jerarquia jerarquiaUsuario;
             bool trabajando = chkTrabajando.Checked;
-            // Acá viene que jerarquia
+            float sueldo;
+            int dni;
+
+            int edad = Sistema.CalcularEdad(fechaNacimiento);
+
+            if(int.TryParse(txtNombreDueño.Text, out dni) &&  float.TryParse(txtSexo.Text, out sueldo) &&IdUsuario != 0 && nombre.Length > 0 && apellido.Length >0 && dni > 10000 && fechaNacimiento.Date != DateTime.Now && usuario.Length > 0 && contraseñaUsuario.Length > 0 && sueldo > 0 && cmbJerarquia.SelectedItem != null)
+            {
+                jerarquiaUsuario = (Usuario.Jerarquia)Enum.Parse(typeof(Usuario.Jerarquia), cmbJerarquia.SelectedItem.ToString());
+                Usuario nuevoUsuario = new Usuario(IdUsuario, nombre, apellido, dni, edad, usuario, contraseñaUsuario, jerarquiaUsuario, trabajando, sueldo);
+
+                usuarioACrear = nuevoUsuario;
+            }
+
+            return usuarioACrear;
+        }
+        private void btnValidarAdmin_Click(object sender, EventArgs e)
+        {
+            Usuario usuarioACrear;
+            Administrador<Usuario> administrador = new Administrador<Usuario>();
+            usuarioACrear = ValidarDatosTrabajador();
+            if (usuarioACrear != null)
+            {
+                administrador.Alta(usuarioACrear);
+                
+            }
+            else
+            {
+                FormBase.MostrarAdvertencia("Se ha ingresado un dato erroneo dentro de los campos.");
+            }
         }
 
-        public void AgregarMascota()
+        public Mascota ValidarDatosMascota()
         {
-            String tipoMascota = txtEspecie.Text; 
+            Mascota mascotaCreada = null;
+            String tipoAnimalDomestico = txtEspecie.Text; 
             String raza = txtRaza.Text; 
             DateTime fechaNacimiento = dtpNacimiento.Value.Date;
-            float peso = float.Parse(txtPeso.Text);
-            char sexo = char.Parse(txtSexo.Text);
-            String enfermedadActual = txtEnfermedadActual.Text; 
-            String nombreMascota = txtNombreMascota.Text;
-            String nombreDueño = txtNombreDueño.Text;
-            int IdDueño = int.Parse(txtIdDueño.Text);
-
-
-            if(tipoMascota.Length != 0 && raza.Length != 0
-                 && nombreMascota.Length != 0 &&
-                peso != 0 && enfermedadActual.Length != 0 && nombreDueño.Length != 0 && IdDueño > 0)
-            { 
-                Mascota nuevaMascota = new Mascota(tipoMascota, raza, peso, sexo,enfermedadActual, nombreMascota, nombreDueño, IdDueño, fechaNacimiento);
-
-                Sistema.mascotas.Add(nuevaMascota);
-                MessageBox.Show(nuevaMascota.ToString());
+            float peso;
+            char sexo;
+            String nombreAnimal = txtNombreAnimalDomestico.Text;
+            String apellidoDueño = txtNombreDueño.Text;
+            if (float.TryParse(txtPeso.Text, out peso) &&  char.TryParse(txtSexo.Text, out sexo) && tipoAnimalDomestico.Length != 0 && raza.Length != 0 && nombreAnimal.Length != 0 && peso != 0 && apellidoDueño.Length != 0)
+            {               
+                Mascota nuevaAnimalDomestico = new Mascota(tipoAnimalDomestico, raza, peso, sexo, nombreAnimal, apellidoDueño, Sistema.GenerarId(), fechaNacimiento);
+                mascotaCreada = nuevaAnimalDomestico;
             }
+           
+            return mascotaCreada;
         }
 
         private void btnValidar_Click(object sender, EventArgs e)
         {
-            AgregarMascota();
-            
+            Mascota mascotaACrear;
+            Recepcionista<Mascota> recepcionista = new Recepcionista<Mascota>();
+            mascotaACrear = ValidarDatosMascota();
+            if(mascotaACrear != null)
+            {
+                recepcionista.Alta(mascotaACrear);
+                Sistema.AnimalDomesticos.Add(mascotaACrear);
+            }
+            else
+            {
+                FormBase.MostrarAdvertencia("Se ha ingresado un dato erroneo dentro de los campos.");
+            }
         }
 
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            dataGridView1.DataSource = Sistema.AnimalDomesticos;
             dataGridView1.Show();
-            dataGridView1.DataSource = Sistema.mascotas;
         }
 
-        private void btnValidarAdmin_Click(object sender, EventArgs e)
+        private void btnAdminLista_Click(object sender, EventArgs e)
         {
+            setDGV();
+            dataGridView1.DataSource = Sistema.usuario;
+            dataGridView1.Show();
+        }
 
+        public void setDGV()
+        {
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoResizeColumns();
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold); // Establece la fuente y el estilo de los encabezados de columna
+            dataGridView1.DefaultCellStyle.Font = new Font("Arial", 10); // Establece la fuente y el estilo de las celdas
+            dataGridView1.DefaultCellStyle.BackColor = Color.White; // Establece el color de fondo de las celdas
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black; // Establece el color de fuente de las celdas
+            dataGridView1.RowHeadersVisible = false; // Oculta las filas de encabezado
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Establece el modo de selección
+            dataGridView1.MultiSelect = false; // Desactiva la selección múltiple
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.ReadOnly = true;
 
-            AgregarTrabajador();
+            //Esto no funciona
+            //dataGridView1.Columns[0].HeaderText = "Id";
+            //dataGridView1.Columns[1].HeaderText = "Usuario";
+            //dataGridView1.Columns[2].HeaderText = "Contraseña";
+            
+
+        }
+
+        private void FormAlta_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -1,11 +1,23 @@
-﻿namespace Entidades
+﻿using System.Text;
+using System.Xml.Serialization;
+
+namespace Entidades
 {
-    public class Persona
+    [Serializable]
+    [XmlInclude(typeof(Usuario))]
+    [XmlInclude(typeof(Veterinario))]
+    public abstract class Persona
     {
         private string nombre;
         private string apellido;
         private int dni;
         private int edad;
+        private string email;
+
+        public Persona()
+        {
+
+        }
 
         public Persona(string nombre, string apellido, int dni, int edad)
         {
@@ -19,5 +31,34 @@
         public string Apellido { get => apellido; set => apellido = value; }
         public int Dni { get => dni; set => dni = value; }
         public int Edad { get => edad; set => edad = value; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"◉ Nombre: {nombre}");
+            sb.AppendLine($"◉ Apellido: {apellido}");
+            sb.AppendLine($"◉ DNI: {dni}");
+            sb.AppendLine($"◉ Edad: {edad}");
+            sb.AppendLine("");
+
+            return sb.ToString();
+        }
+
+        public static bool operator ==(Persona persona1, Persona persona2)
+        {
+            bool resultado = false;
+
+            if (persona1.dni == persona2.dni)
+            {
+                resultado = true;
+            }
+            return resultado;
+        }
+
+        public static bool operator !=(Persona persona1, Persona persona2)
+        {
+            return !(persona1 == persona2);
+        }
     }
 }

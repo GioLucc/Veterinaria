@@ -39,5 +39,12 @@ namespace Veterinaria__
                 Application.Exit();
             }
         }
+
+        public static void MostrarAdvertencia(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+
     }
 }

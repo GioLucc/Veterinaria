@@ -1,75 +1,238 @@
-﻿using System;
+﻿using Entidades.Archivos_y_Serializadores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Entidades.Turno;
 
 namespace Entidades
 {
     public static class Sistema
     {
-        public static List<Usuario> usuarios;
-        public static List<Mascota> mascotas;
-        public static int idCliente = 0;
+        public static List<Persona> usuario;
+        public static List<Mascota> AnimalDomesticos;
+        public static List<Turno> turnos;
+        public static List <String> urgenciasMedicas;
+        public static Dictionary<string, List<string>> assetsDelSistema;
+        
+        public static int idCliente = 1;
         public static short idUsuarios = 0;
+        public static Dictionary<string, List<string>> malestaresPorGravedad = new Dictionary<String ,List<string>>
+        {
+            { "Normal", new List<string> { "Dolor de cabeza", "Fatiga" } },
+            { "Media", new List<string> { "Dolor de estómago", "Fiebre" } },
+            { "Urgente", new List<string> { "Dificultad para respirar", "Dolor en el pecho" } }
+        };
+        
 
         static Sistema()
         {
-            usuarios = new List<Usuario>();
-            mascotas = new List<Mascota>();
+            usuario = new List<Persona>();
+            urgenciasMedicas = new List<String>();
+            turnos = new List<Turno>();
+            AnimalDomesticos = new List<Mascota>();
+            assetsDelSistema = new Dictionary<String, List<string>>();
             HardCodearUsuarios();
-            HardCodearMascotas();
+            HardCodearAnimalDomesticos();
+            HardCodearUrgenciasMedicas();
+            HardCodearTurnos();
+            EstablecerAssetsDelSistema();
         }
+        #region Hardcodeos
 
-        private static void HardCodearMascotas()
+        private static void HardCodearAnimalDomesticos()
         {
-            mascotas.Add(new Mascota("Felino", "Europeo", 44, 'H', "Parasitos", "Mew", "Giovanni", Sistema.GenerarId(),Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Perro", "Labrador", 15.5f, 'M', "Ninguna", "Max", "Juan", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Gato", "Siames", 5.2f, 'H', "Gripe felina", "Luna", "Maria", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Perro", "Bulldog", 18.0f, 'H', "Ninguna", "Rocky", "Jose", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Gato", "Persa", 7.8f, 'M', "Parasitos", "Grisu", "Ana", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Perro", "Chihuahua", 2.3f, 'H', "Alergia", "Toby", "Luis", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Gato", "Egipcio", 6.5f, 'M', "Ninguna", "Cleo", "Lucia", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Perro", "Poodle", 8.0f, 'M', "Dolor de estomago", "Lucky", "Pedro", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Gato", "Bengala", 4.9f, 'H', "Ninguna", "Tigre", "Sofia", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Perro", "Schnauzer", 13.7f, 'H', "Ninguna", "Duke", "Carla", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Canino", "Labrador", 20, 'H', "Ninguna", "Rufus", "Maria", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Felino", "Siames", 8, 'M', "Gripe felina", "Whiskers", "Carlos", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Ave", "Perico", 0.3f, 'H', "Ninguna", "Polly", "Andrea", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Roedor", "Hamster", 0.2f, 'M', "Mordedura", "Nibbles", "David", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Canino", "Bulldog", 15, 'M', "Dolor de espalda", "Brutus", "Sophie", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Felino", "Persa", 5, 'H', "Alergias", "Oliver", "Emily", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Ave", "Canario", 0.1f, 'H', "Ninguna", "Tweety", "Rachel", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Roedor", "Cobaya", 0.5f, 'M', "Gripe", "Oreo", "Jenny", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Canino", "Chihuahua", 2, 'M', "Problemas dentales", "Taco", "Juan", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Felino", "Bengala", 6, 'H', "Otitis", "Simba", "Alex", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Ave", "Loro", 0.4f, 'M', "Ninguna", "Squawkers", "Tiffany", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Roedor", "Rata", 0.3f, 'H', "Ninguna", "Squeakers", "Kevin", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Canino", "Pug", 8, 'H', "Dolor de articulaciones", "Pugsley", "Linda", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Felino", "Egipcio", 4, 'M', "Asma", "Nefertiti", "Isabella", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Canino", "Labrador", 22, 'H', "Ninguna", "Rocky", "Laura", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Felino", "Siames", 6, 'M', "Alergias", "Simba", "Juan", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Ave", "Canario", 0.5f, 'M', "Ninguna", "Tweety", "Maria", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Canino", "Chihuahua", 3, 'H', "Fractura", "Lucky", "Alejandro", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Felino", "Persa", 8, 'H', "Ninguna", "Garfield", "Fernanda", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Canino", "Pug", 10, 'M', "Obesidad", "Buddy", "Pedro", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
-            mascotas.Add(new Mascota("Ave", "Perico", 1, 'M', "Ninguna", "Paco", "Sofia", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Felino", "Europeo", 44, 'H', "Mew", "Lucchetta", Sistema.GenerarId(),Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Perro", "Labrador", 15.5f, 'M', "Max", "Juan", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Gato", "Siames", 5.2f, 'H', "Luna", "Maria", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Perro", "Bulldog", 18.0f, 'H', "Rocky", "Jose", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Gato", "Persa", 7.8f, 'M', "Grisu", "Ana", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Perro", "Chihuahua", 2.3f, 'H', "Toby", "Luis", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Gato", "Egipcio", 6.5f, 'M', "Cleo", "Lucia", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Perro", "Poodle", 8.0f, 'M', "Lucky", "Pedro", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Gato", "Bengala", 4.9f, 'H', "Tigre", "Sofia", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Perro", "Schnauzer", 13.7f, 'H', "Duke", "Carla", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Canino", "Labrador", 20, 'H', "Rufus", "Maria", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Felino", "Siames", 8, 'M', "Whiskers", "Carlos", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Ave", "Perico", 0.3f, 'H', "Polly", "Andrea", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Roedor", "Hamster", 0.2f, 'M', "Nibbles", "David", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Canino", "Bulldog", 15, 'M', "Brutus", "Sophie", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Felino", "Persa", 5, 'H', "Oliver", "Emily", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Ave", "Canario", 0.1f, 'H',  "Tweety", "Rachel", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Roedor", "Cobaya", 0.5f, 'M',  "Oreo", "Jenny", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Canino", "Chihuahua", 2, 'M',  "Taco", "Juan", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Felino", "Bengala", 6, 'H',  "Simba", "Alex", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Ave", "Loro", 0.4f, 'M',  "Squawkers", "Tiffany", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Roedor", "Rata", 0.3f, 'H',  "Squeakers", "Kevin", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Canino", "Pug", 8, 'H',  "Pugsley", "Linda", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Felino", "Egipcio", 4, 'M',  "Nefertiti", "Isabella", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Canino", "Labrador", 22, 'H',  "Rocky", "Laura", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Felino", "Siames", 6, 'M',  "Simba", "Juan", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Ave", "Canario", 0.5f, 'M',  "Tweety", "Maria", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Canino", "Chihuahua", 3, 'H',  "Lucky", "Alejandro", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Felino", "Persa", 8, 'H',  "Garfield", "Fernanda", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Canino", "Pug", 10, 'M',  "Buddy", "Pedro", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
+            AnimalDomesticos.Add(new Mascota("Ave", "Perico", 1, 'M',  "Paco", "Sofia", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
 
+            //SerializadoraXML<Mascota> serializadora = new SerializadoraXML<Mascota>();
+
+            //foreach (Mascota item in AnimalDomesticos)
+            //{
+
+            //    serializadora.Escribir("", item);
+            //}
+                
+        }
+        private static void HardCodearUrgenciasMedicas()
+        {
+            urgenciasMedicas.Add("Caida larga distancia");
+            urgenciasMedicas.Add("Sangrado Masivo");
+            urgenciasMedicas.Add("Colapso");
+            urgenciasMedicas.Add("Envenenamiento");
+            urgenciasMedicas.Add("Ingestión de Veneno");
+            urgenciasMedicas.Add("Complicaciones Quirurgicas");
+            urgenciasMedicas.Add("Atropellamiento");
+
+            
         }
         private static void HardCodearUsuarios()
         {
-            usuarios.Add(new Usuario(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "0nimdaPetShop", "WtTK*Qv%nauSUDo2M0^F", true,Jerarquia.Administrador,true));
-            usuarios.Add(new Usuario(Sistema.GenerarIdCliente(), "Carlos", "Arnauti", 5636215, 78, "01nimdaPetShop", "D75MUx8KiN@%5Yo6AMK6", true, Jerarquia.Administrador, true));
-            usuarios.Add(new Usuario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "pepito", "jose", true, Jerarquia.Trabajador, true));
-            usuarios.Add(new Usuario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", true, Jerarquia.Trabajador, true));
-            usuarios.Add(new Usuario(Sistema.GenerarIdCliente(), "Alberto", "Saenz", 44756215, 30, "pepe123", "pepe123", false, Jerarquia.Cliente, true));
-            usuarios.Add(new Usuario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", false, Jerarquia.Cliente, true));
+            usuario.Add(new Usuario(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "0nimdaPetShop", "WtTK*Qv%nauSUDo2M0^F", Usuario.Jerarquia.Administrador,true, 120000));
+            usuario.Add(new Usuario(Sistema.GenerarIdCliente(), "Carlos", "Arnauti", 5636215, 78, "1", "1", Usuario.Jerarquia.Recepcionista, true,120000));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2", Usuario.Jerarquia.Veterinario, true, 80000,"Cirujano",false));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", Usuario.Jerarquia.Veterinario,true, 80000, "Guardia Urgencias", false));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alberto", "Saenz", 44756215, 30, "pepe123", "pepe123", Usuario.Jerarquia.Veterinario,true, 80000,"Guardia",true));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "1", "1", Usuario.Jerarquia.Veterinario, true, 80000, "Guardia", true));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", Usuario.Jerarquia.Veterinario, true, 80000, "Guardia", true));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", Usuario.Jerarquia.Veterinario, true, 80000, "Guardia", true));
+
+            SerializadoraXML<Persona> serializadora = new SerializadoraXML<Persona>();
+
+            foreach (Persona item in usuario)
+            {
+                serializadora.Escribir("", item);
+            }
+
         }
+        private static void HardCodearTurnos()
+        {
+            Turno turno1 = new Turno(
+                DateTime.Now,
+                new Mascota("Perro", "Labrador", 15.5f, 'M', "Max", "Pérez", 1, new DateTime(2018, 5, 10)),
+                new Veterinario(1, "Juan", "Gómez", 12345678, 35, "juang", "123456", Usuario.Jerarquia.Veterinario, true, 2500.50f, "Caninos", true),
+                "Vómitos",
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+            ); ;
+            turnos.Add(turno1);
+
+            Turno turno2 = new Turno(
+                DateTime.Now.AddDays(1),
+                new Mascota("Gato", "Siames", 4.2f, 'F', "Luna", "González", 2, new DateTime(2019, 8, 15)),
+                new Veterinario(2, "Ana", "López", 23456789, 28, "anal", "987654", Usuario.Jerarquia.Veterinario, true, 2300.75f, "Felinos", true),
+                "Fiebre",
+                Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno2);
+
+            Turno turno3 = new Turno(
+            DateTime.Now.AddDays(2),
+            new Mascota("Gato", "Persa", 3.8f, 'M', "Simba", "Rodríguez", 3, new DateTime(2020, 10, 20)),
+            new Veterinario(3, "María", "Martínez", 34567890, 32, "mariam", "abcdef", Usuario.Jerarquia.Veterinario, true, 2200.50f, "Felinos", true),
+            "Diarrea",
+            Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno3);
+
+            Turno turno4 = new Turno(
+                DateTime.Now.AddDays(3),
+                new Mascota("Perro", "Bulldog", 18.7f, 'M', "Rocky", "Gutiérrez", 4, new DateTime(2017, 4, 8)),
+                new Veterinario(4, "Carlos", "López", 45678901, 40, "carlosl", "qwerty", Usuario.Jerarquia.Veterinario, true, 2800.75f, "Caninos", true),
+                "Cojera",
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno4);
+
+            Turno turno5 = new Turno(
+            DateTime.Now,
+            new Mascota("Gato", "Siamés", 10.2f, 'F', "Luna", "González", 2, new DateTime(2019, 8, 20)),
+            new Veterinario(2, "María", "López", 98765432, 28, "marial", "654321", Usuario.Jerarquia.Veterinario, true, 2000.75f, "Felinos", true),
+            "Diarrea",
+            Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno5);
+
+            Turno turno6 = new Turno(
+                DateTime.Now,
+                new Mascota("Perro", "Bulldog", 18.9f, 'M', "Rocky", "Rodríguez", 3, new DateTime(2016, 3, 5)),
+                new Veterinario(3, "Pedro", "Martínez", 56789123, 42, "pedrom", "987654", Usuario.Jerarquia.Veterinario, true, 3000.25f, "Caninos", true),
+                "Fiebre",
+                Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno6);
+
+            Turno turno7 = new Turno(
+            DateTime.Now,
+            new Mascota("Gato", "Persa", 5.7f, 'M', "Simba", "López", 4, new DateTime(2020, 11, 15)),
+            new Veterinario(4, "Ana", "Hernández", 11223344, 31, "anah", "abcdefgh", Usuario.Jerarquia.Veterinario, true, 2200.0f, "Felinos", true),
+            "Ojos llorosos",
+            Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+        );
+            turnos.Add(turno7);
+
+            Turno turno8 = new Turno(
+                DateTime.Now,
+                new Mascota("Perro", "Golden Retriever", 22.1f, 'F', "Bella", "Fernández", 5, new DateTime(2017, 7, 25)),
+                new Veterinario(5, "Carlos", "Sánchez", 99887766, 37, "carloss", "p@ssw0rd", Usuario.Jerarquia.Veterinario, true, 2800.50f, "Caninos", true),
+                "Herida en pata",
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno8);
+
+            Turno turno9 = new Turno(
+                DateTime.Now,
+                new Mascota("Gato", "Maine Coon", 8.5f, 'F', "Lola", "Torres", 16, new DateTime(2022, 1, 12)),
+                new Veterinario(16, "Isabel", "Cruz", 65432109, 29, "isabelc", "password", Usuario.Jerarquia.Veterinario, true, 2100.0f, "Felinos", true),
+                "Pérdida de apetito",
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno9);
+
+            Turno turno10 = new Turno(
+                DateTime.Now,
+                new Mascota("Perro", "Bulldog Francés", 12.8f, 'M', "Rocko", "Vargas", 17, new DateTime(2015, 9, 8)),
+                new Veterinario(17, "Fernanda", "Rojas", 98765432, 34, "fernandar", "abcd1234", Usuario.Jerarquia.Veterinario, true, 3200.25f, "Caninos", true),
+                "Problemas respiratorios",
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno10);
+
+            Turno turno11 = new Turno(
+                DateTime.Now,
+                new Mascota("Gato", "Bengalí", 6.3f, 'F', "Mia", "García", 28, new DateTime(2021, 4, 3)),
+                new Veterinario(28, "Ricardo", "Pérez", 11223344, 32, "ricardop", "qwerty", Usuario.Jerarquia.Veterinario, true, 1900.0f, "Felinos", true),
+                "Picazón en la piel",
+                Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
+            );
+            turnos.Add(turno11);
+
+
+        }
+        private static void EstablecerAssetsDelSistema()
+        {
+            List<string> listaImagenes = new List<string>();
+            listaImagenes.Add("E:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\Assets\\admin.png");
+            //assetsDelSistema["Imagenes"] =
+        }
+
+
+        #endregion
 
         public static Usuario? ValidarUsuario(string nombreDeusuario, string contraseniaDeUsuario)
         {
             //clase  elemento lista
-            foreach (Usuario item in usuarios)
+            foreach (Usuario item in usuario)
             {
                 if (nombreDeusuario == item.NombreUsuario && contraseniaDeUsuario == item.ContraseniaUsuario)
                 {
@@ -79,7 +242,6 @@ namespace Entidades
 
             return null;
         }
-
         public static DateTime GenerarFechaNacimientoAleatoria()
         {
             Random random = new Random();
@@ -88,11 +250,23 @@ namespace Entidades
             DateTime fechaAleatoria = fechaInicial.AddDays(random.Next(rangoDias));
             return fechaAleatoria;
         }
-
         public static int GenerarId()
         {
             return idCliente++;
         }        
+        public static int CalcularEdad(DateTime fechaNacimiento)
+        {
+            DateTime fechaNacimientoRecibida = fechaNacimiento;
+            DateTime fechaActual = DateTime.Today;
+            int edad = fechaActual.Year - fechaNacimiento.Year;
+
+            if (fechaActual < fechaNacimientoRecibida.AddYears(edad))
+            {
+                edad--;
+            }
+
+            return edad;
+        }
         public static short GenerarIdCliente()
         {
             return idUsuarios++;

@@ -19,8 +19,8 @@ namespace Veterinaria__
         }
 
         private void btnLoguear_Click(object sender, EventArgs e)
-        { 
-            if(txtPassword.Text is not null && txtPassword.Text is not null)
+        {
+            if (txtPassword.Text is not null && txtPassword.Text is not null)
             {
                 Usuario usuarioDevuelto;
                 String informacion;
@@ -38,12 +38,33 @@ namespace Veterinaria__
                     this.txtUsername.BackColor = Color.Green;
                     this.txtPassword.BackColor = Color.Green;
                     Inicio nuevoLogin = new Inicio(usuarioDevuelto);
-
                     this.Hide();
                     nuevoLogin.Show();
+                    //foreach (Veterinario item in Sistema.usuarios)
+                    //{
+                    //    if(item.Nombre == "Giovanni")
+                    //    {
+                    //        Inicio nuevoLogin = new Inicio(item);
+                    //        this.Hide();
+                    //        nuevoLogin.Show();
+                    //    }
+                    //    else
+                    //    {
+                    //        if(item.Jerarquia == Jerarquia.Administrador)
+                    //        {
+                    //            Inicio nuevoLogin = new Inicio(item);
+                    //            this.Hide();
+                    //            nuevoLogin.Show();
+                    //        }
+                    //    }
                 }
 
+
+
+
             }
+
+            
         }
 
         private void pic_Ocultar_Click(object sender, EventArgs e)

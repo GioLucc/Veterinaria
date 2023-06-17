@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.DB;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,38 +21,62 @@ namespace Veterinaria__
             InitializeComponent();
             this.usuarioForm = usuarioForm;
 
-            if (usuarioForm.Jerarquia == Jerarquia.Administrador)
+            if (usuarioForm.JerarquiaUsuario == Usuario.Jerarquia.Administrador)
             {
+                btnAtender.Hide();
                 btn_DarDeAlta.Hide();
                 btn_GestionarPaciente.Hide();
-                btn_NuestrasMascotas.Hide();
+                btn_NuestrasAnimalDomesticos.Hide();
                 btn_Turnos.Hide();
             }
             else
-            {
+            {   
+                if(usuarioForm.JerarquiaUsuario == Usuario.Jerarquia.Recepcionista)
+                {
+                    btnAtender.Hide();
+                    btnAdminAlta.Hide();
+                    btnAdminBaja.Hide();
+                    btnAdminModificacion.Hide();
 
+                }
+                else
+                {
+                    btn_Turnos.Hide();
+                    btn_DarDeAlta.Hide();
+                    btnAdminAlta.Hide();
+                    btnAdminBaja.Hide();
+                    btnAdminModificacion.Hide();
+                }
             }
             lblHorarioYUsuario.Text = DateTime.Now.ToLongDateString() + "" + DateTime.Now.ToLongTimeString();
             timer1.Start();
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lblHorarioYUsuario.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - "  + usuarioForm.Jerarquia + " | " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
-        }
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    lblHorarioYUsuario.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - "  + usuarioForm.JerarquiaUsuario + " | " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+        //}
 
         private void btn_Turnos_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btn_NuestrasMascotas_Click(object sender, EventArgs e)
-        {
-            FormMascota mascota = new FormMascota();
+            FormTurnos gestionTurnos = new FormTurnos(usuarioForm);
             this.Hide();
 
-            DialogResult retornoAlta = mascota.ShowDialog();
+            DialogResult retornoAlta = gestionTurnos.ShowDialog();
+
+            if (retornoAlta == DialogResult.OK)
+            {
+                this.Show();
+            }
+        }
+
+        private void btn_NuestrasAnimalDomesticos_Click(object sender, EventArgs e)
+        {
+            FormAnimalDomestico AnimalDomestico = new FormAnimalDomestico();
+            this.Hide();
+
+            DialogResult retornoAlta = AnimalDomestico.ShowDialog();
 
             if (retornoAlta == DialogResult.OK)
             {
@@ -92,7 +117,6 @@ namespace Veterinaria__
             login.Show();
   
         }
-
         private void btnAdminAlta_Click(object sender, EventArgs e)
         {
             FormAlta darDeAlta = new FormAlta(usuarioForm);
@@ -106,14 +130,41 @@ namespace Veterinaria__
             }
         }
 
-        //private void mostrarInformación ()
-        //{
-        //    if(usuarioForm.Jerarquia == Jerarquia.Administrador)
-        //    {
+        private void btnAtender_Click(object sender, EventArgs e)
+        {
+            AtenderPacientes atender = new AtenderPacientes(usuarioForm);
+            this.Hide();
 
-        //    }
-        //}
+            DialogResult retornoAlta = atender.ShowDialog();
+
+            if (retornoAlta == DialogResult.OK)
+            {
+                this.Show();
+            }
+        }
+
+        private void btnAsignarVeterinario_Click(object sender, EventArgs e)
+        {
+            AsignarVeterinario atender = new AsignarVeterinario(usuarioForm);
+            this.Hide();
+
+            DialogResult retornoAlta = atender.ShowDialog();
+
+            if (retornoAlta == DialogResult.OK)
+            {
+                this.Show();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            foreach (Mascota el in Sistema.AnimalDomesticos)
+            {
+                ConexionDB.Agregar(el.IdMascota,el.NombreAnimal,el.ApellidoDueño,el.Edad,el.Raza,el.Especie,el.Peso,el.Sexo,el.FechaDeNacimiento);
+            }
 
 
+        }
     }
 }

@@ -12,27 +12,26 @@ using System.Windows.Forms;
 
 namespace Veterinaria__
 {
-    public partial class FormMascota : FormBaseMenu
+    public partial class FormAnimalDomestico : FormBaseMenu
     {
-        public FormMascota()
+        public FormAnimalDomestico()
         {
             InitializeComponent();
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
         }
 
-        private void FormMascota_Load(object sender, EventArgs e)
+        private void FormAnimalDomestico_Load(object sender, EventArgs e)
         {
             dataGridView1.Show();
             dgvPrueba.Hide();
-            dataGridView1.DataSource = Sistema.mascotas;
-            dataGridView1.Columns["MalestarActual"].Visible = false;
+            dataGridView1.DataSource = Sistema.AnimalDomesticos;
             dataGridView1.Columns["FechaDeNacimiento"].Visible = false;
             dataGridView1.Columns["Raza"].Visible = false;
             dataGridView1.Columns["Edad"].Visible = false;
             dataGridView1.Columns["Especie"].Visible = false;
             dataGridView1.Columns["Peso"].Visible = false;
             dataGridView1.Columns["Sexo"].Visible = false;
-            setDGV();
+            setDGV();        
         }
 
         public void setDGV ()
@@ -49,33 +48,27 @@ namespace Veterinaria__
             dataGridView1.Columns[0].HeaderText = "Id";
             dataGridView1.Columns[1].HeaderText = "Nombre Mascota";
             dataGridView1.Columns[2].HeaderText = "Nombre Dueño";
-
-
-            //foreach (DataGridViewColumn col in dataGridView1.Columns)
-            //{
-            //    col.Resizable = DataGridViewTriState.False;
-            //}
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
             DataGridViewRow selectedRow = dataGridView1.Rows[index];
-            Mascota mascota = (Mascota)selectedRow.DataBoundItem;
+            Mascota Mascota = (Mascota)selectedRow.DataBoundItem;
 
-            List<Mascota> mascotas = new List<Mascota>();
-            mascotas.Add(mascota);
+            List<Mascota> AnimalDomesticos = new List<Mascota>();
+            AnimalDomesticos.Add(Mascota);
 
             dgvPrueba.Show();
-            dgvPrueba.DataSource = mascotas;
+            dgvPrueba.DataSource = AnimalDomesticos;
 
-            PrintDocument documento = new PrintDocument();
-            documento.DefaultPageSettings.Color = true;
-            documento.DefaultPageSettings.PaperSize = new PaperSize("Historial", 850, 1100);
-            documento.DefaultPageSettings.Landscape = false;
-            documento.DocumentName = mascota.NombreMascota + " --  " + mascota.Raza;
+            //PrintDocument documento = new PrintDocument();
+            //documento.DefaultPageSettings.Color = true;
+            //documento.DefaultPageSettings.PaperSize = new PaperSize("Historial", 850, 1100);
+            //documento.DefaultPageSettings.Landscape = false;
+            //documento.DocumentName = Mascota.nombreAnimal + " --  " + Mascota.Raza;
 
-            //documento.PrintPage += new PrintPageEventHandler();
+            ////documento.PrintPage += new PrintPageEventHandler();
 
 
         }

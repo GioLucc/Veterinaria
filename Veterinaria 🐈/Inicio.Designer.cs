@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblHorarioYUsuario = new System.Windows.Forms.Label();
             this.btn_Turnos = new System.Windows.Forms.Button();
-            this.btn_NuestrasMascotas = new System.Windows.Forms.Button();
+            this.btn_NuestrasAnimalDomesticos = new System.Windows.Forms.Button();
             this.btn_DarDeAlta = new System.Windows.Forms.Button();
             this.btn_GestionarPaciente = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -41,12 +40,15 @@
             this.btnAdminAlta = new System.Windows.Forms.Button();
             this.btnAdminModificacion = new System.Windows.Forms.Button();
             this.btnAdminBaja = new System.Windows.Forms.Button();
+            this.btnAtender = new System.Windows.Forms.Button();
+            this.btnAsignarVeterinario = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+           // this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // lblHorarioYUsuario
             // 
@@ -70,17 +72,17 @@
             this.btn_Turnos.UseVisualStyleBackColor = true;
             this.btn_Turnos.Click += new System.EventHandler(this.btn_Turnos_Click);
             // 
-            // btn_NuestrasMascotas
+            // btn_NuestrasAnimalDomesticos
             // 
-            this.btn_NuestrasMascotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_NuestrasMascotas.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_NuestrasMascotas.Location = new System.Drawing.Point(12, 465);
-            this.btn_NuestrasMascotas.Name = "btn_NuestrasMascotas";
-            this.btn_NuestrasMascotas.Size = new System.Drawing.Size(125, 50);
-            this.btn_NuestrasMascotas.TabIndex = 3;
-            this.btn_NuestrasMascotas.Text = "Mascotas";
-            this.btn_NuestrasMascotas.UseVisualStyleBackColor = true;
-            this.btn_NuestrasMascotas.Click += new System.EventHandler(this.btn_NuestrasMascotas_Click);
+            this.btn_NuestrasAnimalDomesticos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_NuestrasAnimalDomesticos.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_NuestrasAnimalDomesticos.Location = new System.Drawing.Point(12, 465);
+            this.btn_NuestrasAnimalDomesticos.Name = "btn_NuestrasAnimalDomesticos";
+            this.btn_NuestrasAnimalDomesticos.Size = new System.Drawing.Size(125, 50);
+            this.btn_NuestrasAnimalDomesticos.TabIndex = 3;
+            this.btn_NuestrasAnimalDomesticos.Text = "AnimalDomesticos";
+            this.btn_NuestrasAnimalDomesticos.UseVisualStyleBackColor = true;
+            this.btn_NuestrasAnimalDomesticos.Click += new System.EventHandler(this.btn_NuestrasAnimalDomesticos_Click);
             // 
             // btn_DarDeAlta
             // 
@@ -108,7 +110,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::Veterinaria__.Properties.Resources.descarga;
             this.pictureBox1.Location = new System.Drawing.Point(465, 44);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(538, 533);
@@ -161,11 +163,50 @@
             this.btnAdminBaja.Text = "Baja";
             this.btnAdminBaja.UseVisualStyleBackColor = true;
             // 
+            // btnAtender
+            // 
+            this.btnAtender.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAtender.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAtender.Location = new System.Drawing.Point(12, 129);
+            this.btnAtender.Name = "btnAtender";
+            this.btnAtender.Size = new System.Drawing.Size(125, 50);
+            this.btnAtender.TabIndex = 16;
+            this.btnAtender.Text = "Atender";
+            this.btnAtender.UseVisualStyleBackColor = true;
+            this.btnAtender.Click += new System.EventHandler(this.btnAtender_Click);
+            // 
+            // btnAsignarVeterinario
+            // 
+            this.btnAsignarVeterinario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAsignarVeterinario.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAsignarVeterinario.Location = new System.Drawing.Point(169, 129);
+            this.btnAsignarVeterinario.Name = "btnAsignarVeterinario";
+            this.btnAsignarVeterinario.Size = new System.Drawing.Size(125, 69);
+            this.btnAsignarVeterinario.TabIndex = 17;
+            this.btnAsignarVeterinario.Text = "Asignar veterinario";
+            this.btnAsignarVeterinario.UseVisualStyleBackColor = true;
+            this.btnAsignarVeterinario.Click += new System.EventHandler(this.btnAsignarVeterinario_Click);
+            // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(169, 39);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(125, 69);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "CargarDatosSQL";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAsignarVeterinario);
+            this.Controls.Add(this.btnAtender);
             this.Controls.Add(this.btnAdminBaja);
             this.Controls.Add(this.btnAdminModificacion);
             this.Controls.Add(this.btnAdminAlta);
@@ -173,7 +214,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_GestionarPaciente);
             this.Controls.Add(this.btn_DarDeAlta);
-            this.Controls.Add(this.btn_NuestrasMascotas);
+            this.Controls.Add(this.btn_NuestrasAnimalDomesticos);
             this.Controls.Add(this.btn_Turnos);
             this.Controls.Add(this.lblHorarioYUsuario);
             this.Name = "Inicio";
@@ -181,7 +222,7 @@
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.Controls.SetChildIndex(this.lblHorarioYUsuario, 0);
             this.Controls.SetChildIndex(this.btn_Turnos, 0);
-            this.Controls.SetChildIndex(this.btn_NuestrasMascotas, 0);
+            this.Controls.SetChildIndex(this.btn_NuestrasAnimalDomesticos, 0);
             this.Controls.SetChildIndex(this.btn_DarDeAlta, 0);
             this.Controls.SetChildIndex(this.btn_GestionarPaciente, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
@@ -189,6 +230,9 @@
             this.Controls.SetChildIndex(this.btnAdminAlta, 0);
             this.Controls.SetChildIndex(this.btnAdminModificacion, 0);
             this.Controls.SetChildIndex(this.btnAdminBaja, 0);
+            this.Controls.SetChildIndex(this.btnAtender, 0);
+            this.Controls.SetChildIndex(this.btnAsignarVeterinario, 0);
+            this.Controls.SetChildIndex(this.button2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -200,7 +244,7 @@
         private System.Windows.Forms.Timer timer1;
         private Label lblHorarioYUsuario;
         private Button btn_Turnos;
-        private Button btn_NuestrasMascotas;
+        private Button btn_NuestrasAnimalDomesticos;
         private Button btn_DarDeAlta;
         private Button btn_GestionarPaciente;
         private PictureBox pictureBox1;
@@ -208,5 +252,8 @@
         private Button btnAdminAlta;
         private Button btnAdminModificacion;
         private Button btnAdminBaja;
+        private Button btnAtender;
+        private Button btnAsignarVeterinario;
+        private Button button2;
     }
 }

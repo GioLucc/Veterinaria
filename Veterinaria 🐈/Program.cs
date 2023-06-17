@@ -10,6 +10,8 @@ namespace Veterinaria__
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new Login());
+
+        
         }
     }
 }

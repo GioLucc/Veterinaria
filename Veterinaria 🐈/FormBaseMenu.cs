@@ -14,6 +14,9 @@ namespace Veterinaria__
     public partial class FormBaseMenu : Form
     {
         Usuario usuarioForm;
+        private int posY;
+        private int posX;
+        private bool movimientoActivo;
 
         public FormBaseMenu()
         {
@@ -36,7 +39,34 @@ namespace Veterinaria__
 
         private void timEstatus_Tick(object sender, EventArgs e)
         {
-            label1.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - " + usuarioForm.Jerarquia + " | " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+            label1.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - " + usuarioForm.JerarquiaUsuario + " | " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
         }
+
+        private void FormBaseMenu_MouseUp(object sender, MouseEventArgs e)
+        {
+            movimientoActivo = false;
+        }
+
+        private void FormBaseMenu_MouseDown(object sender, MouseEventArgs e)
+        {
+            movimientoActivo = true;
+            posX = e.X;
+            posY = e.Y;
+        }
+
+        private void FormBaseMenu_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (movimientoActivo == true)
+            {
+                this.SetDesktopLocation(MousePosition.X - posX, MousePosition.Y - posY);
+            }
+        }
+
+        public static void MostrarAdvertencia(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+
     }
 }

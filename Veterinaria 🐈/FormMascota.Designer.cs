@@ -1,6 +1,6 @@
 ﻿namespace Veterinaria__
 {
-    partial class FormMascota
+    partial class FormAnimalDomestico
     {
         /// <summary>
         /// Required designer variable.
@@ -84,16 +84,16 @@
             this.dgvPrueba.Size = new System.Drawing.Size(798, 75);
             this.dgvPrueba.TabIndex = 4;
             // 
-            // FormMascota
+            // FormAnimalDomestico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.dgvPrueba);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "FormMascota";
-            this.Text = "Mascotas";
-            this.Load += new System.EventHandler(this.FormMascota_Load);
+            this.Name = "FormAnimalDomestico";
+            this.Text = "AnimalDomesticos";
+            this.Load += new System.EventHandler(this.FormAnimalDomestico_Load);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.dgvPrueba, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

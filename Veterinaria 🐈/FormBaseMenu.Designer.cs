@@ -57,7 +57,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(0, 640);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 21);
+            this.label1.Size = new System.Drawing.Size(0, 21);
             this.label1.TabIndex = 2;
             // 
             // FormBaseMenu
@@ -74,6 +74,9 @@
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Veterinaria";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormBaseMenu_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormBaseMenu_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormBaseMenu_MouseUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 

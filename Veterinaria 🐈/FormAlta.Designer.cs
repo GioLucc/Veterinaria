@@ -35,13 +35,13 @@
             this.txtSexo = new System.Windows.Forms.TextBox();
             this.txtIdDueño = new System.Windows.Forms.TextBox();
             this.txtNombreDueño = new System.Windows.Forms.TextBox();
-            this.txtNombreMascota = new System.Windows.Forms.TextBox();
+            this.txtNombreAnimalDomestico = new System.Windows.Forms.TextBox();
             this.lblEspecie = new System.Windows.Forms.Label();
             this.lblRaza = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.lblPeso = new System.Windows.Forms.Label();
             this.lblEnfermeddadActual = new System.Windows.Forms.Label();
-            this.lblNombreMascota = new System.Windows.Forms.Label();
+            this.lblNombreAnimalDomestico = new System.Windows.Forms.Label();
             this.lblNombreDueño = new System.Windows.Forms.Label();
             this.lblIdDueño = new System.Windows.Forms.Label();
             this.btnValidar = new System.Windows.Forms.Button();
@@ -52,6 +52,9 @@
             this.btnValidarAdmin = new System.Windows.Forms.Button();
             this.chkTrabajando = new System.Windows.Forms.CheckBox();
             this.chkEsAdmin = new System.Windows.Forms.CheckBox();
+            this.cmbJerarquia = new System.Windows.Forms.ComboBox();
+            this.lblJerarquia = new System.Windows.Forms.Label();
+            this.btnAdminLista = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,12 +107,12 @@
             this.txtNombreDueño.Size = new System.Drawing.Size(100, 23);
             this.txtNombreDueño.TabIndex = 9;
             // 
-            // txtNombreMascota
+            // txtNombreAnimalDomestico
             // 
-            this.txtNombreMascota.Location = new System.Drawing.Point(370, 112);
-            this.txtNombreMascota.Name = "txtNombreMascota";
-            this.txtNombreMascota.Size = new System.Drawing.Size(100, 23);
-            this.txtNombreMascota.TabIndex = 8;
+            this.txtNombreAnimalDomestico.Location = new System.Drawing.Point(370, 112);
+            this.txtNombreAnimalDomestico.Name = "txtNombreAnimalDomestico";
+            this.txtNombreAnimalDomestico.Size = new System.Drawing.Size(100, 23);
+            this.txtNombreAnimalDomestico.TabIndex = 8;
             // 
             // lblEspecie
             // 
@@ -161,15 +164,15 @@
             this.lblEnfermeddadActual.TabIndex = 17;
             this.lblEnfermeddadActual.Text = "Malestar";
             // 
-            // lblNombreMascota
+            // lblNombreAnimalDomestico
             // 
-            this.lblNombreMascota.AutoSize = true;
-            this.lblNombreMascota.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblNombreMascota.Location = new System.Drawing.Point(373, 81);
-            this.lblNombreMascota.Name = "lblNombreMascota";
-            this.lblNombreMascota.Size = new System.Drawing.Size(113, 17);
-            this.lblNombreMascota.TabIndex = 18;
-            this.lblNombreMascota.Text = "Nombre Mascota";
+            this.lblNombreAnimalDomestico.AutoSize = true;
+            this.lblNombreAnimalDomestico.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblNombreAnimalDomestico.Location = new System.Drawing.Point(373, 81);
+            this.lblNombreAnimalDomestico.Name = "lblNombreAnimalDomestico";
+            this.lblNombreAnimalDomestico.Size = new System.Drawing.Size(113, 17);
+            this.lblNombreAnimalDomestico.TabIndex = 18;
+            this.lblNombreAnimalDomestico.Text = "Nombre Mascota";
             // 
             // lblNombreDueño
             // 
@@ -247,7 +250,7 @@
             this.btnValidarAdmin.Name = "btnValidarAdmin";
             this.btnValidarAdmin.Size = new System.Drawing.Size(110, 35);
             this.btnValidarAdmin.TabIndex = 26;
-            this.btnValidarAdmin.Text = "Crear Usuario";
+            this.btnValidarAdmin.Text = "Validar Usuario";
             this.btnValidarAdmin.UseVisualStyleBackColor = true;
             this.btnValidarAdmin.Click += new System.EventHandler(this.btnValidarAdmin_Click);
             // 
@@ -269,11 +272,42 @@
             this.chkEsAdmin.TabIndex = 28;
             this.chkEsAdmin.UseVisualStyleBackColor = true;
             // 
+            // cmbJerarquia
+            // 
+            this.cmbJerarquia.FormattingEnabled = true;
+            this.cmbJerarquia.Location = new System.Drawing.Point(366, 406);
+            this.cmbJerarquia.Name = "cmbJerarquia";
+            this.cmbJerarquia.Size = new System.Drawing.Size(121, 23);
+            this.cmbJerarquia.TabIndex = 29;
+            // 
+            // lblJerarquia
+            // 
+            this.lblJerarquia.AutoSize = true;
+            this.lblJerarquia.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblJerarquia.Location = new System.Drawing.Point(369, 377);
+            this.lblJerarquia.Name = "lblJerarquia";
+            this.lblJerarquia.Size = new System.Drawing.Size(116, 17);
+            this.lblJerarquia.TabIndex = 30;
+            this.lblJerarquia.Text = "Jerarquia Usuario";
+            // 
+            // btnAdminLista
+            // 
+            this.btnAdminLista.Location = new System.Drawing.Point(801, 40);
+            this.btnAdminLista.Name = "btnAdminLista";
+            this.btnAdminLista.Size = new System.Drawing.Size(111, 39);
+            this.btnAdminLista.TabIndex = 31;
+            this.btnAdminLista.Text = "Mostrar Lista";
+            this.btnAdminLista.UseVisualStyleBackColor = true;
+            this.btnAdminLista.Click += new System.EventHandler(this.btnAdminLista_Click);
+            // 
             // FormAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.btnAdminLista);
+            this.Controls.Add(this.lblJerarquia);
+            this.Controls.Add(this.cmbJerarquia);
             this.Controls.Add(this.chkEsAdmin);
             this.Controls.Add(this.chkTrabajando);
             this.Controls.Add(this.btnValidarAdmin);
@@ -284,7 +318,7 @@
             this.Controls.Add(this.btnValidar);
             this.Controls.Add(this.lblIdDueño);
             this.Controls.Add(this.lblNombreDueño);
-            this.Controls.Add(this.lblNombreMascota);
+            this.Controls.Add(this.lblNombreAnimalDomestico);
             this.Controls.Add(this.lblEnfermeddadActual);
             this.Controls.Add(this.lblPeso);
             this.Controls.Add(this.lblEdad);
@@ -293,18 +327,19 @@
             this.Controls.Add(this.txtSexo);
             this.Controls.Add(this.txtIdDueño);
             this.Controls.Add(this.txtNombreDueño);
-            this.Controls.Add(this.txtNombreMascota);
+            this.Controls.Add(this.txtNombreAnimalDomestico);
             this.Controls.Add(this.txtEnfermedadActual);
             this.Controls.Add(this.txtPeso);
             this.Controls.Add(this.txtRaza);
             this.Controls.Add(this.txtEspecie);
             this.Name = "FormAlta";
             this.Text = "FormAlta";
+            this.Load += new System.EventHandler(this.FormAlta_Load);
             this.Controls.SetChildIndex(this.txtEspecie, 0);
             this.Controls.SetChildIndex(this.txtRaza, 0);
             this.Controls.SetChildIndex(this.txtPeso, 0);
             this.Controls.SetChildIndex(this.txtEnfermedadActual, 0);
-            this.Controls.SetChildIndex(this.txtNombreMascota, 0);
+            this.Controls.SetChildIndex(this.txtNombreAnimalDomestico, 0);
             this.Controls.SetChildIndex(this.txtNombreDueño, 0);
             this.Controls.SetChildIndex(this.txtIdDueño, 0);
             this.Controls.SetChildIndex(this.txtSexo, 0);
@@ -313,7 +348,7 @@
             this.Controls.SetChildIndex(this.lblEdad, 0);
             this.Controls.SetChildIndex(this.lblPeso, 0);
             this.Controls.SetChildIndex(this.lblEnfermeddadActual, 0);
-            this.Controls.SetChildIndex(this.lblNombreMascota, 0);
+            this.Controls.SetChildIndex(this.lblNombreAnimalDomestico, 0);
             this.Controls.SetChildIndex(this.lblNombreDueño, 0);
             this.Controls.SetChildIndex(this.lblIdDueño, 0);
             this.Controls.SetChildIndex(this.btnValidar, 0);
@@ -324,6 +359,9 @@
             this.Controls.SetChildIndex(this.btnValidarAdmin, 0);
             this.Controls.SetChildIndex(this.chkTrabajando, 0);
             this.Controls.SetChildIndex(this.chkEsAdmin, 0);
+            this.Controls.SetChildIndex(this.cmbJerarquia, 0);
+            this.Controls.SetChildIndex(this.lblJerarquia, 0);
+            this.Controls.SetChildIndex(this.btnAdminLista, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -337,16 +375,15 @@
         private TextBox txtPeso;
         private TextBox txtEnfermedadActual;
         private TextBox txtSexo;
-        private TextBox textBox7;
         private TextBox txtIdDueño;
         private TextBox txtNombreDueño;
-        private TextBox txtNombreMascota;
+        private TextBox txtNombreAnimalDomestico;
         private Label lblEspecie;
         private Label lblRaza;
         private Label lblEdad;
         private Label lblPeso;
         private Label lblEnfermeddadActual;
-        private Label lblNombreMascota;
+        private Label lblNombreAnimalDomestico;
         private Label lblNombreDueño;
         private Label lblIdDueño;
         private Button btnValidar;
@@ -357,5 +394,8 @@
         private Button btnValidarAdmin;
         private CheckBox chkTrabajando;
         private CheckBox chkEsAdmin;
+        private ComboBox cmbJerarquia;
+        private Label lblJerarquia;
+        private Button btnAdminLista;
     }
 }
