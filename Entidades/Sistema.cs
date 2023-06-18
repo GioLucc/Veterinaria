@@ -83,7 +83,7 @@ namespace Entidades
 
             //    serializadora.Escribir("", item);
             //}
-                
+
         }
         private static void HardCodearUrgenciasMedicas()
         {
@@ -213,8 +213,20 @@ namespace Entidades
                 new Mascota("Gato", "Bengalí", 6.3f, 'F', "Mia", "García", 28, new DateTime(2021, 4, 3)),
                 new Veterinario(28, "Ricardo", "Pérez", 11223344, 32, "ricardop", "qwerty", true, 1900.0f, "Felinos", true),
                 "Picazón en la piel",
-                Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.SinVeterinario
+                
             );
+
+            HistorialMedico asd = new HistorialMedico(DateTime.Now, turno11.MalestarActual,"Beso en la frente", turno11.NombreVet);
+            HistorialMedico asd2 = new HistorialMedico(DateTime.Now, "Dolor de panza","Buscapina", turno11.NombreVet);
+            HistorialMedico asd3 = new HistorialMedico(DateTime.Now, "Pata rota", "Enyesado", turno11.NombreVet);
+            HistorialMedico asd4 = new HistorialMedico(DateTime.Now, "Atropellamiento","Operación\nEnyesado ", turno11.NombreVet);
+            HistorialMedico asd5 = new HistorialMedico(DateTime.Now, "Fiebre alta","Medicamentos", turno11.NombreVet);
+            turno11.Mascota.HistoriaClinica.Add(asd);
+            turno11.Mascota.HistoriaClinica.Add(asd2);
+            turno11.Mascota.HistoriaClinica.Add(asd3);
+            turno11.Mascota.HistoriaClinica.Add(asd4);
+            turno11.Mascota.HistoriaClinica.Add(asd5);
             turnos.Add(turno11);
 
 

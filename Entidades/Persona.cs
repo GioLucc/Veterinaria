@@ -6,6 +6,8 @@ namespace Entidades
     [Serializable]
     [XmlInclude(typeof(Usuario))]
     [XmlInclude(typeof(Veterinario))]
+    [XmlInclude(typeof(Administrador))]
+    [XmlInclude(typeof(Recepcionista))]
     public abstract class Persona
     {
         private string nombre;

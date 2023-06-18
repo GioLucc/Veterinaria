@@ -50,12 +50,12 @@ namespace Entidades.DB
                 connection.Open();
 
                 // Crear la consulta SQL para eliminar al veterinario de la base de datos
-                string query = "DELETE FROM Veterinarios WHERE DNI = @dni";
+                string query = "DELETE FROM Veterinarios WHERE dni = @dni";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Asignar el parámetro
-                    command.Parameters.AddWithValue("@Id",veterinario.Dni);
+                    command.Parameters.AddWithValue("@dni",veterinario.Dni);
 
                     // Ejecutar la consulta
                     command.ExecuteNonQuery();

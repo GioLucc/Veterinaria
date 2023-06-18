@@ -33,7 +33,7 @@ namespace Entidades
 
         public Turno()
         {
-            
+
         }
 
         public Turno(DateTime fecha, Mascota mascota, string malestarActual, PrioridadAtencion urgenciaAtencion, EstadoDeTurno estadoTurno)
@@ -49,7 +49,6 @@ namespace Entidades
         public Turno(DateTime fecha, Mascota mascota, Veterinario veterinario, string malestarActual, PrioridadAtencion urgenciaAtencion, EstadoDeTurno estadoTurno) : this(fecha, mascota, malestarActual, urgenciaAtencion, estadoTurno)
         {
             this.veterinario = veterinario;
-
         }
 
 
@@ -79,7 +78,12 @@ namespace Entidades
         {
             get => this.veterinario.Especialidad;
         }
-        public float CostoDeTurno { get => costoDeTurno; set => costoDeTurno = value; }
+        public float CostoDeTurno
+        {
+            get => costoDeTurno;
+            set => costoDeTurno = value;
+        }
+
 
         public override string ToString()
         {

@@ -100,6 +100,7 @@ namespace Veterinaria__
             dgvVeterinariosDisponibles.RowHeadersVisible = false; // Oculta las filas de encabezado
             dgvVeterinariosDisponibles.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Establece el modo de selección
             dgvVeterinariosDisponibles.MultiSelect = false; // Desactiva la selección múltiple
+
             dgvVeterinariosDisponibles.AllowUserToResizeRows = false;
             dgvVeterinariosDisponibles.AllowUserToResizeColumns = false;
             dgvVeterinariosDisponibles.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
+
 namespace Entidades
 {
+    [Serializable]
     public sealed class Administrador: Usuario, IUtilidades<Usuario>
     {
         public Administrador()

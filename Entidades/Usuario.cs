@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Entidades
 {
     [Serializable]
-    
+    [XmlInclude(typeof(Administrador))]
     public class Usuario : Persona
     {
         private short id;
