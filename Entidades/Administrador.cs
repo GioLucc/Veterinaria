@@ -12,6 +12,8 @@ namespace Entidades
     [Serializable]
     public sealed class Administrador: Usuario, IUtilidades<Usuario>
     {
+        private string linkFire = "https://console.firebase.google.com/project/veterinaria-ed4cf/firestore/data/~2Fusuarios~2FDT7oTGUt6wMghwYLS6Tw?hl=es-419";
+
         public Administrador()
         {
 

@@ -11,8 +11,6 @@ namespace Entidades.Archivos_y_Serializadores
     {
         public void Escribir(string path, T objeto)
         {
-
-
             string rutaCarpeta = (@"E:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\ArchivosTexto");
             string rutaArchivo = Path.Combine(rutaCarpeta, "Objeto.xml");
 
@@ -20,14 +18,11 @@ namespace Entidades.Archivos_y_Serializadores
             {
                 Directory.CreateDirectory(rutaCarpeta);
             }
-            else
+            using (StreamWriter sw = new StreamWriter(rutaArchivo, true))
             {
-                using (StreamWriter sw = new StreamWriter(rutaArchivo,true))
-                {
-                    XmlSerializer ser = new XmlSerializer(typeof(T));
-                    ser.Serialize(sw, objeto);
-                }
-            }        
+                XmlSerializer ser = new XmlSerializer(typeof(T));
+                ser.Serialize(sw, objeto);
+            }
         }
 
         public void Leer(string path)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace Veterinaria__
                 btn_GestionarPaciente.Hide();
                 btn_NuestrasAnimalDomesticos.Hide();
                 btn_Turnos.Hide();
+                btnAsignarVeterinario.Hide();
             }
             else
             {   
@@ -37,7 +39,6 @@ namespace Veterinaria__
                     btnAdminAlta.Hide();
                     btnAdminBaja.Hide();
                     btnAdminModificacion.Hide();
-
                 }
                 else
                 {
@@ -46,17 +47,15 @@ namespace Veterinaria__
                     btnAdminAlta.Hide();
                     btnAdminBaja.Hide();
                     btnAdminModificacion.Hide();
+                    btnAsignarVeterinario.Hide();
+                    btnBaseDeDatos.Hide();
                 }
             }
+
             lblHorarioYUsuario.Text = DateTime.Now.ToLongDateString() + "" + DateTime.Now.ToLongTimeString();
             timer1.Start();
 
         }
-
-        //private void timer1_Tick(object sender, EventArgs e)
-        //{
-        //    lblHorarioYUsuario.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - "  + usuarioForm.JerarquiaUsuario + " | " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
-        //}
 
         private void btn_Turnos_Click(object sender, EventArgs e)
         {
@@ -156,10 +155,57 @@ namespace Veterinaria__
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void opacoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.menuStripInicio.BackColor = Color.DarkSlateGray;
+            this.BackColor = Color.DimGray;
 
+            foreach (Control c in this.Controls)
+            {
+                if (c is Button)
+                {
+                    Button button = (Button)c;
+                    button.ForeColor = Color.White;
+                }
+            }
+        }
 
+        private void claroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.menuStripInicio.BackColor = Color.PeachPuff;
+            this.BackColor = Color.PeachPuff;
+
+            foreach (Control c in this.Controls)
+            {
+                if (c is Button)
+                {
+                    Button button = (Button)c;
+                    button.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            string tipoUsuario = "";
+
+            if (usuarioForm is Veterinario)
+            {
+                tipoUsuario = "Veterinario";
+            }
+            else if (usuarioForm is Administrador)
+            {
+                tipoUsuario = "Administrador";
+            }
+            else if (usuarioForm is Recepcionista)
+            {
+                tipoUsuario = "Recepcionista";
+            }
+
+            string diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+            diaSemana = diaSemana.Substring(0, 1).ToUpper() + diaSemana.Substring(1);
+
+            lblHorarioYUsuario.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - " + tipoUsuario + " | " + diaSemana + " " + DateTime.Now.ToLongTimeString();
         }
     }
 }

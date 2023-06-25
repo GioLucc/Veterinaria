@@ -15,6 +15,11 @@ namespace Entidades
         private string tratamientoAplicado;
         private string veterinarioQueAtendio;
 
+        public HistorialMedico()
+        {
+
+        }
+
         public HistorialMedico(DateTime fecha, string malestar, string tratamientoAplicado, string veterinarioQueAtendio)
         {
             this.fecha = fecha;
@@ -28,12 +33,22 @@ namespace Entidades
         public string TratamientoAplicado { get => tratamientoAplicado; set => tratamientoAplicado = value; }
         public string VeterinarioQueAtendio { get => veterinarioQueAtendio; set => veterinarioQueAtendio = value; }
 
+        public bool AgregarConsulta(string malestar, string tratamientoAplicado, Mascota mascota, string nombreVet)
+        {
+            bool retorno = false;
+            this.malestar = malestar;
+            this.tratamientoAplicado = tratamientoAplicado;
 
 
-        //public void AgregarConsulta(DateTime fechaConsulta, string anotaciones)
-        //{
+            if(malestar.Length > 0 && tratamientoAplicado.Length > 0)
+            {
+                HistorialMedico consulta = new HistorialMedico(DateTime.Now, malestar, tratamientoAplicado, nombreVet);
+                mascota.HistoriaClinica.Add(consulta);
+                retorno = true;
+            }
 
-        //}
+            return retorno;
+        }
 
 
     }

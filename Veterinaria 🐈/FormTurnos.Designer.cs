@@ -320,7 +320,6 @@
         private Button btnParaHoy;
         private Label lblSeleccioneMascota;
         private Label lblMalestar;
-        private TextBox textBox1;
         private TextBox txtMalestar;
         private Button btnCargarDatos;
         private Button btnUrgencia;

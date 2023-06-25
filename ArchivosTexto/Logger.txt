@@ -80,3 +80,15 @@
 17/6/2023 20:27:25 
 17/6/2023 20:27:32 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
 17/6/2023 20:27:32 
+18/6/2023 11:07:19 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+18/6/2023 11:07:19 
+18/6/2023 11:11:04 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+18/6/2023 11:11:04 
+18/6/2023 20:21:56 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+18/6/2023 20:21:56 
+18/6/2023 20:22:40 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+18/6/2023 20:22:40 
+18/6/2023 20:27:42 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+18/6/2023 20:27:42 
+23/6/2023 15:29:00 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+23/6/2023 15:29:00 

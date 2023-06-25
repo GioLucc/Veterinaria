@@ -20,7 +20,8 @@ namespace Entidades
             SinVeterinario,
             VeterinarioAsignado,
             EnAtencion,
-            Completado,
+            Atendido,
+            Pagado,
         }
 
         private DateTime fecha;

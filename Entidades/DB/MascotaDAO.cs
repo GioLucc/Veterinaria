@@ -129,7 +129,7 @@ namespace Entidades.DB
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Asignar los parámetros
+                    // Evitar inyecciones
                     command.Parameters.AddWithValue("@IdMascota", idMascota);
                     command.Parameters.AddWithValue("@NombreAnimal", nombreAnimal);
                     command.Parameters.AddWithValue("@ApellidoDueño", apellidoDueño);
@@ -147,7 +147,7 @@ namespace Entidades.DB
                 connection.Close();
             }
         }
-
+        //funciones SQL, y consultas
         public void EliminarMascota(int idMascota)
         {
             using (SqlConnection connection = ObtenerConexion())

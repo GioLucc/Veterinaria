@@ -15,8 +15,8 @@ namespace Entidades
         public static List<Mascota> AnimalDomesticos;
         public static List<Turno> turnos;
         public static List <String> urgenciasMedicas;
-        public static Dictionary<string, List<string>> assetsDelSistema;
-        
+        public static List<PrecioItem> listaPrecios = new List<PrecioItem>();
+        public static Dictionary<string, List<string>> assetsDelSistema;        
         public static int idCliente = 1;
         public static short idUsuarios = 0;
         public static Dictionary<string, List<string>> malestaresPorGravedad = new Dictionary<String ,List<string>>
@@ -25,7 +25,6 @@ namespace Entidades
             { "Media", new List<string> { "Dolor de estómago", "Fiebre" } },
             { "Urgente", new List<string> { "Dificultad para respirar", "Dolor en el pecho" } }
         };
-        
 
         static Sistema()
         {
@@ -33,7 +32,7 @@ namespace Entidades
             urgenciasMedicas = new List<String>();
             turnos = new List<Turno>();
             AnimalDomesticos = new List<Mascota>();
-            assetsDelSistema = new Dictionary<String, List<string>>();
+            HardcodearListaPreciosConsulta(listaPrecios);
             HardCodearUsuarios();
             HardCodearAnimalDomesticos();
             HardCodearUrgenciasMedicas();
@@ -41,6 +40,55 @@ namespace Entidades
             EstablecerAssetsDelSistema();
         }
         #region Hardcodeos
+
+        private static void HardcodearListaPreciosConsulta(List<PrecioItem> listaPrecios)
+        {
+            List<PrecioItem> listaPrecios1 = new List<PrecioItem>
+            {
+                new PrecioItem { Descripcion = "Consulta general", Precio = 1500.00m },
+                new PrecioItem { Descripcion = "Vacunación", Precio = 800.00m },
+                new PrecioItem { Descripcion = "Desparasitación", Precio = 500.00m },
+                new PrecioItem { Descripcion = "Cirugía", Precio = 5000.00m },
+                new PrecioItem { Descripcion = "Radiografía", Precio = 2000.00m },
+                new PrecioItem { Descripcion = "Análisis de sangre", Precio = 1200.00m },
+                new PrecioItem { Descripcion = "Esterilización", Precio = 3500.00m },
+                new PrecioItem { Descripcion = "Limpieza dental", Precio = 900.00m },
+                new PrecioItem { Descripcion = "Ecografía", Precio = 1800.00m },
+                new PrecioItem { Descripcion = "Tratamiento de piel", Precio = 2500.00m },
+                new PrecioItem { Descripcion = "Control de embarazo", Precio = 1800.00m },
+                new PrecioItem { Descripcion = "Odontología", Precio = 1500.00m },
+                new PrecioItem { Descripcion = "Baño y peluquería", Precio = 700.00m },
+                new PrecioItem { Descripcion = "Examen de oídos", Precio = 600.00m },
+                new PrecioItem { Descripcion = "Control de presión arterial", Precio = 1200.00m },
+                new PrecioItem { Descripcion = "Tratamiento de ojos", Precio = 2000.00m },
+                new PrecioItem { Descripcion = "Control de diabetes", Precio = 1500.00m },
+                new PrecioItem { Descripcion = "Desparasitación interna", Precio = 400.00m },
+                new PrecioItem { Descripcion = "Terapia física", Precio = 3000.00m },
+                new PrecioItem { Descripcion = "Corte de uñas", Precio = 400.00m },
+                new PrecioItem { Descripcion = "Inyección antipulgas", Precio = 600.00m },
+                new PrecioItem { Descripcion = "Inyección antiparasitaria", Precio = 800.00m },
+                new PrecioItem { Descripcion = "Inyección antirrábica", Precio = 500.00m },
+                new PrecioItem { Descripcion = "Inyección antiviral", Precio = 700.00m },
+                new PrecioItem { Descripcion = "Inyección antialérgica", Precio = 1000.00m },
+                new PrecioItem { Descripcion = "Inyección antiinflamatoria", Precio = 900.00m },
+                new PrecioItem { Descripcion = "Inyección antibiótica", Precio = 1200.00m },
+                new PrecioItem { Descripcion = "Inyección antidiarreica", Precio = 800.00m },
+                new PrecioItem { Descripcion = "Inyección antifúngica", Precio = 1100.00m },
+                new PrecioItem { Descripcion = "Inyección anticonceptiva", Precio = 1000.00m },
+                new PrecioItem { Descripcion = "Inyección antihistamínica", Precio = 850.00m },
+                new PrecioItem { Descripcion = "Inyección antiparasitaria interna", Precio = 900.00m },
+                new PrecioItem { Descripcion = "Inyección antiinflamatoria muscular", Precio = 1200.00m },
+                new PrecioItem { Descripcion = "Inyección antiviral respiratoria", Precio = 1100.00m },
+                new PrecioItem { Descripcion = "Inyección anticonceptiva hormonal", Precio = 1500.00m },
+                new PrecioItem { Descripcion = "Inyección antiparasitaria externa", Precio = 700.00m },
+                new PrecioItem { Descripcion = "Inyección antialérgica nasal", Precio = 1000.00m },
+                new PrecioItem { Descripcion = "Inyección antifúngica cutánea", Precio = 950.00m },
+                new PrecioItem { Descripcion = "Inyección antiparasitaria intestinal", Precio = 800.00m },
+                new PrecioItem { Descripcion = "Inyección antidiarreica viral", Precio = 900.00m }
+            };
+
+            Sistema.listaPrecios = listaPrecios1;
+        }
 
         private static void HardCodearAnimalDomesticos()
         {
@@ -76,13 +124,6 @@ namespace Entidades
             AnimalDomesticos.Add(new Mascota("Canino", "Pug", 10, 'M',  "Buddy", "Pedro", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
             AnimalDomesticos.Add(new Mascota("Ave", "Perico", 1, 'M',  "Paco", "Sofia", Sistema.GenerarId(), Sistema.GenerarFechaNacimientoAleatoria()));
 
-            //SerializadoraXML<Mascota> serializadora = new SerializadoraXML<Mascota>();
-
-            //foreach (Mascota item in AnimalDomesticos)
-            //{
-
-            //    serializadora.Escribir("", item);
-            //}
 
         }
         private static void HardCodearUrgenciasMedicas()
@@ -123,7 +164,7 @@ namespace Entidades
                 new Mascota("Perro", "Labrador", 15.5f, 'M', "Max", "Pérez", 1, new DateTime(2018, 5, 10)),
                 new Veterinario(1, "Juan", "Gómez", 12345678, 35, "juang", "123456",  true, 2500.50f, "Caninos", true),
                 "Vómitos",
-                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Atendido
             ); ;
             turnos.Add(turno1);
 
@@ -132,7 +173,7 @@ namespace Entidades
                 new Mascota("Gato", "Siames", 4.2f, 'F', "Luna", "González", 2, new DateTime(2019, 8, 15)),
                 new Veterinario(2, "Ana", "López", 23456789, 28, "anal", "987654", true, 2300.75f, "Felinos", true),
                 "Fiebre",
-                Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Atendido
             );
             turnos.Add(turno2);
 
@@ -141,7 +182,7 @@ namespace Entidades
             new Mascota("Gato", "Persa", 3.8f, 'M', "Simba", "Rodríguez", 3, new DateTime(2020, 10, 20)),
             new Veterinario(3, "María", "Martínez", 34567890, 32, "mariam", "abcdef", true, 2200.50f, "Felinos", true),
             "Diarrea",
-            Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Completado
+            Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.Atendido
             );
             turnos.Add(turno3);
 
@@ -150,7 +191,7 @@ namespace Entidades
                 new Mascota("Perro", "Bulldog", 18.7f, 'M', "Rocky", "Gutiérrez", 4, new DateTime(2017, 4, 8)),
                 new Veterinario(4, "Carlos", "López", 45678901, 40, "carlosl", "qwerty",  true, 2800.75f, "Caninos", true),
                 "Cojera",
-                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Atendido
             );
             turnos.Add(turno4);
 
@@ -159,7 +200,7 @@ namespace Entidades
             new Mascota("Gato", "Siamés", 10.2f, 'F', "Luna", "González", 2, new DateTime(2019, 8, 20)),
             new Veterinario(2, "María", "López", 98765432, 28, "marial", "654321",  true, 2000.75f, "Felinos", true),
             "Diarrea",
-            Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Completado
+            Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Atendido
             );
             turnos.Add(turno5);
 
@@ -168,7 +209,7 @@ namespace Entidades
                 new Mascota("Perro", "Bulldog", 18.9f, 'M', "Rocky", "Rodríguez", 3, new DateTime(2016, 3, 5)),
                 new Veterinario(3, "Pedro", "Martínez", 56789123, 42, "pedrom", "987654", true, 3000.25f, "Caninos", true),
                 "Fiebre",
-                Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.Atendido
             );
             turnos.Add(turno6);
 
@@ -177,7 +218,7 @@ namespace Entidades
             new Mascota("Gato", "Persa", 5.7f, 'M', "Simba", "López", 4, new DateTime(2020, 11, 15)),
             new Veterinario(4, "Ana", "Hernández", 11223344, 31, "anah", "abcdefgh", true, 2200.0f, "Felinos", true),
             "Ojos llorosos",
-            Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+            Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Atendido
         );
             turnos.Add(turno7);
 
@@ -186,7 +227,7 @@ namespace Entidades
                 new Mascota("Perro", "Golden Retriever", 22.1f, 'F', "Bella", "Fernández", 5, new DateTime(2017, 7, 25)),
                 new Veterinario(5, "Carlos", "Sánchez", 99887766, 37, "carloss", "p@ssw0rd",  true, 2800.50f, "Caninos", true),
                 "Herida en pata",
-                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Atendido
             );
             turnos.Add(turno8);
 
@@ -195,17 +236,20 @@ namespace Entidades
                 new Mascota("Gato", "Maine Coon", 8.5f, 'F', "Lola", "Torres", 16, new DateTime(2022, 1, 12)),
                 new Veterinario(16, "Isabel", "Cruz", 65432109, 29, "isabelc", "password",  true, 2100.0f, "Felinos", true),
                 "Pérdida de apetito",
-                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Atendido
             );
             turnos.Add(turno9);
 
+            
             Turno turno10 = new Turno(
                 DateTime.Now,
                 new Mascota("Perro", "Bulldog Francés", 12.8f, 'M', "Rocko", "Vargas", 17, new DateTime(2015, 9, 8)),
                 new Veterinario(17, "Fernanda", "Rojas", 98765432, 34, "fernandar", "abcd1234",  true, 3200.25f, "Caninos", true),
                 "Problemas respiratorios",
-                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.Completado
+                Turno.PrioridadAtencion.Urgente, Turno.EstadoDeTurno.SinVeterinario
             );
+            HistorialMedico asd1 = new HistorialMedico(DateTime.Now, "Parasitos", "Beso en la frente", turno10.NombreVet);
+            turno10.Mascota.HistoriaClinica.Add(asd1);
             turnos.Add(turno10);
 
             Turno turno11 = new Turno(
@@ -217,7 +261,7 @@ namespace Entidades
                 
             );
 
-            HistorialMedico asd = new HistorialMedico(DateTime.Now, turno11.MalestarActual,"Beso en la frente", turno11.NombreVet);
+            HistorialMedico asd = new HistorialMedico(DateTime.Now, "Parasitos","Beso en la frente", turno11.NombreVet);
             HistorialMedico asd2 = new HistorialMedico(DateTime.Now, "Dolor de panza","Buscapina", turno11.NombreVet);
             HistorialMedico asd3 = new HistorialMedico(DateTime.Now, "Pata rota", "Enyesado", turno11.NombreVet);
             HistorialMedico asd4 = new HistorialMedico(DateTime.Now, "Atropellamiento","Operación\nEnyesado ", turno11.NombreVet);
@@ -229,6 +273,7 @@ namespace Entidades
             turno11.Mascota.HistoriaClinica.Add(asd5);
             turnos.Add(turno11);
 
+            AnimalDomesticos.Add(turno11.Mascota);
 
         }
         private static void EstablecerAssetsDelSistema()
