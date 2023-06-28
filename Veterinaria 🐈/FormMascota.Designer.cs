@@ -35,6 +35,9 @@
             this.dgvRegistroMascotas = new System.Windows.Forms.DataGridView();
             this.dgvPrueba = new System.Windows.Forms.DataGridView();
             this.dgvFechaTurnos = new System.Windows.Forms.DataGridView();
+            this.btnNameSorting = new System.Windows.Forms.Button();
+            this.btnOrdenarId = new System.Windows.Forms.Button();
+            this.btnApellidoSorting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistroMascotas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrueba)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFechaTurnos)).BeginInit();
@@ -59,7 +62,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRegistroMascotas.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvRegistroMascotas.Location = new System.Drawing.Point(12, 12);
+            this.dgvRegistroMascotas.Location = new System.Drawing.Point(12, 34);
             this.dgvRegistroMascotas.Name = "dgvRegistroMascotas";
             this.dgvRegistroMascotas.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -73,7 +76,7 @@
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvRegistroMascotas.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvRegistroMascotas.RowTemplate.Height = 25;
-            this.dgvRegistroMascotas.Size = new System.Drawing.Size(330, 637);
+            this.dgvRegistroMascotas.Size = new System.Drawing.Size(330, 615);
             this.dgvRegistroMascotas.TabIndex = 3;
             this.dgvRegistroMascotas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -95,11 +98,47 @@
             this.dgvFechaTurnos.Size = new System.Drawing.Size(348, 308);
             this.dgvFechaTurnos.TabIndex = 6;
             // 
+            // btnNameSorting
+            // 
+            this.btnNameSorting.Location = new System.Drawing.Point(98, 5);
+            this.btnNameSorting.Name = "btnNameSorting";
+            this.btnNameSorting.Size = new System.Drawing.Size(124, 23);
+            this.btnNameSorting.TabIndex = 7;
+            this.btnNameSorting.Text = "Ordenar por nombre";
+            this.btnNameSorting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNameSorting.UseVisualStyleBackColor = true;
+            this.btnNameSorting.Click += new System.EventHandler(this.btnNameSorting_Click);
+            // 
+            // btnOrdenarId
+            // 
+            this.btnOrdenarId.Location = new System.Drawing.Point(4, 5);
+            this.btnOrdenarId.Name = "btnOrdenarId";
+            this.btnOrdenarId.Size = new System.Drawing.Size(92, 23);
+            this.btnOrdenarId.TabIndex = 8;
+            this.btnOrdenarId.Text = "Ordenar por Id";
+            this.btnOrdenarId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrdenarId.UseVisualStyleBackColor = true;
+            this.btnOrdenarId.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnApellidoSorting
+            // 
+            this.btnApellidoSorting.Location = new System.Drawing.Point(223, 5);
+            this.btnApellidoSorting.Name = "btnApellidoSorting";
+            this.btnApellidoSorting.Size = new System.Drawing.Size(124, 23);
+            this.btnApellidoSorting.TabIndex = 9;
+            this.btnApellidoSorting.Text = "Ordenar por apellido";
+            this.btnApellidoSorting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnApellidoSorting.UseVisualStyleBackColor = true;
+            this.btnApellidoSorting.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormAnimalDomestico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.btnApellidoSorting);
+            this.Controls.Add(this.btnOrdenarId);
+            this.Controls.Add(this.btnNameSorting);
             this.Controls.Add(this.dgvFechaTurnos);
             this.Controls.Add(this.dgvPrueba);
             this.Controls.Add(this.dgvRegistroMascotas);
@@ -109,6 +148,9 @@
             this.Controls.SetChildIndex(this.dgvRegistroMascotas, 0);
             this.Controls.SetChildIndex(this.dgvPrueba, 0);
             this.Controls.SetChildIndex(this.dgvFechaTurnos, 0);
+            this.Controls.SetChildIndex(this.btnNameSorting, 0);
+            this.Controls.SetChildIndex(this.btnOrdenarId, 0);
+            this.Controls.SetChildIndex(this.btnApellidoSorting, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistroMascotas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrueba)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFechaTurnos)).EndInit();
@@ -122,5 +164,12 @@
         private DataGridView dgvRegistroMascotas;
         private DataGridView dgvPrueba;
         private DataGridView dgvFechaTurnos;
+        private GroupBox gbHistorial;
+        private TextBox txtPrecioConsulta;
+        private TextBox txtMalestar;
+        private TextBox txtInfoAd;
+        private Button btnNameSorting;
+        private Button btnOrdenarId;
+        private Button btnApellidoSorting;
     }
 }

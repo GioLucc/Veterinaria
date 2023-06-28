@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Archivos_y_Serializadores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +14,28 @@ namespace Veterinaria__
 {
     public partial class Login : FormBase
     {
+        ArchivoJSON<ConfigApp> json = new ArchivoJSON<ConfigApp>();
+        bool banderaTema = false;
+        Color colorForm = Color.PeachPuff;
+        Color colorSecundario;
+
+
         public Login()
         {
             InitializeComponent();
         }
 
+        public Login(Color color) : this()
+        {
+            this.BackColor = color;
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            ConfigApp cfg = json.Leer("config.json");
+            banderaTema = cfg.BanderaColor;
+            this.BackColor = cfg.ColorPrimario;
+        }
         private void btnLoguear_Click(object sender, EventArgs e)
         {
             if (txtPassword.Text is not null && txtPassword.Text is not null)
@@ -39,31 +57,8 @@ namespace Veterinaria__
                     Inicio nuevoLogin = new Inicio(usuarioDevuelto);
                     this.Hide();
                     nuevoLogin.Show();
-                    //foreach (Veterinario item in Sistema.usuarios)
-                    //{
-                    //    if(item.Nombre == "Giovanni")
-                    //    {
-                    //        Inicio nuevoLogin = new Inicio(item);
-                    //        this.Hide();
-                    //        nuevoLogin.Show();
-                    //    }
-                    //    else
-                    //    {
-                    //        if(item.Jerarquia == Jerarquia.Administrador)
-                    //        {
-                    //            Inicio nuevoLogin = new Inicio(item);
-                    //            this.Hide();
-                    //            nuevoLogin.Show();
-                    //        }
-                    //    }
                 }
-
-
-
-
-            }
-
-            
+            }         
         }
 
         private void pic_Ocultar_Click(object sender, EventArgs e)
@@ -158,5 +153,7 @@ namespace Veterinaria__
                 }
             }
         }
+
+
     }
 }

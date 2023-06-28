@@ -92,3 +92,11 @@
 18/6/2023 20:27:42 
 23/6/2023 15:29:00 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
 23/6/2023 15:29:00 
+28/06/2023 10:22:17 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+28/06/2023 10:22:32 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+28/06/2023 10:22:46 La excepción ocurrió en el método btnRelacionarDgvs_Click de la clase Veterinaria__.AsignarVeterinario.
+28/06/2023 10:22:47 La excepción ocurrió en el método btnRelacionarDgvs_Click de la clase Veterinaria__.AsignarVeterinario.
+28/06/2023 10:22:49 La excepción ocurrió en el método btnRelacionarDgvs_Click de la clase Veterinaria__.AsignarVeterinario.
+28/06/2023 12:02:57 La excepción ocurrió en el método AsignarVeterinarioAlTurno de la clase Veterinaria__.AsignarVeterinario.
+28/06/2023 12:02:59 La excepción ocurrió en el método AsignarVeterinarioAlTurno de la clase Veterinaria__.AsignarVeterinario.
+28/06/2023 12:03:00 La excepción ocurrió en el método AsignarVeterinarioAlTurno de la clase Veterinaria__.AsignarVeterinario.

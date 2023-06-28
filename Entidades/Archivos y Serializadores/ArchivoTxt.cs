@@ -43,9 +43,9 @@ namespace Entidades.Archivos_y_Serializadores
             }
         }
 
-        public void Leer(string path)
+        public string Leer(string path)
         {
-
+            return null;
         }
 
         public void Escribir(string datoAEscribir, string path)

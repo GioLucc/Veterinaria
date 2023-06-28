@@ -18,17 +18,17 @@ namespace Veterinaria__
 {
     public partial class FormTurnos : FormBaseMenu
     {
-        Usuario veterinarioActual;
+        Usuario recepcionistaActual;
         private string? nivelImportancia;
         Recepcionista recepcionista = new Recepcionista();
-
-        //String gravedad
-
+        SerializadoraXML<Dictionary<string, List<string>>> serializadora = new SerializadoraXML<Dictionary<string, List<string>>>();
+        public event Action MalestarUrgenciaAgregado;
+        private string gravedadActual;
 
         public FormTurnos(Usuario veterinario)
         {
             InitializeComponent();
-            veterinarioActual = veterinario;
+            recepcionistaActual = veterinario;
             dgvBaseDatos.Hide();
             dtpElegirFechaTurno.MinDate = DateTime.Now;
             btnCrearTurno.Hide();
@@ -41,6 +41,15 @@ namespace Veterinaria__
             btnNormal.Click += BotonNivelImportancia_Click;
 
         }
+        private void FormTurnos_Load(object sender, EventArgs e)
+        {
+            MalestarUrgenciaAgregado += FormTurnos_MalestarUrgenciaAgregado;
+        }
+
+        public FormTurnos(Usuario usuarioForm, Color color) : this(usuarioForm)
+        {
+            this.BackColor = color;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -49,7 +58,7 @@ namespace Veterinaria__
 
         private void btnAñadirMascota_Click(object sender, EventArgs e)
         {
-            FormAlta darDeAlta = new FormAlta(veterinarioActual);
+            FormAlta darDeAlta = new FormAlta(recepcionistaActual);
             this.Hide();
 
             DialogResult retornoAlta = darDeAlta.ShowDialog();
@@ -117,7 +126,6 @@ namespace Veterinaria__
         private void btnCrearTurno_Click(object sender, EventArgs e)
         {
             Mascota Mascota = (Mascota)dgvBaseDatos.SelectedRows[0].DataBoundItem;
-
             if (dtpElegirFechaTurno.Value.Date != dtpElegirFechaTurno.MinDate
                 && txtMalestar.Text.Length > 0 && nivelImportancia is not null && nivelImportancia != "")
             {
@@ -125,16 +133,21 @@ namespace Veterinaria__
                 {
                     case "URGENCIA ⚠":
                         recepcionista.CrearNuevoTurno(txtMalestar.Text, Mascota, dtpElegirFechaTurno.Value.Date, "Urgente");
+                        gravedadActual = "Urgente";
+                        
+
                         break;
                     case "MEDIA":
-                        recepcionista.CrearNuevoTurno(txtMalestar.Text, Mascota, dtpElegirFechaTurno.Value.Date, "Medio");
+                        recepcionista.CrearNuevoTurno(txtMalestar.Text, Mascota, dtpElegirFechaTurno.Value.Date, "Media");
+                        gravedadActual = "Media";
+
                         break;
                     default:
                         recepcionista.CrearNuevoTurno(txtMalestar.Text, Mascota, dtpElegirFechaTurno.Value.Date, "Normal");
+                        gravedadActual= "Normal";
                         break;
-
-
                 }
+                MalestarUrgenciaAgregado.Invoke();
 
                 btnUrgencia.Hide();
                 btnMedia.Hide();
@@ -154,7 +167,7 @@ namespace Veterinaria__
         {
             Mascota Mascota = null;
             var mc = new ArchivoTxt();
-            
+
 
             int dividirEx;
             int cero = 0;
@@ -167,10 +180,10 @@ namespace Veterinaria__
             catch (DivideByZeroException ex)
             {
 
-                mc.Logger(ex); 
-                mc.Escribir(error, "a");
+                mc.Logger(ex);
+                
             }
-            
+
 
             if (dgvBaseDatos.SelectedRows.Count > 0 && txtMalestar.Text.Length > 0)
             {
@@ -254,7 +267,6 @@ namespace Veterinaria__
                         btnCrearTurno.Show();
                         btnCargarDatos.Hide();
                         
-
                     }
 
                 }
@@ -285,7 +297,18 @@ namespace Veterinaria__
         {
             dtpElegirFechaTurno.Value = DateTime.Now;
         }
-        
+
+        private void txtMalestar_MouseEnter(object sender, EventArgs e)
+        {
+            dgvBaseDatos.Hide();
+        }
+
+        private void FormTurnos_MalestarUrgenciaAgregado()
+        {
+            Sistema.malestaresPorGravedad[gravedadActual].Add(txtMalestar.Text);
+            serializadora.Escribir("path", Sistema.malestaresPorGravedad);
+            FormBaseMenu.MostrarAdvertencia($"Se ha agregado el nuevo malestar: {txtMalestar.Text} para la auto-asignación a futuro de calidad {gravedadActual}");
+        }
     }
 }
 

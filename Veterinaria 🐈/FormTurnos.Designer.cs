@@ -195,6 +195,7 @@
             this.txtMalestar.Name = "txtMalestar";
             this.txtMalestar.Size = new System.Drawing.Size(174, 48);
             this.txtMalestar.TabIndex = 17;
+            this.txtMalestar.MouseEnter += new System.EventHandler(this.txtMalestar_MouseEnter);
             // 
             // btnCargarDatos
             // 
@@ -281,6 +282,7 @@
             this.Controls.Add(this.lblNuevoTurno);
             this.Name = "FormTurnos";
             this.Text = " ";
+            this.Load += new System.EventHandler(this.FormTurnos_Load);
             this.Controls.SetChildIndex(this.lblNuevoTurno, 0);
             this.Controls.SetChildIndex(this.dtpElegirFechaTurno, 0);
             this.Controls.SetChildIndex(this.lblEnSistema, 0);

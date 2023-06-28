@@ -46,6 +46,11 @@ namespace Veterinaria__
             btnDesplegarDgvs.Hide();
         }
 
+        public AtenderPacientes(Usuario usuarioForm, Color color) : this(usuarioForm)
+        {
+            this.BackColor = color;
+        }
+
         public void setDGVPrecios(List<PrecioItem> lista)
         {
             dgvPrecios.AutoGenerateColumns = false;
@@ -227,7 +232,6 @@ namespace Veterinaria__
 
         private void dgvFechaTurnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
             DataGridViewRow selectedRow = dgvFechaTurnos.CurrentRow;
             HistorialMedico historialSeleccionado = (HistorialMedico)selectedRow.DataBoundItem;
 

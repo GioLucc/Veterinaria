@@ -16,7 +16,7 @@ namespace Veterinaria__
 {
     public partial class FormAlta : FormBaseMenu
     { 
-        public FormAlta(Usuario usuario) : base(usuario)
+        public FormAlta(Usuario usuario)
         { 
             InitializeComponent();
             dataGridView1.Hide();
@@ -47,7 +47,12 @@ namespace Veterinaria__
             }
                 
         }
-        
+
+        public FormAlta(Usuario usuarioForm, Color color) : this(usuarioForm)
+        {
+            this.BackColor = color;
+        }
+
         public Veterinario ValidarDatosTrabajador()
         {
             Veterinario usuarioACrear = null;

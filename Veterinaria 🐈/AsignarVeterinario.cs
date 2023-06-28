@@ -9,16 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq;
+using Entidades.Archivos_y_Serializadores;
 
 namespace Veterinaria__
 {
     public partial class AsignarVeterinario : FormBaseMenu
     {
+
         public AsignarVeterinario(Usuario usuarioForm)
         {
             InitializeComponent();
             setDGV();
             dgvAsignarVet.Show();
+        }
+
+        public AsignarVeterinario(Usuario usuarioForm, Color color) : this(usuarioForm)
+        {
+            this.BackColor = color;
         }
 
         public void setDGV()
@@ -123,20 +130,29 @@ namespace Veterinaria__
             Turno turnito;
             Veterinario veterinarioASeleccionar;
 
-            if (dgvAsignarVet.SelectedRows.Count > 0 && dgvVeterinariosDisponibles.SelectedRows.Count > 0)
+            try
             {
-                turnito = (Turno)dgvAsignarVet.SelectedRows[0].DataBoundItem;
-                veterinarioASeleccionar = (Veterinario)dgvVeterinariosDisponibles.SelectedRows[0].DataBoundItem;
-                turnito.Veterinario = veterinarioASeleccionar;
-                veterinarioASeleccionar.Atendiendo = true;
-                setDGV();
+                if (dgvAsignarVet.SelectedRows.Count > 0 && dgvVeterinariosDisponibles.SelectedRows.Count > 0)
+                {
+                    turnito = (Turno)dgvAsignarVet.SelectedRows[0].DataBoundItem;
+                    veterinarioASeleccionar = (Veterinario)dgvVeterinariosDisponibles.SelectedRows[0].DataBoundItem;
+                    turnito.Veterinario = veterinarioASeleccionar;
+                    veterinarioASeleccionar.Atendiendo = true;
+                    setDGV();
+                }
+                else
+                {
+                    throw new AsignacionVetIncorrecta("Por favor seleccione uno de los campos para poder asignar correctamente un veterinario a este turno");
+                }
             }
-            else
+            catch (AsignacionVetIncorrecta ex)
             {
-                MessageBox.Show("Porfavor seleccione uno de los campos para poder asignar correctamente un veterinario a este turno","Atención",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var mc = new ArchivoTxt();
+                mc.Logger(ex);
             }
-            
-            
+
+
         }
         private void dgvAsignarVet_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -152,6 +168,9 @@ namespace Veterinaria__
 
         private void btnRelacionarDgvs_Click(object sender, EventArgs e)
         {
+            var mc = new ArchivoTxt();
+
+
             AsignarVeterinarioAlTurno();
         }
     }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,19 +11,29 @@ namespace Entidades
 {
     public class ConfigApp
     {
-        private Color primario;
-        private Color secundario;
+        [JsonProperty]
+        private bool banderaColor;
+        [JsonProperty]
+        private Color colorPrimario;
+        [JsonProperty]
+        private Color colorSecundario;
 
-        public ConfigApp(Color primario, Color secundario)
+        public ConfigApp( bool banderaColor, Color colorPrimario,Color colorSecundario)
         {
-            this.primario = primario;
-            this.secundario = secundario;
-        }
 
-        private void cambiarTema(Color colorPrimario, Color colorSecundario)
-        {
-            this.primario = colorPrimario;
-            this.secundario = colorSecundario;
-        }
+            this.banderaColor = banderaColor;
+            this.colorPrimario = colorPrimario;
+            this.colorSecundario = colorSecundario;
+    }
+
+        public bool BanderaColor { get => banderaColor; set => banderaColor = value; }
+        public Color ColorPrimario { get => colorPrimario; set => colorPrimario = value; }
+        public Color ColorSecundario { get => colorSecundario; set => colorSecundario = value; }
+
+        //private void cambiarTema(bool banderaColor, Color color)
+        //{
+        //    this.color = color;
+        //    this.banderaColor = banderaColor;
+        //}
     }
 }

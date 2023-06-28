@@ -48,10 +48,10 @@
             this.opacoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.claroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarCambiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelInicio = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStripInicio.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelInicio.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -62,7 +62,7 @@
             // 
             this.lblHorarioYUsuario.AutoSize = true;
             this.lblHorarioYUsuario.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblHorarioYUsuario.Location = new System.Drawing.Point(1, 639);
+            this.lblHorarioYUsuario.Location = new System.Drawing.Point(1, 635);
             this.lblHorarioYUsuario.Name = "lblHorarioYUsuario";
             this.lblHorarioYUsuario.Size = new System.Drawing.Size(134, 23);
             this.lblHorarioYUsuario.TabIndex = 1;
@@ -70,50 +70,58 @@
             // 
             // btn_Turnos
             // 
-            this.btn_Turnos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Turnos.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Turnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Turnos.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_Turnos.Location = new System.Drawing.Point(54, 39);
+            this.btn_Turnos.ForeColor = System.Drawing.Color.Black;
+            this.btn_Turnos.Location = new System.Drawing.Point(86, 87);
             this.btn_Turnos.Name = "btn_Turnos";
             this.btn_Turnos.Size = new System.Drawing.Size(125, 50);
             this.btn_Turnos.TabIndex = 2;
-            this.btn_Turnos.Text = "Turnos";
-            this.btn_Turnos.UseVisualStyleBackColor = true;
+            this.btn_Turnos.Text = "Nuevo Turno";
+            this.btn_Turnos.UseVisualStyleBackColor = false;
             this.btn_Turnos.Click += new System.EventHandler(this.btn_Turnos_Click);
             // 
             // btn_NuestrasAnimalDomesticos
             // 
-            this.btn_NuestrasAnimalDomesticos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_NuestrasAnimalDomesticos.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_NuestrasAnimalDomesticos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_NuestrasAnimalDomesticos.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_NuestrasAnimalDomesticos.Location = new System.Drawing.Point(54, 446);
+            this.btn_NuestrasAnimalDomesticos.ForeColor = System.Drawing.Color.Black;
+            this.btn_NuestrasAnimalDomesticos.Location = new System.Drawing.Point(86, 494);
             this.btn_NuestrasAnimalDomesticos.Name = "btn_NuestrasAnimalDomesticos";
             this.btn_NuestrasAnimalDomesticos.Size = new System.Drawing.Size(125, 50);
             this.btn_NuestrasAnimalDomesticos.TabIndex = 3;
             this.btn_NuestrasAnimalDomesticos.Text = "Registros";
-            this.btn_NuestrasAnimalDomesticos.UseVisualStyleBackColor = true;
+            this.btn_NuestrasAnimalDomesticos.UseVisualStyleBackColor = false;
             this.btn_NuestrasAnimalDomesticos.Click += new System.EventHandler(this.btn_NuestrasAnimalDomesticos_Click);
             // 
             // btn_DarDeAlta
             // 
-            this.btn_DarDeAlta.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_DarDeAlta.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_DarDeAlta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_DarDeAlta.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_DarDeAlta.Location = new System.Drawing.Point(54, 236);
+            this.btn_DarDeAlta.ForeColor = System.Drawing.Color.Black;
+            this.btn_DarDeAlta.Location = new System.Drawing.Point(86, 284);
             this.btn_DarDeAlta.Name = "btn_DarDeAlta";
-            this.btn_DarDeAlta.Size = new System.Drawing.Size(125, 50);
+            this.btn_DarDeAlta.Size = new System.Drawing.Size(125, 60);
             this.btn_DarDeAlta.TabIndex = 4;
-            this.btn_DarDeAlta.Text = "Dar de Alta";
-            this.btn_DarDeAlta.UseVisualStyleBackColor = true;
+            this.btn_DarDeAlta.Text = "Nuevo usuario";
+            this.btn_DarDeAlta.UseVisualStyleBackColor = false;
             this.btn_DarDeAlta.Click += new System.EventHandler(this.btn_DarDeAlta_Click);
             // 
             // btn_GestionarPaciente
             // 
-            this.btn_GestionarPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_GestionarPaciente.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_GestionarPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_GestionarPaciente.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_GestionarPaciente.Location = new System.Drawing.Point(54, 336);
+            this.btn_GestionarPaciente.ForeColor = System.Drawing.Color.Black;
+            this.btn_GestionarPaciente.Location = new System.Drawing.Point(86, 384);
             this.btn_GestionarPaciente.Name = "btn_GestionarPaciente";
             this.btn_GestionarPaciente.Size = new System.Drawing.Size(125, 50);
             this.btn_GestionarPaciente.TabIndex = 5;
             this.btn_GestionarPaciente.Text = "Gestionar";
-            this.btn_GestionarPaciente.UseVisualStyleBackColor = true;
+            this.btn_GestionarPaciente.UseVisualStyleBackColor = false;
             this.btn_GestionarPaciente.Click += new System.EventHandler(this.btn_GestionarPaciente_Click);
             // 
             // pictureBox1
@@ -139,72 +147,84 @@
             // 
             // btnAdminAlta
             // 
+            this.btnAdminAlta.BackColor = System.Drawing.SystemColors.Control;
             this.btnAdminAlta.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdminAlta.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAdminAlta.Location = new System.Drawing.Point(54, 20);
+            this.btnAdminAlta.ForeColor = System.Drawing.Color.Black;
+            this.btnAdminAlta.Location = new System.Drawing.Point(86, 68);
             this.btnAdminAlta.Name = "btnAdminAlta";
             this.btnAdminAlta.Size = new System.Drawing.Size(125, 58);
             this.btnAdminAlta.TabIndex = 13;
             this.btnAdminAlta.Text = "Alta Empleados";
-            this.btnAdminAlta.UseVisualStyleBackColor = true;
+            this.btnAdminAlta.UseVisualStyleBackColor = false;
             this.btnAdminAlta.Click += new System.EventHandler(this.btnAdminAlta_Click);
             // 
             // btnAdminModificacion
             // 
-            this.btnAdminModificacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdminModificacion.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdminModificacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdminModificacion.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAdminModificacion.Location = new System.Drawing.Point(54, 152);
+            this.btnAdminModificacion.ForeColor = System.Drawing.Color.Black;
+            this.btnAdminModificacion.Location = new System.Drawing.Point(86, 200);
             this.btnAdminModificacion.Name = "btnAdminModificacion";
             this.btnAdminModificacion.Size = new System.Drawing.Size(125, 50);
             this.btnAdminModificacion.TabIndex = 14;
             this.btnAdminModificacion.Text = "Modificación";
-            this.btnAdminModificacion.UseVisualStyleBackColor = true;
+            this.btnAdminModificacion.UseVisualStyleBackColor = false;
             // 
             // btnAdminBaja
             // 
-            this.btnAdminBaja.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdminBaja.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdminBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdminBaja.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAdminBaja.Location = new System.Drawing.Point(54, 286);
+            this.btnAdminBaja.ForeColor = System.Drawing.Color.Black;
+            this.btnAdminBaja.Location = new System.Drawing.Point(86, 334);
             this.btnAdminBaja.Name = "btnAdminBaja";
-            this.btnAdminBaja.Size = new System.Drawing.Size(125, 50);
+            this.btnAdminBaja.Size = new System.Drawing.Size(125, 56);
             this.btnAdminBaja.TabIndex = 15;
-            this.btnAdminBaja.Text = "Baja";
-            this.btnAdminBaja.UseVisualStyleBackColor = true;
+            this.btnAdminBaja.Text = "Eliminar Usuario";
+            this.btnAdminBaja.UseVisualStyleBackColor = false;
             // 
             // btnAtender
             // 
-            this.btnAtender.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAtender.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAtender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAtender.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAtender.Location = new System.Drawing.Point(52, 24);
+            this.btnAtender.ForeColor = System.Drawing.Color.Black;
+            this.btnAtender.Location = new System.Drawing.Point(84, 72);
             this.btnAtender.Name = "btnAtender";
             this.btnAtender.Size = new System.Drawing.Size(125, 50);
             this.btnAtender.TabIndex = 16;
             this.btnAtender.Text = "Atender";
-            this.btnAtender.UseVisualStyleBackColor = true;
+            this.btnAtender.UseVisualStyleBackColor = false;
             this.btnAtender.Click += new System.EventHandler(this.btnAtender_Click);
             // 
             // btnAsignarVeterinario
             // 
-            this.btnAsignarVeterinario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAsignarVeterinario.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAsignarVeterinario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAsignarVeterinario.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAsignarVeterinario.Location = new System.Drawing.Point(54, 134);
+            this.btnAsignarVeterinario.ForeColor = System.Drawing.Color.Black;
+            this.btnAsignarVeterinario.Location = new System.Drawing.Point(86, 182);
             this.btnAsignarVeterinario.Name = "btnAsignarVeterinario";
             this.btnAsignarVeterinario.Size = new System.Drawing.Size(125, 69);
             this.btnAsignarVeterinario.TabIndex = 17;
             this.btnAsignarVeterinario.Text = "Asignar veterinario";
-            this.btnAsignarVeterinario.UseVisualStyleBackColor = true;
+            this.btnAsignarVeterinario.UseVisualStyleBackColor = false;
             this.btnAsignarVeterinario.Click += new System.EventHandler(this.btnAsignarVeterinario_Click);
             // 
             // btnBaseDeDatos
             // 
-            this.btnBaseDeDatos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBaseDeDatos.BackColor = System.Drawing.SystemColors.Control;
+            this.btnBaseDeDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBaseDeDatos.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnBaseDeDatos.Location = new System.Drawing.Point(54, 437);
+            this.btnBaseDeDatos.ForeColor = System.Drawing.Color.Black;
+            this.btnBaseDeDatos.Location = new System.Drawing.Point(86, 485);
             this.btnBaseDeDatos.Name = "btnBaseDeDatos";
             this.btnBaseDeDatos.Size = new System.Drawing.Size(125, 69);
             this.btnBaseDeDatos.TabIndex = 18;
             this.btnBaseDeDatos.Text = "Conectar a DB\'s";
-            this.btnBaseDeDatos.UseVisualStyleBackColor = true;
+            this.btnBaseDeDatos.UseVisualStyleBackColor = false;
             // 
             // menuStripInicio
             // 
@@ -248,47 +268,50 @@
             this.guardarCambiosToolStripMenuItem.Name = "guardarCambiosToolStripMenuItem";
             this.guardarCambiosToolStripMenuItem.Size = new System.Drawing.Size(228, 30);
             this.guardarCambiosToolStripMenuItem.Text = "Guardar cambios";
+            this.guardarCambiosToolStripMenuItem.Click += new System.EventHandler(this.guardarCambiosToolStripMenuItem_Click);
             // 
-            // panel1
+            // panelInicio
             // 
-            this.panel1.Controls.Add(this.btnBaseDeDatos);
-            this.panel1.Controls.Add(this.btnAdminAlta);
-            this.panel1.Controls.Add(this.btnAsignarVeterinario);
-            this.panel1.Controls.Add(this.btnAtender);
-            this.panel1.Controls.Add(this.btnAdminBaja);
-            this.panel1.Controls.Add(this.btn_Turnos);
-            this.panel1.Controls.Add(this.btnAdminModificacion);
-            this.panel1.Controls.Add(this.btn_NuestrasAnimalDomesticos);
-            this.panel1.Controls.Add(this.btn_DarDeAlta);
-            this.panel1.Controls.Add(this.btn_GestionarPaciente);
-            this.panel1.Location = new System.Drawing.Point(0, 22);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(253, 564);
-            this.panel1.TabIndex = 20;
+            this.panelInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(82)))), ((int)(((byte)(82)))));
+            this.panelInicio.Controls.Add(this.btnBaseDeDatos);
+            this.panelInicio.Controls.Add(this.btnAdminAlta);
+            this.panelInicio.Controls.Add(this.btnAsignarVeterinario);
+            this.panelInicio.Controls.Add(this.lblHorarioYUsuario);
+            this.panelInicio.Controls.Add(this.btnAtender);
+            this.panelInicio.Controls.Add(this.btnAdminBaja);
+            this.panelInicio.Controls.Add(this.btn_Turnos);
+            this.panelInicio.Controls.Add(this.btnAdminModificacion);
+            this.panelInicio.Controls.Add(this.btn_NuestrasAnimalDomesticos);
+            this.panelInicio.Controls.Add(this.btn_DarDeAlta);
+            this.panelInicio.Controls.Add(this.btn_GestionarPaciente);
+            this.panelInicio.Location = new System.Drawing.Point(0, 0);
+            this.panelInicio.Name = "panelInicio";
+            this.panelInicio.Size = new System.Drawing.Size(365, 664);
+            this.panelInicio.TabIndex = 20;
             // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelInicio);
             this.Controls.Add(this.btnDesloguearse);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblHorarioYUsuario);
             this.Controls.Add(this.menuStripInicio);
             this.MainMenuStrip = this.menuStripInicio;
             this.Name = "Inicio";
+            this.Opacity = 0.97D;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.Controls.SetChildIndex(this.menuStripInicio, 0);
-            this.Controls.SetChildIndex(this.lblHorarioYUsuario, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.btnDesloguearse, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.panelInicio, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStripInicio.ResumeLayout(false);
             this.menuStripInicio.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.panelInicio.ResumeLayout(false);
+            this.panelInicio.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,6 +339,6 @@
         private ToolStripMenuItem claroToolStripMenuItem;
         private ToolStripMenuItem guardarCambiosToolStripMenuItem;
         private MenuStrip menuStripInicio;
-        private Panel panel1;
+        private Panel panelInicio;
     }
 }

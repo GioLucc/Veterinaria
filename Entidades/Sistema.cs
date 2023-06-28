@@ -19,12 +19,8 @@ namespace Entidades
         public static Dictionary<string, List<string>> assetsDelSistema;        
         public static int idCliente = 1;
         public static short idUsuarios = 0;
-        public static Dictionary<string, List<string>> malestaresPorGravedad = new Dictionary<String ,List<string>>
-        {
-            { "Normal", new List<string> { "Dolor de cabeza", "Fatiga" } },
-            { "Media", new List<string> { "Dolor de estómago", "Fiebre" } },
-            { "Urgente", new List<string> { "Dificultad para respirar", "Dolor en el pecho" } }
-        };
+        public static Dictionary<string, List<string>> malestaresPorGravedad = new Dictionary<String, List<string>>();
+
 
         static Sistema()
         {
@@ -38,6 +34,10 @@ namespace Entidades
             HardCodearUrgenciasMedicas();
             HardCodearTurnos();
             EstablecerAssetsDelSistema();
+            SerializadoraXML<Dictionary<string, List<string>>> serializadora = new SerializadoraXML<Dictionary<string, List<string>>>();
+            //serializadora.Escribir("path", Sistema.malestaresPorGravedad);
+            malestaresPorGravedad = serializadora.LeerMalestar("a");
+
         }
         #region Hardcodeos
 
@@ -148,14 +148,6 @@ namespace Entidades
             usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "1", "1",  true, 80000, "Guardia", true));
             usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
             usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
-
-            SerializadoraXML<Persona> serializadora = new SerializadoraXML<Persona>();
-
-            foreach (Persona item in usuario)
-            {
-                serializadora.Escribir("", item);
-            }
-
         }
         private static void HardCodearTurnos()
         {

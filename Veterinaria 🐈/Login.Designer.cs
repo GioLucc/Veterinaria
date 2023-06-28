@@ -171,6 +171,7 @@
             this.Controls.Add(this.txtUsername);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.Controls.SetChildIndex(this.txtUsername, 0);
             this.Controls.SetChildIndex(this.txtPassword, 0);
             this.Controls.SetChildIndex(this.lblUsername, 0);

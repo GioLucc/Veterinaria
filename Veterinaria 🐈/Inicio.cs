@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Archivos_y_Serializadores;
 using Entidades.DB;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,10 @@ namespace Veterinaria__
     public partial class Inicio : FormBase
     {
         Usuario usuarioForm;
+        bool banderaTema = false;
+        Color colorForm = Color.PeachPuff;
+        Color colorSecundario;
+        ArchivoJSON<ConfigApp> json = new ArchivoJSON<ConfigApp>();
 
         public Inicio(Usuario usuarioForm)
         {
@@ -54,12 +59,88 @@ namespace Veterinaria__
 
             lblHorarioYUsuario.Text = DateTime.Now.ToLongDateString() + "" + DateTime.Now.ToLongTimeString();
             timer1.Start();
+            
+
+        }
+
+        private void Inicio_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ConfigApp cfg = json.Leer("config.json");
+                if(cfg is not null)
+                {
+                    banderaTema = cfg.BanderaColor;
+                    this.BackColor = cfg.ColorPrimario;
+                    menuStripInicio.BackColor = cfg.ColorSecundario;
+                    
+                    if(banderaTema == true)
+                    {
+                        lblHorarioYUsuario.ForeColor = Color.White;
+                        foreach (Control c in this.Controls)
+                        {
+                            if (c is Panel)
+                            {
+                                Panel panel = (Panel)c;
+
+                                foreach (Control innerControl in panel.Controls)
+                                {
+                                    if (innerControl is Button)
+                                    {
+                                        Button button = (Button)innerControl;
+                                        button.BackColor = Color.Silver;
+                                    }
+                                }
+                            }
+                            else if (c is Button)
+                            {
+                                Button button = (Button)c;
+                                button.ForeColor = Color.Black;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (Control c in this.Controls)
+                        {
+                            if (c is Panel)
+                            {
+                                Panel panel = (Panel)c;
+
+                                foreach (Control innerControl in panel.Controls)
+                                {
+                                    if (innerControl is Button)
+                                    {
+                                        Button button = (Button)innerControl;
+                                        button.BackColor = Color.DarkSalmon;
+                                    }
+                                }
+                            }
+                            else if (c is Button)
+                            {
+                                Button button = (Button)c;
+                                button.ForeColor = Color.Black;
+                            }
+                        }
+                        panelInicio.BackColor = Color.Bisque;                       
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                FormBaseMenu.MostrarAdvertencia("Error en la carga del cfg");
+            }
 
         }
 
         private void btn_Turnos_Click(object sender, EventArgs e)
         {
-            FormTurnos gestionTurnos = new FormTurnos(usuarioForm);
+            if (banderaTema == true)
+            {
+                colorForm = Color.DimGray;
+            }
+
+            FormTurnos gestionTurnos = new FormTurnos(usuarioForm, colorForm);
             this.Hide();
 
             DialogResult retornoAlta = gestionTurnos.ShowDialog();
@@ -68,11 +149,19 @@ namespace Veterinaria__
             {
                 this.Show();
             }
+
+
         }
 
         private void btn_NuestrasAnimalDomesticos_Click(object sender, EventArgs e)
         {
-            FormAnimalDomestico AnimalDomestico = new FormAnimalDomestico();
+
+            if (banderaTema == true)
+            {
+                colorForm = Color.DimGray;
+            }
+
+            FormAnimalDomestico AnimalDomestico = new FormAnimalDomestico(colorForm);
             this.Hide();
 
             DialogResult retornoAlta = AnimalDomestico.ShowDialog();
@@ -91,7 +180,13 @@ namespace Veterinaria__
 
         private void btn_DarDeAlta_Click(object sender, EventArgs e)
         {
-            FormAlta darDeAlta = new FormAlta(usuarioForm);
+
+            if (banderaTema == true)
+            {
+                colorForm = Color.DimGray;
+            }
+
+            FormAlta darDeAlta = new FormAlta(usuarioForm, colorForm);
             this.Hide();
 
             DialogResult retornoAlta = darDeAlta.ShowDialog();
@@ -100,17 +195,16 @@ namespace Veterinaria__
             {
                 this.Show();
             }
-
-        }
-
-        private void Inicio_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnDesloguearse_Click(object sender, EventArgs e)
-        {
-            Login login = new Login();
+        {         
+            if (banderaTema == true)
+            {
+                colorForm = Color.DimGray;
+            }
+
+            Login login = new Login(colorForm);
             this.Hide();
 
             login.Show();
@@ -118,7 +212,12 @@ namespace Veterinaria__
         }
         private void btnAdminAlta_Click(object sender, EventArgs e)
         {
-            FormAlta darDeAlta = new FormAlta(usuarioForm);
+            if (banderaTema == true)
+            {
+                colorForm = Color.DimGray;
+            }
+
+            FormAlta darDeAlta = new FormAlta(usuarioForm,colorForm);
             this.Hide();
 
             DialogResult retornoAlta = darDeAlta.ShowDialog();
@@ -131,7 +230,13 @@ namespace Veterinaria__
 
         private void btnAtender_Click(object sender, EventArgs e)
         {
-            AtenderPacientes atender = new AtenderPacientes(usuarioForm);
+
+            if (banderaTema == true)
+            {
+                colorForm = Color.DimGray;
+            }
+
+            AtenderPacientes atender = new AtenderPacientes(usuarioForm,colorForm);
             this.Hide();
 
             DialogResult retornoAlta = atender.ShowDialog();
@@ -144,10 +249,15 @@ namespace Veterinaria__
 
         private void btnAsignarVeterinario_Click(object sender, EventArgs e)
         {
-            AsignarVeterinario atender = new AsignarVeterinario(usuarioForm);
-            this.Hide();
+            if(banderaTema == true)
+            {
+                colorForm = Color.DimGray;
+            }
 
+            AsignarVeterinario atender = new AsignarVeterinario(usuarioForm, colorForm);
+            this.Hide();
             DialogResult retornoAlta = atender.ShowDialog();
+
 
             if (retornoAlta == DialogResult.OK)
             {
@@ -157,27 +267,69 @@ namespace Veterinaria__
 
         private void opacoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            banderaTema = true;
             this.menuStripInicio.BackColor = Color.DarkSlateGray;
             this.BackColor = Color.DimGray;
+            colorForm = Color.DimGray;
+            colorSecundario = Color.DarkSlateGray;
+            lblHorarioYUsuario.ForeColor = Color.White;
+            int red = 81;              
+            int green = 81;  
+            int blue = 81;   
+            Color colorFondo = Color.FromArgb(red, green, blue);
+
+            panelInicio.BackColor = colorFondo;
 
             foreach (Control c in this.Controls)
             {
-                if (c is Button)
+                if (c is Panel)
+                {
+                    Panel panel = (Panel)c;
+
+                    foreach (Control innerControl in panel.Controls)
+                    {
+                        if (innerControl is Button)
+                        {
+                            Button button = (Button)innerControl;
+                            button.BackColor = Color.Silver;
+                        }
+                    }
+                }
+                else if (c is Button)
                 {
                     Button button = (Button)c;
-                    button.ForeColor = Color.White;
+                    button.ForeColor = Color.Black;
                 }
             }
+
         }
 
         private void claroToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            banderaTema = false;
+            colorForm = Color.PeachPuff;
+            colorSecundario = Color.PeachPuff;
             this.menuStripInicio.BackColor = Color.PeachPuff;
             this.BackColor = Color.PeachPuff;
+            this.panelInicio.BackColor = Color.Bisque;
+
 
             foreach (Control c in this.Controls)
             {
-                if (c is Button)
+                if (c is Panel)
+                {
+                    Panel panel = (Panel)c;
+
+                    foreach (Control innerControl in panel.Controls)
+                    {
+                        if (innerControl is Button)
+                        {
+                            Button button = (Button)innerControl;
+                            button.BackColor = Color.DarkSalmon;
+                        }
+                    }
+                }
+                else if (c is Button)
                 {
                     Button button = (Button)c;
                     button.ForeColor = Color.Black;
@@ -205,7 +357,23 @@ namespace Veterinaria__
             string diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
             diaSemana = diaSemana.Substring(0, 1).ToUpper() + diaSemana.Substring(1);
 
-            lblHorarioYUsuario.Text = usuarioForm.Apellido + " " + usuarioForm.Nombre + " - " + tipoUsuario + " | " + diaSemana + " " + DateTime.Now.ToLongTimeString();
+            lblHorarioYUsuario.Text = usuarioForm.Nombre + " - " + tipoUsuario + " | " + diaSemana + " " + DateTime.Now.ToLongTimeString();
+        }
+
+        private void guardarCambiosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ConfigApp cfg = new ConfigApp(banderaTema, this.BackColor, colorSecundario);
+                json.Escribir("a", cfg);
+            }
+            catch(Exception)
+            {
+                FormBaseMenu.MostrarAdvertencia("Error en la carga del cfg");
+
+            }
+
+
         }
     }
 }

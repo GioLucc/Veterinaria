@@ -19,10 +19,15 @@ namespace Entidades
         private char sexo;
         private DateTime fechaDeNacimiento;
         private List<HistorialMedico> historiaClinica;
-
         public Mascota()
         {
             historiaClinica = new List<HistorialMedico>();
+        }
+
+        public Mascota(string nombreAnimal, string especie)
+        {
+            this.nombreAnimal = nombreAnimal;
+            this.apellidoDueño = especie;
         }
 
         public Mascota(string especie, string raza, float peso, char sexo) : this()

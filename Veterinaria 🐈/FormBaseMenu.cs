@@ -23,7 +23,7 @@ namespace Veterinaria__
             InitializeComponent();
         }
 
-        public FormBaseMenu(Usuario usuario): this()
+        public FormBaseMenu(Usuario usuario, Color color): this()
         {
             InitializeComponent();
             this.usuarioForm = usuario;

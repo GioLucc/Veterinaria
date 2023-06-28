@@ -50,7 +50,7 @@ namespace Entidades
                     Turno turnoACrear = new Turno(fecha, animal, vetProvisorio, malestar, Turno.PrioridadAtencion.Normal, Turno.EstadoDeTurno.SinVeterinario);
                     Sistema.turnos.Add(turnoACrear);
                     break;
-                case "Medio":
+                case "Media":
                     Turno turnoACrearMedio = new Turno(fecha, animal, vetProvisorio, malestar, Turno.PrioridadAtencion.Media, Turno.EstadoDeTurno.SinVeterinario);
                     Sistema.turnos.Add(turnoACrearMedio);
                     break;

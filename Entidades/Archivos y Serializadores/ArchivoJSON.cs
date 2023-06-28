@@ -1,22 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Entidades.Archivos_y_Serializadores
 {
-    internal class ArchivoJSON<T> : IArchivos<T>
+    public class ArchivoJSON<T> : IArchivos<T>
     {
-        public void Escribir(string path, T elemento)
+        static string path;
+
+        public T Leer(string path)
         {
-            throw new NotImplementedException();
+            T info = default;
+            string rutaCarpeta = (@"E:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\ArchivosTexto");
+            string rutaArchivo = Path.Combine(rutaCarpeta, path);
+
+            try
+            {
+                string contenido = File.ReadAllText(rutaArchivo);
+                info = JsonConvert.DeserializeObject<T>(contenido);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al leer el archivo JSON: " + ex.Message);
+            }
+
+            return info;
         }
 
-        public void Leer(string path)
+        public void Escribir(string path, T datoAEscribir)
         {
-            throw new NotImplementedException();
-        }
+            string rutaCarpeta = (@"E:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\ArchivosTexto");
+            string rutaArchivo = Path.Combine(rutaCarpeta, "config.json");
+            path = rutaArchivo;
+
+            if (!Directory.Exists(rutaCarpeta))
+            {
+                Directory.CreateDirectory(rutaCarpeta);
+            }
+
+            try
+            {
+                string contenido = JsonConvert.SerializeObject(datoAEscribir);
+                File.WriteAllText(path, contenido);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al escribir en el archivo JSON: " + ex.Message);
+            }
+        }  
     }
 }
