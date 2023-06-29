@@ -83,15 +83,22 @@ namespace Veterinaria__
             Administrador administrador = new Administrador();
             usuarioACrear = ValidarDatosTrabajador();
 
-            if (usuarioACrear != null)
+            //if (usuarioACrear != null)
+            //{
+
+            foreach (var item in Sistema.usuario)
             {
-                administrador.Alta(usuarioACrear);
+                if(item is Veterinario)
+                {
+                    administrador.Alta(item);
+                }
+            }
                 
-            }
-            else
-            {
-                FormBase.MostrarAdvertencia("Se ha ingresado un dato erroneo dentro de los campos.");
-            }
+            //}
+            //else
+            //{
+            //    FormBase.MostrarAdvertencia("Se ha ingresado un dato erroneo dentro de los campos.");
+            //}
         }
 
         public Mascota ValidarDatosMascota()

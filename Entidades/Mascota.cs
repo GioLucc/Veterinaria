@@ -79,6 +79,22 @@ namespace Entidades
             return sb.ToString();
         }
 
+        public static bool operator ==(Mascota mascota1, Mascota mascota2)
+        {
+            if (ReferenceEquals(mascota1, mascota2))
+                return true;
+
+            if (mascota1 is null || mascota2 is null)
+                return false;
+
+            return mascota1.ApellidoDueño == mascota2.ApellidoDueño && mascota1.Edad == mascota2.Edad;
+        }
+
+        public static bool operator !=(Mascota mascota1, Mascota mascota2)
+        {
+            return !(mascota1 == mascota2);
+        }
+
 
 
 

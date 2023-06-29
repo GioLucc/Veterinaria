@@ -1,4 +1,5 @@
 ﻿using Entidades.Archivos_y_Serializadores;
+using Entidades.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace Entidades
 {
     public static class Sistema
     {
+        
         public static List<Usuario> usuario;
+        public static List<Veterinario> veterinarioAux;
         public static List<Mascota> AnimalDomesticos;
         public static List<Turno> turnos;
         public static List <String> urgenciasMedicas;
@@ -24,16 +27,20 @@ namespace Entidades
 
         static Sistema()
         {
+            Administrador admin = new Administrador();
             usuario = new List<Usuario>();
+            veterinarioAux = new List<Veterinario>();
             urgenciasMedicas = new List<String>();
             turnos = new List<Turno>();
             AnimalDomesticos = new List<Mascota>();
+            VeterinarioDAO alta = new VeterinarioDAO();
             HardcodearListaPreciosConsulta(listaPrecios);
             HardCodearUsuarios();
             HardCodearAnimalDomesticos();
             HardCodearUrgenciasMedicas();
             HardCodearTurnos();
             EstablecerAssetsDelSistema();
+            veterinarioAux = alta.TraerVeterinarios();
             SerializadoraXML<Dictionary<string, List<string>>> serializadora = new SerializadoraXML<Dictionary<string, List<string>>>();
             //serializadora.Escribir("path", Sistema.malestaresPorGravedad);
             malestaresPorGravedad = serializadora.LeerMalestar("a");

@@ -31,45 +31,9 @@ namespace Entidades.DB
                 command.Parameters.AddWithValue("@fechaDeNacimiento", mascota.FechaDeNacimiento);
 
                 command.ExecuteNonQuery(); // Ejecutar la consulta de inserción
-
             }
 
             connection.Close();
-
-            //try
-            //{
-            //    SqlConnection connection = ObtenerConexion();
-
-            //    connection.Open();
-
-            //    var query = $"INSERT INTO Mascota (nombreAnimal,apellidoDueño,edad,especie,raza,peso,sexo,fechaDeNacimiento) VALUES (@nombreAnimal, @apellidoDueño, @edad, @especie, @raza, @peso, @sexo, @fechaDeNacimiento)";
-
-            //    SqlCommand command = new SqlCommand(query, connection);
-
-            //    command.CommandText = query;
-            //    command.Parameters.AddWithValue("@nombreAnimal", mascota.NombreAnimal);
-            //    command.Parameters.AddWithValue("@apellidoDueño", mascota.ApellidoDueño);
-            //    command.Parameters.AddWithValue("@edad", mascota.Edad);
-            //    command.Parameters.AddWithValue("@especie", mascota.Especie);
-            //    command.Parameters.AddWithValue("@raza", mascota.Raza);
-            //    command.Parameters.AddWithValue("@peso", mascota.Peso);
-            //    command.Parameters.AddWithValue("@sexo", mascota.Sexo);
-            //    command.Parameters.AddWithValue("@fechaDeNacimiento", mascota.FechaDeNacimiento);
-
-            //    command.ExecuteNonQuery(); // Ejecutar la consulta de inserción
-
-            //}
-            //catch
-            //{
-
-
-            //}
-            //finally
-            //{
-            //    Esto no funciona porque heredo de conexion y connection no existe acá
-            //}
-
-
         }
     
 

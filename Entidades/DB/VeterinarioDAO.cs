@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Entidades.Archivos_y_Serializadores;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static Entidades.Usuario;
@@ -11,38 +13,125 @@ namespace Entidades.DB
 {
     public sealed class VeterinarioDAO : ConexionDB
     {
+        public Decimal AgregarPersona(Veterinario veterinario, SqlCommand comm)
+        {
+            Decimal retorno = 0;
+            ArchivoTxt logg = new ArchivoTxt();
+
+            try
+            {
+                comm.CommandText = "INSERT INTO Persona (nombre, apellido, dni, edad)" +
+                   "VALUES (@nombre, @apellido, @dni, @edad) ; SELECT SCOPE_IDENTITY()";
+                comm.Parameters.AddWithValue("@nombre", veterinario.Nombre);
+                comm.Parameters.AddWithValue("@apellido", veterinario.Apellido);
+                comm.Parameters.AddWithValue("@dni", veterinario.Dni);
+                comm.Parameters.AddWithValue("@edad", veterinario.Edad);
+                var idPersona = comm.ExecuteScalar();
+
+                if (idPersona is not null)
+                {
+                    retorno = (Decimal)idPersona;
+                }
+            }
+            catch(Exception ex)
+            {
+                logg.Logger(ex);
+            }
+            return retorno;
+
+        }
+        
+        public Decimal AgregarUsuario(Veterinario veterinario, SqlCommand comm, int idPersona)
+        {
+            Decimal retorno = 0;
+            ArchivoTxt logg = new ArchivoTxt();
+
+            try
+            {
+                comm.CommandText = "INSERT INTO Usuario (nombreUsuario, contraseniaUsuario, activo, sueldo, idPersona)" +
+                   "VALUES (@nombreUsuario, @contrasenia, @activo, @sueldo, @idPersona) ; SELECT SCOPE_IDENTITY()";
+                comm.Parameters.AddWithValue("@nombreUsuario", veterinario.NombreUsuario);
+                comm.Parameters.AddWithValue("@contrasenia", veterinario.ContraseniaUsuario);
+                comm.Parameters.AddWithValue("@activo", veterinario.Activo);
+                comm.Parameters.AddWithValue("@sueldo", veterinario.Sueldo);
+                comm.Parameters.AddWithValue("@idPersona", idPersona);
+                var idUsuario = comm.ExecuteScalar();
+
+                if (idUsuario is not null)
+                {
+                    retorno = (Decimal)idUsuario;
+                }
+            }
+            catch(Exception ex)
+            {
+                logg.Logger(ex);
+            }
+            return retorno;
+
+        }
+
         public void AgregarVeterinario(Veterinario veterinario)
         {
-            //using (SqlConnection connection = ObtenerConexion())
-            // {
             SqlConnection connection = ObtenerConexion();
             connection.Open();
 
-            // Crear la consulta SQL para agregar un veterinario a la base de datos
-            string query = "INSERT INTO Veterinario (nombre, apellido, dni, edad, nombreUsuario, clave, idJerarquia, activo, sueldo, especialidad, atendiendo) " +
-                           "VALUES (@nombre, @apellido, @dni, @edad, @nombreUsuario, @clave, (SELECT id FROM JerarquiaUsuario WHERE descripcion = @descripcion), @activo, @sueldo, @especialidad, @atendiendo)";
-
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = connection.CreateCommand())
             {
-                command.Parameters.AddWithValue("@nombre", veterinario.Nombre);
-                command.Parameters.AddWithValue("@apellido", veterinario.Apellido);
-                command.Parameters.AddWithValue("@dni", veterinario.Dni);
-                command.Parameters.AddWithValue("@edad", veterinario.Edad);
-                command.Parameters.AddWithValue("@nombreUsuario", veterinario.NombreUsuario);
-                command.Parameters.AddWithValue("@clave", veterinario.ContraseniaUsuario);
-                command.Parameters.AddWithValue("@activo", veterinario.Activo);
-                command.Parameters.AddWithValue("@sueldo", veterinario.Sueldo);
+                int idPersona = (int)this.AgregarPersona(veterinario,command);
+                int idUsuario = (int)this.AgregarUsuario(veterinario, command, idPersona);
+                command.CommandText = "INSERT INTO Veterinario (especialidad, atendiendo,idUsuario) " +
+                           "VALUES (@especialidad, @atendiendo,@idUsuario)";
                 command.Parameters.AddWithValue("@especialidad", veterinario.Especialidad);
                 command.Parameters.AddWithValue("@atendiendo", veterinario.Atendiendo);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+
 
                 command.ExecuteNonQuery();
             }
 
-            connection.Close();
-
-            // }                    
+            connection.Close();             
         }
 
+        public List<Veterinario> TraerVeterinarios()
+        {
+            List<Veterinario> veterinarios = new List<Veterinario>();
+
+            using (SqlConnection connection = ObtenerConexion())
+            {
+                connection.Open();
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = command.CommandText = "select * from Veterinario as v " +
+                      "INNER JOIN Usuario AS u ON u.id = v.idUsuario " +
+                      "INNER JOIN Persona AS p ON p.idPersona = u.idPersona";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("p.idPersona"));
+                            string nombre = reader.GetString(reader.GetOrdinal("p.nombre"));
+                            string apellido = reader.GetString(reader.GetOrdinal("p.apellido"));
+                            int dni = reader.GetInt32(reader.GetOrdinal("p.dni"));
+                            int edad = reader.GetInt32(reader.GetOrdinal("p.edad"));
+                            string nombreUsuario = reader.GetString(reader.GetOrdinal("u.nombreUsuario"));
+                            string contraseniaUsuario = reader.GetString(reader.GetOrdinal("u.contraseniaUsuario"));
+                            bool activo = reader.GetBoolean(reader.GetOrdinal("u.activo"));
+                            float sueldo = reader.GetFloat(reader.GetOrdinal("u.sueldo"));
+                            string especialidad = reader.GetString(reader.GetOrdinal("v.especialidad"));
+                            bool atendiendo = reader.GetBoolean(reader.GetOrdinal("v.atendiendo"));
+
+                            Veterinario veterinario = new Veterinario((short)id, nombre, apellido, dni, edad, nombreUsuario, contraseniaUsuario, activo, sueldo, especialidad, atendiendo);
+                            veterinarios.Add(veterinario);
+
+                        }
+                    }
+                }
+            }
+
+            return veterinarios;
+        }
         public void EliminarVeterinario(Veterinario veterinario)
         {
             using (SqlConnection connection = ObtenerConexion())
