@@ -34,7 +34,6 @@ namespace Entidades
         public short Id { get => id; set => id = value; }
         public string NombreUsuario { get => nombreUsuario; set => nombreUsuario = value; }
         public string ContraseniaUsuario { get => contraseniaUsuario; set => contraseniaUsuario = value; }
-
         public bool Activo { get => activo; set => activo = value; }
         public float Sueldo { get => sueldo; set => sueldo = value; }
 

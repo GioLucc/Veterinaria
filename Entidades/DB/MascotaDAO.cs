@@ -13,7 +13,7 @@ namespace Entidades.DB
     {
         public static void Agregar(Mascota mascota)
         {
-            using (SqlConnection connection = new SqlConnection(ConexionDB.ConnectionString))
+            using (SqlConnection connection = new SqlConnection())
 
             {
                 connection.Open();

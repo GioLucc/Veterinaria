@@ -16,7 +16,7 @@ namespace Entidades.Archivos_y_Serializadores
         public T Leer(string path)
         {
             T info = default;
-            string rutaCarpeta = (@"E:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\ArchivosTexto");
+            string rutaCarpeta = (@"F:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\ArchivosTexto");
             string rutaArchivo = Path.Combine(rutaCarpeta, path);
 
             try
@@ -35,7 +35,7 @@ namespace Entidades.Archivos_y_Serializadores
 
         public void Escribir(string path, T datoAEscribir)
         {
-            string rutaCarpeta = (@"E:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\ArchivosTexto");
+            string rutaCarpeta = (@"F:\\C# UTNFra\\CSharp-UTNFra\\Veterinaria\\ArchivosTexto");
             string rutaArchivo = Path.Combine(rutaCarpeta, "config.json");
             path = rutaArchivo;
 

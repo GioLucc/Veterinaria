@@ -24,9 +24,6 @@ namespace Entidades.DB
             
 
         }
-
-        public static string ConnectionString { get => _connectionString; set => _connectionString = value; }
-
         protected static SqlConnection ObtenerConexion()
         {
             return _connection;

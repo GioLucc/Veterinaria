@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Entidades.Administrador">
+    <Position X="4.25" Y="11" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAIAAAAUAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Administrador.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.Mascota">
+    <Position X="11.25" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AASgAEEEoADBABAEgAEQAAABAAAAAgAgAAIAIAAAAiA=</HashCode>
+      <FileName>Mascota.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Persona">
+    <Position X="4" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAABAAQAAACEAAAAgAAAAAAAAgAAAAIAAAAAAAA=</HashCode>
+      <FileName>Persona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Usuario">
+    <Position X="4" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAQACQAAAAAAEAAAAAAAAAAAAAIAgAIAAYACAAkA=</HashCode>
+      <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Veterinario">
+    <Position X="0.5" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Veterinario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Recepcionista">
+    <Position X="7.75" Y="10.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Recepcionista.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,10 +1,10 @@
 using Entidades;
 using System.Drawing;
 
-namespace TestProject1
+namespace TestProjects
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
         [TestMethod]
         public void BuscarEnfermedadPorGravedad_ExistingMalestar_ReturnsEnfermedadDictionary()

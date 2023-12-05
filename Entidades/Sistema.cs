@@ -17,7 +17,8 @@ namespace Entidades
     {
         
         public static List<Usuario> usuario;
-        public static List<Veterinario> veterinarioAux;
+        public static List<Veterinario> veterinarios;
+        public static List<Veterinario> vetsDB;
         public static List<Mascota> AnimalDomesticos;
         public static List<Turno> turnos;
         public static List <String> urgenciasMedicas;
@@ -32,28 +33,61 @@ namespace Entidades
         {
             Administrador admin = new Administrador();
             usuario = new List<Usuario>();
-            veterinarioAux = new List<Veterinario>();
+            vetsDB = new List<Veterinario>();
+            veterinarios = new List<Veterinario>();
             urgenciasMedicas = new List<String>();
             turnos = new List<Turno>();
             AnimalDomesticos = new List<Mascota>();
             VeterinarioDAO alta = new VeterinarioDAO();
             HardcodearListaPreciosConsulta(listaPrecios);
-            HardCodearUsuarios();
             HardCodearAnimalDomesticos();
             HardCodearUrgenciasMedicas();
             HardCodearTurnos();
             EstablecerAssetsDelSistema();
-            veterinarioAux = alta.TraerVeterinarios();
+            //veterinarioAux = alta.TraerVeterinarios();
             SerializadoraXML<Dictionary<string, List<string>>> serializadora = new SerializadoraXML<Dictionary<string, List<string>>>();
             //serializadora.Escribir("path", Sistema.malestaresPorGravedad);
             malestaresPorGravedad = serializadora.LeerMalestar("a");
 
-            foreach (Mascota item in Sistema.AnimalDomesticos)
+            //foreach (Mascota item in Sistema.AnimalDomesticos)
+            //{
+            //    MascotaDAO.Agregar(item);
+            //}
+
+            //foreach (Usuario user in usuario)
+            //{
+            //    if (user is Veterinario)
+            //    {
+            //        Veterinario veterinario = new Veterinario(user.Id,user.Nombre,user.Apellido,user.Dni,user.Edad,user.NombreUsuario,user.ContraseniaUsuario,user.Activo,user.Sueldo,user.);
+
+
+            //    }
+
+            //}
+
+            //foreach (Veterinario item in vetsDB)
+            //{
+            //    alta.AgregarVeterinario(item);
+            //}
+
+            veterinarios = alta.TraerVeterinarios();
+
+            if (veterinarios.Count < 1)
             {
-                MascotaDAO.Agregar(item);
+                HardCodearUsuarios();
+
+                foreach (Veterinario item in vetsDB)
+                {
+                    alta.AgregarVeterinario(item);
+
+                }
+
             }
 
         }
+
+
+
         #region Hardcodeos
 
         private static void HardcodearListaPreciosConsulta(List<PrecioItem> listaPrecios)
@@ -157,12 +191,12 @@ namespace Entidades
         {
             usuario.Add(new Administrador(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "nimdaPetShop0", "WtTK*Qv%nauSUDo2M0^F",true, 120000,"giolucarna@gmail.com"));
             usuario.Add(new Recepcionista(Sistema.GenerarIdCliente(), "Carlos", "Arnauti", 5636215, 78, "1", "1", true,120000));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2",  true, 80000,"Cirujano",false));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", true, 80000, "Guardia Urgencias", false));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alberto", "Saenz", 44756215, 30, "pepe123", "pepe123", true, 80000,"Guardia",true));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "1", "1",  true, 80000, "Guardia", true));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
-            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
+            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2",  true, 80000,"Cirujano",false));
+            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", true, 80000, "Guardia Urgencias", false));
+            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alberto", "Saenz", 44756215, 30, "pepe123", "pepe123", true, 80000,"Guardia",true));
+            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "1", "1",  true, 80000, "Guardia", true));
+            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
+            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
         }
         private static void HardCodearTurnos()
         {

@@ -21,12 +21,12 @@ namespace Entidades.DB
 
             try
             {
-                comm.CommandText = "INSERT INTO Persona (nombre, apellido, dni, edad)" +
-                   "VALUES (@nombre, @apellido, @dni, @edad) ; SELECT SCOPE_IDENTITY()";
-                comm.Parameters.AddWithValue("@nombre", veterinario.Nombre);
-                comm.Parameters.AddWithValue("@apellido", veterinario.Apellido);
-                comm.Parameters.AddWithValue("@dni", veterinario.Dni);
-                comm.Parameters.AddWithValue("@edad", veterinario.Edad);
+                comm.CommandText = "INSERT INTO Persona (Nombre, Apellido, Dni, Edad)" +
+                   "VALUES (@Nombre, @Apellido, @Dni, @Edad) ; SELECT SCOPE_IDENTITY()";
+                comm.Parameters.AddWithValue("@Nombre", veterinario.Nombre);
+                comm.Parameters.AddWithValue("@Apellido", veterinario.Apellido);
+                comm.Parameters.AddWithValue("@Dni", veterinario.Dni);
+                comm.Parameters.AddWithValue("@Edad", veterinario.Edad);
                 var idPersona = comm.ExecuteScalar();
 
                 if (idPersona is not null)
@@ -49,13 +49,13 @@ namespace Entidades.DB
 
             try
             {
-                comm.CommandText = "INSERT INTO Usuario (nombreUsuario, contraseniaUsuario, activo, sueldo, idPersona)" +
-                   "VALUES (@nombreUsuario, @contrasenia, @activo, @sueldo, @idPersona) ; SELECT SCOPE_IDENTITY()";
-                comm.Parameters.AddWithValue("@nombreUsuario", veterinario.NombreUsuario);
-                comm.Parameters.AddWithValue("@contrasenia", veterinario.ContraseniaUsuario);
-                comm.Parameters.AddWithValue("@activo", veterinario.Activo);
-                comm.Parameters.AddWithValue("@sueldo", veterinario.Sueldo);
-                comm.Parameters.AddWithValue("@idPersona", idPersona);
+                comm.CommandText = "INSERT INTO Usuario (NombreUsuario, Contrasenia, Activo, Sueldo, IdPersona)" +
+                   "VALUES (@NombreUsuario, @Contrasenia, @Activo, @Sueldo, @IdPersona) ; SELECT SCOPE_IDENTITY()";
+                comm.Parameters.AddWithValue("@NombreUsuario", veterinario.NombreUsuario);
+                comm.Parameters.AddWithValue("@Contrasenia", veterinario.ContraseniaUsuario);
+                comm.Parameters.AddWithValue("@Activo", veterinario.Activo);
+                comm.Parameters.AddWithValue("@Sueldo", veterinario.Sueldo);
+                comm.Parameters.AddWithValue("@IdPersona", idPersona);
                 var idUsuario = comm.ExecuteScalar();
 
                 if (idUsuario is not null)
@@ -80,11 +80,11 @@ namespace Entidades.DB
             {
                 int idPersona = (int)this.AgregarPersona(veterinario,command);
                 int idUsuario = (int)this.AgregarUsuario(veterinario, command, idPersona);
-                command.CommandText = "INSERT INTO Veterinario (especialidad, atendiendo,idUsuario) " +
-                           "VALUES (@especialidad, @atendiendo,@idUsuario)";
-                command.Parameters.AddWithValue("@especialidad", veterinario.Especialidad);
-                command.Parameters.AddWithValue("@atendiendo", veterinario.Atendiendo);
-                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.CommandText = "INSERT INTO Veterinario (Especialidad, Atendiendo, IdUsuario) " +
+                           "VALUES (@Especialidad, @Atendiendo, @IdUsuario)";
+                command.Parameters.AddWithValue("@Especialidad", veterinario.Especialidad);
+                command.Parameters.AddWithValue("@Atendiendo", veterinario.Atendiendo);
+                command.Parameters.AddWithValue("@IdUsuario", idUsuario);
 
 
                 command.ExecuteNonQuery();
@@ -124,9 +124,9 @@ namespace Entidades.DB
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "select * from Veterinario as v " +
-                      "INNER JOIN Usuario AS u ON u.id = v.idUsuario " +
-                      "INNER JOIN Persona AS p ON p.idPersona = u.idPersona";
+                    command.CommandText = "select * from Veterinario " + // Si no le pones los espacios te concatena la siguiente linea
+                    "INNER JOIN Usuario AS U ON U.IdUsuario = Veterinario.IdUsuario " +
+                    "INNER JOIN Persona AS P ON P.Id = U.IdPersona";
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -134,21 +134,22 @@ namespace Entidades.DB
                         adapter.Fill(dataTable);
                     }
                 }
+
             }
 
             foreach (DataRow item in dataTable.Rows)
             {
-                int id = Convert.ToInt32(item["idPersona"]);
-                string nombre = item["nombre"].ToString();
-                string apellido = item["apellido"].ToString();
-                int dni = Convert.ToInt32(item["dni"]);
-                int edad = Convert.ToInt32(item["edad"]);
-                string nombreUsuario = item["nombreUsuario"].ToString();
-                string contraseniaUsuario = item["contraseniaUsuario"].ToString();
-                bool activo = Convert.ToBoolean(item["activo"]);
-                float sueldo = Convert.ToSingle(item["sueldo"]);
-                string especialidad = item["especialidad"].ToString();
-                bool atendiendo = Convert.ToBoolean(item["atendiendo"]);
+                int id = Convert.ToInt32(item["IdPersona"]);
+                string nombre = item["Nombre"].ToString();
+                string apellido = item["Apellido"].ToString();
+                int dni = Convert.ToInt32(item["Dni"]);
+                int edad = Convert.ToInt32(item["Edad"]);
+                string nombreUsuario = item["NombreUsuario"].ToString();
+                string contraseniaUsuario = item["Contrasenia"].ToString();
+                bool activo = Convert.ToBoolean(item["Activo"]);
+                float sueldo = Convert.ToSingle(item["Sueldo"]);
+                string especialidad = item["Especialidad"].ToString();
+                bool atendiendo = Convert.ToBoolean(item["Atendiendo"]);
 
                 Veterinario veterinario = new Veterinario((short)id, nombre, apellido, dni, edad, nombreUsuario, contraseniaUsuario, activo, sueldo, especialidad, atendiendo);
                 veterinarios.Add(veterinario);
