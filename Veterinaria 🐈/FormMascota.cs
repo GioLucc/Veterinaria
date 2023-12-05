@@ -127,8 +127,6 @@ namespace Veterinaria__
                 mascotaHistorial = (Mascota)dgvRegistroMascotas.CurrentRow.DataBoundItem;
                 setDGVHistorial();
                 dgvFechaTurnos.Show();
-
-
             }
         }
 

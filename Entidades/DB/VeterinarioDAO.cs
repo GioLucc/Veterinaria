@@ -1,6 +1,7 @@
 ﻿using Entidades.Archivos_y_Serializadores;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -91,9 +92,30 @@ namespace Entidades.DB
 
             connection.Close();             
         }
+        //public DataTable ExecuteQuery(string connectionString, string query)
+        //{
+        //    DataTable dataTable = new DataTable();
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+
+        //        using (SqlCommand command = new SqlCommand(query, connection))
+        //        {
+        //            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+        //            {
+        //                adapter.Fill(dataTable);
+        //            }
+        //        }
+        //    }
+
+        //    return dataTable;
+        //}
 
         public List<Veterinario> TraerVeterinarios()
         {
+            DataTable dataTable = new DataTable();
+
             List<Veterinario> veterinarios = new List<Veterinario>();
 
             using (SqlConnection connection = ObtenerConexion())
@@ -102,32 +124,35 @@ namespace Entidades.DB
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = command.CommandText = "select * from Veterinario as v " +
+                    command.CommandText = "select * from Veterinario as v " +
                       "INNER JOIN Usuario AS u ON u.id = v.idUsuario " +
                       "INNER JOIN Persona AS p ON p.idPersona = u.idPersona";
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
-                        while (reader.Read())
-                        {
-                            int id = reader.GetInt32(reader.GetOrdinal("p.idPersona"));
-                            string nombre = reader.GetString(reader.GetOrdinal("p.nombre"));
-                            string apellido = reader.GetString(reader.GetOrdinal("p.apellido"));
-                            int dni = reader.GetInt32(reader.GetOrdinal("p.dni"));
-                            int edad = reader.GetInt32(reader.GetOrdinal("p.edad"));
-                            string nombreUsuario = reader.GetString(reader.GetOrdinal("u.nombreUsuario"));
-                            string contraseniaUsuario = reader.GetString(reader.GetOrdinal("u.contraseniaUsuario"));
-                            bool activo = reader.GetBoolean(reader.GetOrdinal("u.activo"));
-                            float sueldo = reader.GetFloat(reader.GetOrdinal("u.sueldo"));
-                            string especialidad = reader.GetString(reader.GetOrdinal("v.especialidad"));
-                            bool atendiendo = reader.GetBoolean(reader.GetOrdinal("v.atendiendo"));
-
-                            Veterinario veterinario = new Veterinario((short)id, nombre, apellido, dni, edad, nombreUsuario, contraseniaUsuario, activo, sueldo, especialidad, atendiendo);
-                            veterinarios.Add(veterinario);
-
-                        }
+                        adapter.Fill(dataTable);
                     }
                 }
+            }
+
+            foreach (DataRow item in dataTable.Rows)
+            {
+                int id = Convert.ToInt32(item["idPersona"]);
+                string nombre = item["nombre"].ToString();
+                string apellido = item["apellido"].ToString();
+                int dni = Convert.ToInt32(item["dni"]);
+                int edad = Convert.ToInt32(item["edad"]);
+                string nombreUsuario = item["nombreUsuario"].ToString();
+                string contraseniaUsuario = item["contraseniaUsuario"].ToString();
+                bool activo = Convert.ToBoolean(item["activo"]);
+                float sueldo = Convert.ToSingle(item["sueldo"]);
+                string especialidad = item["especialidad"].ToString();
+                bool atendiendo = Convert.ToBoolean(item["atendiendo"]);
+
+                Veterinario veterinario = new Veterinario((short)id, nombre, apellido, dni, edad, nombreUsuario, contraseniaUsuario, activo, sueldo, especialidad, atendiendo);
+                veterinarios.Add(veterinario);
+                
             }
 
             return veterinarios;

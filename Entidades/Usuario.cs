@@ -38,7 +38,7 @@ namespace Entidades
         public bool Activo { get => activo; set => activo = value; }
         public float Sueldo { get => sueldo; set => sueldo = value; }
 
-        
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -61,6 +61,27 @@ namespace Entidades
             sb.AppendLine("");
 
             return sb.ToString();
+        }
+
+        public virtual Usuario LoguearUsuario(string usuario, string contraseña)
+        {
+            Usuario usuarioADevolver = null;
+
+            if (usuario is not null && contraseña is not null)
+            {
+                Usuario usuarioDevuelto;
+
+                usuarioDevuelto = Sistema.ValidarUsuario(usuario, usuario);
+
+                if (usuarioDevuelto != null)
+                {
+                    usuarioADevolver = usuarioDevuelto;
+                }
+
+            }
+
+            return usuarioADevolver;
+
         }
     }
 }

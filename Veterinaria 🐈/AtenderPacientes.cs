@@ -151,7 +151,7 @@ namespace Veterinaria__
             dgvFechaTurnos.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold); // Establece la fuente y el estilo de los encabezados de columna
             dgvFechaTurnos.DefaultCellStyle.Font = new Font("Arial", 10); // Establece la fuente y el estilo de las celdas
             dgvFechaTurnos.DefaultCellStyle.BackColor = Color.White; // Establece el color de fondo de las celdas
-            dgvFechaTurnos.BackgroundColor = Color.PeachPuff;
+            dgvFechaTurnos.BackgroundColor = this.BackColor;
             dgvFechaTurnos.DefaultCellStyle.ForeColor = Color.Black; // Establece el color de fuente de las celdas
             dgvFechaTurnos.RowHeadersVisible = false; // Oculta las filas de encabezado
             dgvFechaTurnos.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Establece el modo de selección
@@ -283,7 +283,7 @@ namespace Veterinaria__
                 }
 
                 // Actualizar el total acumulado donde sea necesario
-                txtPrecioConsulta.Text = "Valor: " + totalAcumulado.ToString("C");
+                txtPrecioConsulta.Text = "Valor: $ " + totalAcumulado.ToString();
             }
         }
 
@@ -293,6 +293,7 @@ namespace Veterinaria__
             {
                 btnDesplegarDgvs.Text = "Mostrar Historial";
                 dgvPrecios.Show();
+                dgvFechaTurnos.Hide();
                 primerClick = false;
             }
             else

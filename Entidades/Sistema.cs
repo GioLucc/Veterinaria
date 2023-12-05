@@ -3,10 +3,13 @@ using Entidades.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using static Entidades.Turno;
+using System.Net.Http;
 
 namespace Entidades
 {
@@ -44,6 +47,11 @@ namespace Entidades
             SerializadoraXML<Dictionary<string, List<string>>> serializadora = new SerializadoraXML<Dictionary<string, List<string>>>();
             //serializadora.Escribir("path", Sistema.malestaresPorGravedad);
             malestaresPorGravedad = serializadora.LeerMalestar("a");
+
+            foreach (Mascota item in Sistema.AnimalDomesticos)
+            {
+                MascotaDAO.Agregar(item);
+            }
 
         }
         #region Hardcodeos
@@ -147,7 +155,7 @@ namespace Entidades
         }
         private static void HardCodearUsuarios()
         {
-            usuario.Add(new Administrador(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "0nimdaPetShop", "WtTK*Qv%nauSUDo2M0^F",true, 120000));
+            usuario.Add(new Administrador(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "nimdaPetShop0", "WtTK*Qv%nauSUDo2M0^F",true, 120000,"giolucarna@gmail.com"));
             usuario.Add(new Recepcionista(Sistema.GenerarIdCliente(), "Carlos", "Arnauti", 5636215, 78, "1", "1", true,120000));
             usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2",  true, 80000,"Cirujano",false));
             usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", true, 80000, "Guardia Urgencias", false));
@@ -326,6 +334,29 @@ namespace Entidades
         public static short GenerarIdCliente()
         {
             return idUsuarios++;
+        }
+
+        private static void EnviarCorreoElectronico(string usuario)
+        {
+            string destinatario = usuario; // Aquí debes establecer la dirección de correo del destinatario
+            string asunto = "Intentos de inicio de sesión excedidos";
+            string cuerpo = "Se han excedido los intentos de inicio de sesión para el administrador: " + usuario;
+
+            // Configurar el cliente SMTP
+            SmtpClient clienteSmtp = new SmtpClient("smtp.gmail.com", 587);
+            clienteSmtp.EnableSsl = true;
+            clienteSmtp.UseDefaultCredentials = false;
+            clienteSmtp.Credentials = new NetworkCredential("giovanni1399@hotmail.com", "");
+
+            // Crear el mensaje de correo
+            MailMessage mensaje = new MailMessage();
+            mensaje.From = new MailAddress("correo-emisor");
+            mensaje.To.Add(destinatario);
+            mensaje.Subject = asunto;
+            mensaje.Body = cuerpo;
+
+            // Enviar el correo electrónico
+            clienteSmtp.Send(mensaje);
         }
     }
 

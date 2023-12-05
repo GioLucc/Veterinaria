@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,30 +13,78 @@ namespace Entidades.DB
     {
         public static void Agregar(Mascota mascota)
         {
-            SqlConnection connection = ObtenerConexion();
-                      
-            connection.Open();
+            using (SqlConnection connection = new SqlConnection(ConexionDB.ConnectionString))
 
-            var query = $"INSERT INTO Mascota (nombreAnimal,apellidoDueño,edad,especie,raza,peso,sexo,fechaDeNacimiento) VALUES (@nombreAnimal, @apellidoDueño, @edad, @especie, @raza, @peso, @sexo, @fechaDeNacimiento)";
-
-            using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.CommandText = query;
-                command.Parameters.AddWithValue("@nombreAnimal", mascota.NombreAnimal);
-                command.Parameters.AddWithValue("@apellidoDueño", mascota.ApellidoDueño);
-                command.Parameters.AddWithValue("@edad", mascota.Edad);
-                command.Parameters.AddWithValue("@especie", mascota.Especie);
-                command.Parameters.AddWithValue("@raza", mascota.Raza);
-                command.Parameters.AddWithValue("@peso", mascota.Peso);
-                command.Parameters.AddWithValue("@sexo", mascota.Sexo);
-                command.Parameters.AddWithValue("@fechaDeNacimiento", mascota.FechaDeNacimiento);
+                connection.Open();
 
-                command.ExecuteNonQuery(); // Ejecutar la consulta de inserción
+                var query = $"INSERT INTO Mascota (nombreAnimal,apellidoDueño,edad,especie,raza,peso,sexo,fechaDeNacimiento) VALUES (@nombreAnimal, @apellidoDueño, @edad, @especie, @raza, @peso, @sexo, @fechaDeNacimiento)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@nombreAnimal", mascota.NombreAnimal);
+                    command.Parameters.AddWithValue("@apellidoDueño", mascota.ApellidoDueño);
+                    command.Parameters.AddWithValue("@edad", mascota.Edad);
+                    command.Parameters.AddWithValue("@especie", mascota.Especie);
+                    command.Parameters.AddWithValue("@raza", mascota.Raza);
+                    command.Parameters.AddWithValue("@peso", mascota.Peso);
+                    command.Parameters.AddWithValue("@sexo", mascota.Sexo);
+                    command.Parameters.AddWithValue("@fechaDeNacimiento", mascota.FechaDeNacimiento);
+
+                    command.ExecuteNonQuery(); // Ejecutar la consulta de inserción
+                }
+
             }
 
-            connection.Close();
         }
-    
+
+        public List<Veterinario> TraerMascotas()
+        {
+            DataTable dataTable = new DataTable();
+
+            List<Veterinario> veterinarios = new List<Veterinario>();
+
+            using (SqlConnection connection = ObtenerConexion())
+            {
+                connection.Open();
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "select * from Veterinario as v " +
+                      "INNER JOIN Usuario AS u ON u.id = v.idUsuario " +
+                      "INNER JOIN Persona AS p ON p.idPersona = u.idPersona";
+
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+
+            foreach (DataRow item in dataTable.Rows)
+            {
+                int id = Convert.ToInt32(item["idPersona"]);
+                string nombre = item["nombre"].ToString();
+                string apellido = item["apellido"].ToString();
+                int dni = Convert.ToInt32(item["dni"]);
+                int edad = Convert.ToInt32(item["edad"]);
+                string nombreUsuario = item["nombreUsuario"].ToString();
+                string contraseniaUsuario = item["contraseniaUsuario"].ToString();
+                bool activo = Convert.ToBoolean(item["activo"]);
+                float sueldo = Convert.ToSingle(item["sueldo"]);
+                string especialidad = item["especialidad"].ToString();
+                bool atendiendo = Convert.ToBoolean(item["atendiendo"]);
+
+                Veterinario veterinario = new Veterinario((short)id, nombre, apellido, dni, edad, nombreUsuario, contraseniaUsuario, activo, sueldo, especialidad, atendiendo);
+                veterinarios.Add(veterinario);
+
+            }
+
+            return veterinarios;
+        }
+
 
         public Mascota ObtenerMascota(int idMascota)
         {

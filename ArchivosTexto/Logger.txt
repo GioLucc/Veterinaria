@@ -100,3 +100,6 @@
 28/06/2023 12:02:57 La excepción ocurrió en el método AsignarVeterinarioAlTurno de la clase Veterinaria__.AsignarVeterinario.
 28/06/2023 12:02:59 La excepción ocurrió en el método AsignarVeterinarioAlTurno de la clase Veterinaria__.AsignarVeterinario.
 28/06/2023 12:03:00 La excepción ocurrió en el método AsignarVeterinarioAlTurno de la clase Veterinaria__.AsignarVeterinario.
+30/06/2023 14:43:36 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+30/06/2023 14:44:40 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.
+30/06/2023 14:45:39 La excepción ocurrió en el método btnCargarDatos_Click de la clase Veterinaria__.FormTurnos.

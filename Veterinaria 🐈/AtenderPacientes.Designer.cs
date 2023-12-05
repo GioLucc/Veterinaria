@@ -53,10 +53,10 @@
             // dgvAtender
             // 
             this.dgvAtender.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAtender.Location = new System.Drawing.Point(614, 67);
+            this.dgvAtender.Location = new System.Drawing.Point(563, 67);
             this.dgvAtender.Name = "dgvAtender";
             this.dgvAtender.RowTemplate.Height = 25;
-            this.dgvAtender.Size = new System.Drawing.Size(540, 308);
+            this.dgvAtender.Size = new System.Drawing.Size(591, 308);
             this.dgvAtender.TabIndex = 3;
             // 
             // btnAtenderSeleccionado
@@ -240,16 +240,16 @@
             this.Controls.Add(this.gbHistorial);
             this.Controls.Add(this.btnCostoConsulta);
             this.Controls.Add(this.btnAgregarNuevaVisita);
-            this.Controls.Add(this.dgvFechaTurnos);
             this.Controls.Add(this.btnAtenderSeleccionado);
             this.Controls.Add(this.dgvAtender);
             this.Controls.Add(this.dgvPrecios);
+            this.Controls.Add(this.dgvFechaTurnos);
             this.Name = "AtenderPacientes";
             this.Text = "AtenderPacientes";
+            this.Controls.SetChildIndex(this.dgvFechaTurnos, 0);
             this.Controls.SetChildIndex(this.dgvPrecios, 0);
             this.Controls.SetChildIndex(this.dgvAtender, 0);
             this.Controls.SetChildIndex(this.btnAtenderSeleccionado, 0);
-            this.Controls.SetChildIndex(this.dgvFechaTurnos, 0);
             this.Controls.SetChildIndex(this.btnAgregarNuevaVisita, 0);
             this.Controls.SetChildIndex(this.btnCostoConsulta, 0);
             this.Controls.SetChildIndex(this.gbHistorial, 0);

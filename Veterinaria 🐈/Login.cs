@@ -38,27 +38,21 @@ namespace Veterinaria__
         }
         private void btnLoguear_Click(object sender, EventArgs e)
         {
-            if (txtPassword.Text is not null && txtPassword.Text is not null)
-            {
-                Usuario usuarioDevuelto;
+            Usuario usuario = new Usuario();
+            Administrador administrador = new Administrador();
 
-                usuarioDevuelto = Sistema.ValidarUsuario(txtUsername.Text, txtPassword.Text);
-
-                if (usuarioDevuelto == null)
-                {
-
-                    this.txtUsername.BackColor = Color.Red;
-                    this.txtPassword.BackColor = Color.Red;
-                }
-                else
-                {
-                    this.txtUsername.BackColor = Color.Green;
-                    this.txtPassword.BackColor = Color.Green;
-                    Inicio nuevoLogin = new Inicio(usuarioDevuelto);
-                    this.Hide();
-                    nuevoLogin.Show();
-                }
-            }         
+            //if (txtUsername.Text.StartsWith("nimdaPetShop"))
+            //{
+                usuario = Sistema.ValidarUsuario(txtUsername.Text, txtPassword.Text);
+            //}
+            //else
+            //{
+            //    usuario = usuario.LoguearUsuario(txtUsername.Text, txtPassword.Text);
+            //}
+            
+            Inicio inicio = new Inicio(usuario);
+            inicio.Show();
+            this.Hide();
         }
 
         private void pic_Ocultar_Click(object sender, EventArgs e)
@@ -139,15 +133,15 @@ namespace Veterinaria__
             {
                 if (rng == 1)
                 {
-                    this.txtUsername.Text = "0nimdaPetShop";
+                    this.txtUsername.Text = "nimdaPetShop0";
                     this.txtPassword.Text = "WtTK*Qv%nauSUDo2M0^F";
                 }
                 else
                 {
                     if (rng == 2)
                     {
-                        this.txtUsername.Text = "01nimdaPetShop";
-                        this.txtPassword.Text = "D75MUx8KiN@%5Yo6AMK6";
+                        this.txtUsername.Text = "nimdaPetShop0";
+                        this.txtPassword.Text = "WtTK*Qv%nauSUDo2M0^F";
                     }
 
                 }

@@ -21,10 +21,12 @@ namespace Entidades.DB
 
             _command = _connection.CreateCommand();
             _command.CommandType = CommandType.Text;
+            
 
         }
 
-        
+        public static string ConnectionString { get => _connectionString; set => _connectionString = value; }
+
         protected static SqlConnection ObtenerConexion()
         {
             return _connection;
