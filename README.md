@@ -8,7 +8,7 @@ Hola, soy Giovanni Lucchetta estudiante en Tecnico Universitario en Programacion
 ## **Resumen**
 Al correr la apliacion se presenta con una venta para realizar el **Log In**. 
 
-![](readme/login.png)
+![](ImagenesReadme/login.png)
 
 En el cual se le pedira al usuario ingresar su **Nombre de Usuario** y **Contraseña**. El _Nombre de Usuario_ debera ser unico y no repetirse con los demas usuarios, y la _Contraseña_ debera tener un largo de por lo menos ocho digitos, contener una minuscula, una mayuscula, un numero y un simbolo.
 
@@ -30,11 +30,11 @@ Siendo estos:
 
 
 ### **Menu Principal Administrador**
-![](readme/MenuAdministrador.png)
+![](ImagenesReadme/MenuAdministrador.png)
 ### **Menu Principal Recepcionista**
-![](readme/MenuRecepcionista.png)
+![](ImagenesReadme/MenuRecepcionista.png)
 ### **Menu Principal Veterinario**
-![](readme/MenuVeterinario.png)
+![](ImagenesReadme/MenuVeterinario.png)
 
 
 
