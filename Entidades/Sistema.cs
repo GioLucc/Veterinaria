@@ -44,9 +44,10 @@ namespace Entidades
             HardCodearUrgenciasMedicas();
             HardCodearTurnos();
             EstablecerAssetsDelSistema();
+            HardCodearUsuarios();
             //veterinarioAux = alta.TraerVeterinarios();
             SerializadoraXML<Dictionary<string, List<string>>> serializadora = new SerializadoraXML<Dictionary<string, List<string>>>();
-            //serializadora.Escribir("path", Sistema.malestaresPorGravedad);
+            serializadora.Escribir("path", Sistema.malestaresPorGravedad);
             malestaresPorGravedad = serializadora.LeerMalestar("a");
 
             //foreach (Mascota item in Sistema.AnimalDomesticos)
@@ -79,14 +80,9 @@ namespace Entidades
                 foreach (Veterinario item in vetsDB)
                 {
                     alta.AgregarVeterinario(item);
-
                 }
-
             }
-
         }
-
-
 
         #region Hardcodeos
 
@@ -191,11 +187,11 @@ namespace Entidades
         {
             usuario.Add(new Administrador(Sistema.GenerarIdCliente(), "Alejandro", "Heidenreich", 17636215, 57, "nimdaPetShop0", "WtTK*Qv%nauSUDo2M0^F",true, 120000,"giolucarna@gmail.com"));
             usuario.Add(new Recepcionista(Sistema.GenerarIdCliente(), "Carlos", "Arnauti", 5636215, 78, "1", "1", true,120000));
-            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2",  true, 80000,"Cirujano",false));
+            usuario.Add(new Veterinario(Sistema.GenerarIdCliente(), "Giovanni", "Lucchetta", 44756215, 30, "2", "2",  true, 80000,"Cirujano", false));
             vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Stefano", "Alessandro", 54336211, 59, "03nimdaPetShop", "K!cca29o9f80p6%WGp$#", true, 80000, "Guardia Urgencias", false));
             vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alberto", "Saenz", 44756215, 30, "pepe123", "pepe123", true, 80000,"Guardia",true));
             vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "1", "1",  true, 80000, "Guardia", true));
-            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
+            vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", false));
             vetsDB.Add(new Veterinario(Sistema.GenerarIdCliente(), "Alfonso", "Margel", 54336211, 59, "pepe1234", "pepe1234", true, 80000, "Guardia", true));
         }
         private static void HardCodearTurnos()

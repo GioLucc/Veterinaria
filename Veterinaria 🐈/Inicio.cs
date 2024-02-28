@@ -170,9 +170,6 @@ namespace Veterinaria__
             {
                 this.Show();
             }
-
-
-
         }
 
         private void btn_GestionarPaciente_Click(object sender, EventArgs e)

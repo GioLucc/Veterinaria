@@ -265,8 +265,7 @@ namespace Veterinaria__
                         btnNormal.Show();
                         lblSeleccionaImportancia.Show();
                         btnCrearTurno.Show();
-                        btnCargarDatos.Hide();
-                        
+                        btnCargarDatos.Hide();                      
                     }
 
                 }
@@ -305,7 +304,7 @@ namespace Veterinaria__
 
         private void FormTurnos_MalestarUrgenciaAgregado()
         {
-            Sistema.malestaresPorGravedad[gravedadActual].Add(txtMalestar.Text);
+            //Sistema.malestaresPorGravedad[gravedadActual].Add(txtMalestar.Text);
             serializadora.Escribir("path", Sistema.malestaresPorGravedad);
             FormBaseMenu.MostrarAdvertencia($"Se ha agregado el nuevo malestar: {txtMalestar.Text} para la auto-asignación a futuro de calidad {gravedadActual}");
         }

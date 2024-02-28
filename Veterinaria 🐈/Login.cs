@@ -41,14 +41,7 @@ namespace Veterinaria__
             Usuario usuario = new Usuario();
             Administrador administrador = new Administrador();
 
-            //if (txtUsername.Text.StartsWith("nimdaPetShop"))
-            //{
-                usuario = Sistema.ValidarUsuario(txtUsername.Text, txtPassword.Text);
-            //}
-            //else
-            //{
-            //    usuario = usuario.LoguearUsuario(txtUsername.Text, txtPassword.Text);
-            //}
+            usuario = Sistema.ValidarUsuario(txtUsername.Text, txtPassword.Text);
             
             Inicio inicio = new Inicio(usuario);
             inicio.Show();
@@ -127,18 +120,18 @@ namespace Veterinaria__
         {
 
             Random random = new Random();
-            int rng = random.Next(0, 2);
+            int rng = random.Next(0, 1);
 
             for (int i = 0; i < 1; i++)
             {
-                if (rng == 1)
+                if (rng == 0)
                 {
                     this.txtUsername.Text = "nimdaPetShop0";
                     this.txtPassword.Text = "WtTK*Qv%nauSUDo2M0^F";
                 }
                 else
                 {
-                    if (rng == 2)
+                    if (rng == 1)
                     {
                         this.txtUsername.Text = "nimdaPetShop0";
                         this.txtPassword.Text = "WtTK*Qv%nauSUDo2M0^F";
