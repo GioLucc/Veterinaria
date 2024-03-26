@@ -114,6 +114,10 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
 
   Una vez generado el ticket el medico vuelve a estar Libre para poder seguir atendiendo.
 
+## Class Diagram
+
+![](ImagenesReadme/DiagramaClases.png)
+
 ## Justificación técnica
 
 * Introducción a .NET y C#
