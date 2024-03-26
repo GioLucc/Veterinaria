@@ -26,13 +26,62 @@ Siendo estos:
 * Recepcionista
 * Veterinario
 
-### **Feature general menues**
+### **Feature general menues**:
 
+* Display de Nombre de usuario, cargo dentro del programa, dia y horario.
+
+* Todas los perfiles cuentan con botón para cambiar el tema, ya sea tema claro o oscuro, este cambia el estilo de la aplicación en cada una de sus pestañas persistiendo esta configuración en un archivo Json.
+
+* Boton Desloguarse para poder cambiar de usuario o perfil si es requerido.
+
+* Boton salir para salir de la aplicación.
 
 ### **Menu Principal Administrador**
 ![](ImagenesReadme/MenuAdministrador.PNG)
+
+El administrador tiene la responsabilidad de:
+
+* Crear los empleados en el sistema.
+* Modificar cualquier dato que este posea en el sistema.
+* Darles una baja LOGICA del sistema, sin quitarlos completamente.
+* Cambiar de base de datos entre SQL Server y Firebase.
+
+
 ### **Menu Principal Recepcionista**
 ![](ImagenesReadme/MenuRecepcionista.PNG)
+
+El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es porque es el encargado de que poder crear los turnos dentro de la entidad.
+
+
+* **Nuevo Turno**:
+  Para crear un nuevo turno debemos seleccionár la fecha, para esto tendremos un selector de 
+  calendario desde el dia de la fecha.
+  
+![](ImagenesReadme/NuevoTurno.PNG)
+
+  Luego de haber seleccionado la fecha se da paso a la selección de Mascota, si esta se 
+  encuentra dentro del sistema entonces se podra ubicar con su identificación la cual, el dueño 
+  deberá saber, o el nombre de la mascota y apellido del dueño.
+
+  En caso de que esta mascota no exista hay un botón que permite darla de alta y luego volver a   esta misma ventana.
+
+![](ImagenesReadme/SeleccionarMascotas.PNG)
+
+  Luego se pasa a detallar el malestar de la mascota y hay dos posibilidades.
+
+  **Dicho Malestar no está registrado en el sistema**
+  
+  Si el malestar no fue ingresado previamente se guardara en un archivo para que luego con solo   ingresar ese malestar, se auto asigne su 
+  importancia y de **"estar disponible"** un medico   
+  calificado **(segun su especialidad registrada en el sistema)** para tratar dicho malestar.
+
+  
+
+  
+  
+
+
+
 ### **Menu Principal Veterinario**
 ![](ImagenesReadme/MenuVeterinario.PNG)
 
