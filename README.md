@@ -57,7 +57,7 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
   Para crear un nuevo turno debemos seleccionár la fecha, para esto tendremos un selector de 
   calendario desde el dia de la fecha.
   
-![](ImagenesReadme/NuevoTurno.PNG)
+![](ImagenesReadme/NuevoTurno.png)
 
   Luego de haber seleccionado la fecha se da paso a la selección de Mascota, si esta se 
   encuentra dentro del sistema entonces se podra ubicar con su identificación la cual, el dueño 
@@ -65,7 +65,7 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
 
   En caso de que esta mascota no exista hay un botón que permite darla de alta y luego volver a esta misma ventana.
 
-![](ImagenesReadme/SeleccionarMascotas.PNG)
+![](ImagenesReadme/SeleccionarMascotas.png)
 
   Luego se pasa a detallar el malestar de la mascota y hay dos posibilidades.
 
@@ -83,13 +83,13 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
 * **Asignar Veterinario**:
   El recepcionista tambien podrá asignar los turnos creados previamente a los medicos que no esten atendiendo actualmente.
 
-![](ImagenesReadme/AsignarTurno.PNG)
+![](ImagenesReadme/AsignarTurno.png)
 
   Mediante la selección de ambas listas, se selecciona un turno que no tenga un veterinario asignado, y un veterinario disponible y listo para atender.
   Una vez asignado el veterinario al turno, este desaparecerá de la lista y dicho veterinario verá sus turnos asignados.
   
 ### **Menu Principal Veterinario**
-![](ImagenesReadme/MenuVeterinario.PNG)
+![](ImagenesReadme/MenuVeterinario.png)
 
 * **Atender**
   El veterinario si no esta atendiendo, entonces figura en el sistema como libre, como aparece en el distintivo de arriba a la derecha, ese es su estado.
@@ -97,20 +97,20 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
   Dentro de esta sección el medicó podrá encontrar los turnos que se les ha asignado, asi como tambien turnos de categoria Urgente que el puede atender si así decidiera.
 
   ##**Simulacro de atención**: 
-![](ImagenesReadme/TurnoUrgente.PNG)
+![](ImagenesReadme/TurnoUrgente.png)
   Una vez seleccionada la mascota a atender, el estado del medico pasará a ocupado o **Atendiendo**.
-![](ImagenesReadme/AtencionMascota.PNG)
+![](ImagenesReadme/AtencionMascota.png)
   
     * A este le saldran multiples cuadros de información de visitas previas con información adicional que el medico haya dejado acerca de este.
     * En el cuadro de nueva observación podra detallar el tratamiento aplicado para dicha visita.
 
   Ya habiendo detallado la observación esta se guardará en el registro de dicha mascota.
-![](ImagenesReadme/Atendida.PNG)
+![](ImagenesReadme/Atendida.png)
 
   Luego se desplegarán 2 botones, uno que mostrará los precios que se le agregarán al ticket que el dueño de la mascota deberá pagar.
   En esta se podrán seleccionar los tratamientos que se les fueron aplicados y se irá sumando al valor para generar el ticket final.
   Tambien se puede volver a mostrar el historial para revisar las visitas previas y alternar con la tabla de precios.
-![](ImagenesReadme/ListaPrecios.PNG)
+![](ImagenesReadme/ListaPrecios.png)
 
   Una vez generado el ticket el medico vuelve a estar Libre para poder seguir atendiendo.
 
