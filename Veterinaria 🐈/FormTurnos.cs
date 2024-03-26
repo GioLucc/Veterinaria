@@ -87,8 +87,6 @@ namespace Veterinaria__
         public void setDGV()
         {
             dgvBaseDatos.DataSource = Sistema.AnimalDomesticos;
-            dgvBaseDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvBaseDatos.AutoResizeColumns();
             dgvBaseDatos.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold); // Establece la fuente y el estilo de los encabezados de columna
             dgvBaseDatos.DefaultCellStyle.Font = new Font("Arial", 10); // Establece la fuente y el estilo de las celdas
             dgvBaseDatos.DefaultCellStyle.BackColor = Color.White; // Establece el color de fondo de las celdas
@@ -101,13 +99,14 @@ namespace Veterinaria__
             dgvBaseDatos.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
             columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvBaseDatos.Columns[4].HeaderText = "Identificación";
+            dgvBaseDatos.Columns[5].HeaderText = "Nombre Mascota";
+            dgvBaseDatos.Columns[6].HeaderText = "Apellido Dueño";
             dgvBaseDatos.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
             dgvBaseDatos.ReadOnly = true;
+            dgvBaseDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvBaseDatos.AutoResizeColumns();
 
-
-            dgvBaseDatos.Columns[0].HeaderText = "Id";
-            dgvBaseDatos.Columns[1].HeaderText = "Nombre Mascota";
-            dgvBaseDatos.Columns[2].HeaderText = "Apellido Dueño";
         }
 
         private void btnOcultarDatos_Click(object sender, EventArgs e)
@@ -167,23 +166,6 @@ namespace Veterinaria__
         {
             Mascota Mascota = null;
             var mc = new ArchivoTxt();
-
-
-            int dividirEx;
-            int cero = 0;
-            string error = String.Empty;
-
-            try
-            {
-                dividirEx = 10 / cero;
-            }
-            catch (DivideByZeroException ex)
-            {
-
-                mc.Logger(ex);
-                
-            }
-
 
             if (dgvBaseDatos.SelectedRows.Count > 0 && txtMalestar.Text.Length > 0)
             {
