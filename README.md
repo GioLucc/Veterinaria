@@ -137,24 +137,18 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
     - Mascota
     - Turno
     - HistorialMedico
-    
-    
-* Sobrecarga :
-    - Pasaje y Aeronave, tiene sobrecarga de constructores para instanciar listas o valores de atributos que tienen por defecto.
-    - Metodo de Sistemas VerificarPasajeComprar, tiene sobrecarga, uno recibe un pasaje solo, y otro recibe tambien una lista de pasaje
 
 * Windows Forms :
-    - FrmLogIn
-    - FrmMenuPrincipal
-    - FrmAdminstracionDeVuelos
-    - FrmVentaVuelo
-    - FrmInformacionDeVuelos
-    - FrmAltaVuelo
-    - FrmAeronaves
-    - FrmInformacionDelPasajero
-    - FrmAltaEquipaje
-    - FrmEstadisitcasHistoricas
-    - FrmConfiguracionCuenta
+    - Login
+    - Inicio
+    - FormTurnos
+    - FormMascota
+    - FormBaseMenu
+    - FormBase
+    - FormAlta
+    - BajaAdmin
+    - AtenderPacientes
+    - AsignarVeterinario
 
 * Colecciones
     - Listas : se utilizan en la clase estatica BaseDeDatos y en las clases instanciadas de objetos, como listaDeAnimales en Sistema
