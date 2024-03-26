@@ -63,7 +63,7 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
   encuentra dentro del sistema entonces se podra ubicar con su identificación la cual, el dueño 
   deberá saber, o el nombre de la mascota y apellido del dueño.
 
-  En caso de que esta mascota no exista hay un botón que permite darla de alta y luego volver a   esta misma ventana.
+  En caso de que esta mascota no exista hay un botón que permite darla de alta y luego volver a esta misma ventana.
 
 ![](ImagenesReadme/SeleccionarMascotas.PNG)
 
@@ -71,19 +71,58 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
 
   **Dicho Malestar no está registrado en el sistema**
   
-  Si el malestar no fue ingresado previamente se guardara en un archivo para que luego con solo   ingresar ese malestar, se auto asigne su 
-  importancia y de **"estar disponible"** un medico   
-  calificado **(segun su especialidad registrada en el sistema)** para tratar dicho malestar.
+  Si el malestar no fue ingresado previamente se deberá seleccionár la urgencia para que los veterinarios puedan identificar las urgencias y luego se haga una auto-asignación, o que el veterinario tome una 
+  consulta y la atienda. guardara en un archivo para que luego con solo ingresar ese malestar, se auto asigne su 
+  importancia y de **"estar disponible"** un medico calificado **(segun su especialidad registrada en el sistema)** para tratar dicho malestar.
 
+  **Dicho Malestar está registrado en el sistema**
+
+  Si el malestar fue ingresado previamente y es de prioridad **"Alta" o "Urgente"** se auto asigna su importancia y de **"estar disponible"** un medico calificado **(segun su especialidad registrada en el   
+  sistema)** para tratar dicho malestar se le asgina automaticamente, de no haber un medico disponible quedará en la lista hasta que un medico la tome.
+
+* **Asignar Veterinario**:
+  El recepcionista tambien podrá asignar los turnos creados previamente a los medicos que no esten atendiendo actualmente.
+
+![](ImagenesReadme/AsignarTurno.PNG)
+
+  Mediante la selección de ambas listas, se selecciona un turno que no tenga un veterinario asignado, y un veterinario disponible y listo para atender.
+  Una vez asignado el veterinario al turno, este desaparecerá de la lista y dicho veterinario verá sus turnos asignados.
   
-
-  
-  
-
-
-
 ### **Menu Principal Veterinario**
 ![](ImagenesReadme/MenuVeterinario.PNG)
+
+* **Atender**
+  El veterinario si no esta atendiendo, entonces figura en el sistema como libre, como aparece en el distintivo de arriba a la derecha, ese es su estado.
+
+  Dentro de esta sección el medicó podrá encontrar los turnos que se les ha asignado, asi como tambien turnos de categoria Urgente que el puede atender si así decidiera.
+
+  ##**Simulacro de atención**: 
+![](ImagenesReadme/TurnoUrgente.PNG)
+  Una vez seleccionada la mascota a atender, el estado del medico pasará a ocupado o **Atendiendo**.
+![](ImagenesReadme/AtencionMascota.PNG)
+  
+    * A este le saldran multiples cuadros de información de visitas previas con información adicional que el medico haya dejado acerca de este.
+    * En el cuadro de nueva observación podra detallar el tratamiento aplicado para dicha visita.
+
+  Ya habiendo detallado la observación esta se guardará en el registro de dicha mascota.
+![](ImagenesReadme/Atendida.PNG)
+
+  Luego se desplegarán 2 botones, uno que mostrará los precios que se le agregarán al ticket que el dueño de la mascota deberá pagar.
+  En esta se podrán seleccionar los tratamientos que se les fueron aplicados y se irá sumando al valor para generar el ticket final.
+  Tambien se puede volver a mostrar el historial para revisar las visitas previas y alternar con la tabla de precios.
+![](ImagenesReadme/ListaPrecios.PNG)
+
+  Una vez generado el ticket el medico vuelve a estar Libre para poder seguir atendiendo.
+
+  
+
+  
+
+
+
+
+  
+
 
 
 
