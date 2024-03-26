@@ -114,6 +114,60 @@ El rol "mas importante" lo tiene el recepcionista en cierto sentido, esto es por
 
   Una vez generado el ticket el medico vuelve a estar Libre para poder seguir atendiendo.
 
+## Justificación técnica
+
+* Introducción a .NET y C#
+* Clases y métodos estáticos
+
+  - Clase Estatica BaseDeDatos : al ser una clase que contiene la informacion de las lista y hardcodeos de los datos, encapsulados a la clase para no poder hardcodear fuera de la clase, que se van a utilizar a lo largo de la aplicacion no necesito que se instancien
+        
+  - Clase Estatica Sistema : es una clase con todos metodos estaticos para interactuar entre objetos instanciados, con otros obejtos o listas estaticas de BaseDeDatos
+
+* Programación orientada a objetos : mediante la abstraccion pude determinar las siguentes clases con la capacidad de instanciar objetos
+
+    - Persona
+    - Usuario
+    - Veterinario : Usuario
+    - Administrador : Usuario
+    - Recepcionista : Usuario
+    - Mascota
+    - Turno
+    - HistorialMedico
+    
+    
+* Sobrecarga :
+    - Pasaje y Aeronave, tiene sobrecarga de constructores para instanciar listas o valores de atributos que tienen por defecto.
+    - Metodo de Sistemas VerificarPasajeComprar, tiene sobrecarga, uno recibe un pasaje solo, y otro recibe tambien una lista de pasaje
+
+* Windows Forms :
+    - FrmLogIn
+    - FrmMenuPrincipal
+    - FrmAdminstracionDeVuelos
+    - FrmVentaVuelo
+    - FrmInformacionDeVuelos
+    - FrmAltaVuelo
+    - FrmAeronaves
+    - FrmInformacionDelPasajero
+    - FrmAltaEquipaje
+    - FrmEstadisitcasHistoricas
+    - FrmConfiguracionCuenta
+
+* Colecciones
+    - Listas : se utilizan en la clase estatica BaseDeDatos y en las clases instanciadas de objetos, como listaDeAnimales en Sistema
+    - Diccionarios : se utilizan para informar estadisticas historicas en la clase Sistema
+    - 
+* Encapsulamiento
+    - Todas las clases estan encapsuladas ya que atributos, metodos privados restringen el acceso al usuario y solo brindar los necesarios. Ejemplo la clase Usuario, no puede brindar informacion de la contraseña al usuario.
+      
+* Herencia
+    - Hay herencias de Persona ( Abstract ), Usuario es heredado de Persona y Veterinario, Administrador y Recepcionista a su vez heredan de esta.
+
+## Propuesta de valor agregado: 
+En mi aplicacion propuse las siguientes funcionalidades:
+
+* Mediante un archivo XML se guardan Malestares historicos, lo que permite que, si hay veterinarios disponibles que puedan atender dicha afección, se asigne automaticamente, de no haber medicos disponibles para atender, entonces se notificará y el medico deberá tomar el turno o el recepcionista asignarselo, quien lo haga primero.
+* La aplicacion contiene una funcionalidad de cambio de tema, desde el menu principal
+
   
 
   
