@@ -9,7 +9,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.Mascota">
-    <Position X="11.25" Y="2.75" Width="2.5" />
+    <Position X="12.75" Y="1" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AASgAEEEoADBABAEgAEQAAABAAAAAgAgAAIAIAAAAiA=</HashCode>
       <FileName>Mascota.cs</FileName>
@@ -43,6 +43,56 @@
       <FileName>Recepcionista.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.Sistema">
+    <Position X="21" Y="1" Width="7.25" />
+    <TypeIdentifier>
+      <HashCode>gQAAEAAGAgCAEBAIYCAAAAAAAiAAACSEAgIAAAAAQAQ=</HashCode>
+      <FileName>Sistema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Turno">
+    <Position X="21.25" Y="7" Width="6.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Entidades.Turno.PrioridadAtencion" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Turno.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Entidades.Turno.EstadoDeTurno" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Turno.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQACAAEECwCBoAMAAKIAAgAACAAAAAAAAAA=</HashCode>
+      <FileName>Turno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.HistorialMedico">
+    <Position X="7.5" Y="1" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACAAAQAAAEECAAAAAAAAAAAAAAAAiAAAAAgAAAA=</HashCode>
+      <FileName>HistorialMedico.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.DB.MascotaDAO">
+    <Position X="15.75" Y="1" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAwAAAAAAAAAAgAAgAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>DB\MascotaDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.DB.VeterinarioDAO">
+    <Position X="15.75" Y="3.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAABgAAAAAAIAAAAAAAAAAAAAAAAAQAAAAABAA=</HashCode>
+      <FileName>DB\VeterinarioDAO.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
